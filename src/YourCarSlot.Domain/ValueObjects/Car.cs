@@ -20,6 +20,11 @@ namespace YourCarSlot.Domain.ValueObjects
             {
                 throw new EmptyMakeOfCarExceptions();
             }
+
+            if(string.IsNullOrWhiteSpace(platenumber))
+            {
+                throw new EmptyPlateNumberException();
+            }
             MakeOfCar = makeofcar;
             PlateNumber = platenumber;
             CarLocalization = carlocalization;
