@@ -25,6 +25,7 @@ namespace YourCarSlot.Domain.ValueObjects
             {
                 throw new EmptyPlateNumberException();
             }
+            
             MakeOfCar = makeofcar;
             PlateNumber = platenumber;
             CarLocalization = carlocalization;
