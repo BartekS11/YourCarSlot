@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YourCarSlot.Domain.Entities;
 using YourCarSlot.Domain.Exceptions;
 
 namespace YourCarSlot.Domain.ValueObjects
@@ -12,7 +13,7 @@ namespace YourCarSlot.Domain.ValueObjects
         public string PlateNumber { get; }
         public Localization CarLocalization { get; }
         public bool IsParked { get; }
-
+        
         public Car(string makeofcar, string platenumber, 
                    Localization carlocalization, bool isparked)
         {
