@@ -2,20 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YourCarSlot.Domain.Common;
 using YourCarSlot.Domain.Exceptions;
 using YourCarSlot.Domain.ValueObjects;
 
 namespace YourCarSlot.Domain.Entities
 {
-    public class ParkingList
+    public class ParkingList : BaseEntity
     {
-        public Guid Id { get; private set; }
+        // public Guid Id { get; private set; }
         private ParkingListName _name;
         private Localization _localization;
 
         private readonly LinkedList<Car> _cars = new();
-
-
 
         internal ParkingList(Guid id, ParkingListName name, Localization localization, LinkedList<Car> cars)
         {

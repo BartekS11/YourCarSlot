@@ -9,8 +9,8 @@ namespace YourCarSlot.Domain.ValueObjects
 {
     public record Car
     {
-        public string MakeOfCar { get; }
-        public string PlateNumber { get; }
+        public string MakeOfCar { get; }  = string.Empty;
+        public string PlateNumber { get; }  = string.Empty;
         public Localization CarLocalization { get; }
         public bool IsParked { get; }
         
