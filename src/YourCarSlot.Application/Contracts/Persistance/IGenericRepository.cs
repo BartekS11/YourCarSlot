@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace YourCarSlot.Application.Contracts.Persistance
 {
     public interface IGenericRepository<T> where T : class
