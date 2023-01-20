@@ -9,16 +9,19 @@ namespace YourCarSlot.Domain.Entities
         public DateTime BookingRequestTime { get; protected set; }
         public User UserRequesting { get; protected set; }
         public ParkingList ParkingListRequesting { get; protected set; }
-
-        public ReservationRequest(Guid id, DateTime bookingrequesttime, 
+        public int ParkingSlotRequesting { get; protected set; }
+        public bool Reserved { get; protected set; } = false;
+        public ReservationRequest(DateTime bookingrequesttime,
                                   User userrequesting, ParkingList parkinglistrequesting,
-                                  PartOfTheDay partoftheday)
+                                  PartOfTheDay partoftheday, int parkingSlotRequesting)
         {
-            Id = id;
+            Id = Guid.NewGuid();
             BookingRequestTime = bookingrequesttime;
             UserRequesting = userrequesting;
             ParkingListRequesting = parkinglistrequesting;
             PartOfTheDayReservation = partoftheday;
-        }        
+            Reserved = true;
+            ParkingSlotRequesting = parkingSlotRequesting;
+        }
     }
 }

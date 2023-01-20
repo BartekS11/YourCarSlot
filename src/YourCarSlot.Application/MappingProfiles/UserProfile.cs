@@ -1,4 +1,6 @@
 using AutoMapper;
+using YourCarSlot.Application.Features.UserFeatures.Queries.GetAllUsers;
+using YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
 using YourCarSlot.Domain.Entities;
 
 namespace YourCarSlot.Application.MappingProfiles
@@ -8,6 +10,7 @@ namespace YourCarSlot.Application.MappingProfiles
         public UserProfile()
         {
             CreateMap<UserDto, User>().ReverseMap();
+   
         }
     }
 }

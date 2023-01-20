@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers
+namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllUsers
 {
     public class UserDto
     {

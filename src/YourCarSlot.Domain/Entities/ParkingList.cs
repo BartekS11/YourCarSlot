@@ -13,7 +13,8 @@ namespace YourCarSlot.Domain.Entities
         // public Guid Id { get; private set; }
         private ParkingListName _name;
         private Localization _localization;
-
+        private int SpaceLimit = 100;
+        private List<int> ParkingSlot = new();
         private readonly LinkedList<Car> _cars = new();
 
         internal ParkingList(Guid id, ParkingListName name, Localization localization, LinkedList<Car> cars)
