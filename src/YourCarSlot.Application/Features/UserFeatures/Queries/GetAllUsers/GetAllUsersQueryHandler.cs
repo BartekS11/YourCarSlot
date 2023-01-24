@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
+using YourCarSlot.Application.Exceptions;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllUsers
 {
@@ -23,6 +24,10 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllUsers
         {
             var userTypes = await _userrepository.GetAsync();
 
+            if(userTypes == null)
+            {
+                throw new NotFoundException(nameof(userTypes));   
+            }
             var data = _mapper.Map<List<UserDto>>(userTypes);
 
             return data;

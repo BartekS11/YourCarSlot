@@ -1,6 +1,7 @@
 using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
+using YourCarSlot.Application.Exceptions;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservation
 {
@@ -17,12 +18,20 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservati
 
         public async Task<Guid> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
-            //TODO: Validation incoming data
-            var ReservationRequestToCreate = _mapper.Map<Domain.Entities.ReservationRequest>(request);
+            var validator = new CreateReservationCommandValidator();
 
-            await _reservationRequestRepository.CreateAsync(ReservationRequestToCreate);
+            var validatorResult = await validator.ValidateAsync(request);
 
-            return ReservationRequestToCreate.Id;
+            if(!validatorResult.IsValid)
+            {
+                throw new BadRequestException("Invalid CreateReservation type", validatorResult);   
+            }
+
+            var reservationRequestToCreate = _mapper.Map<Domain.Entities.ReservationRequest>(request);
+
+            await _reservationRequestRepository.CreateAsync(reservationRequestToCreate);
+
+            return reservationRequestToCreate.Id;
         }
     }
 }

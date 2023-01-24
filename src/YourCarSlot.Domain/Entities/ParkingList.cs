@@ -13,18 +13,16 @@ namespace YourCarSlot.Domain.Entities
         // public Guid Id { get; private set; }
         private ParkingListName _name;
         private Localization _localization;
-        private int SpaceLimit = 100;
-        private List<int> ParkingSlot = new();
         private readonly LinkedList<Car> _cars = new();
-
-        internal ParkingList(Guid id, ParkingListName name, Localization localization, LinkedList<Car> cars)
+        private static ParkingSlots _parkingSlots = new(10);
+        public ParkingList(Guid id, ParkingListName name, Localization localization, LinkedList<Car> cars)
         {
             Id = id;
             _name = name;
-            _localization = localization;            
+            _localization = localization;
         }
 
-        public void AddCar(Car car)
+        public void AddCar(Car car, int slot)
         {
             var alreadyExist = _cars.Any(i=> i.PlateNumber == car.PlateNumber);
 
@@ -32,7 +30,7 @@ namespace YourCarSlot.Domain.Entities
             {
                 throw new CarAlreadyExistException(_name, car.PlateNumber, car.CarLocalization.ToString());
             }
-
+            _parkingSlots.AddCarToParkingSlot(car, slot);
             _cars.AddLast(car);
         }
     }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
+using YourCarSlot.Application.Exceptions;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest
 {
@@ -22,6 +23,11 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRe
         public async Task<ReservationRequestDto> Handle(ReservationRequestQuery request, CancellationToken cancellationToken)
         {
             var reservationRequestType = await _reservationRequestRepository.GetByIdAsync(request.Id);
+
+            if(reservationRequestType == null)
+            {
+                throw new NotFoundException(nameof(reservationRequestType), request.Id);   
+            }
 
             var data = _mapper.Map<ReservationRequestDto>(reservationRequestType);
 

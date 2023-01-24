@@ -1,4 +1,5 @@
 using YourCarSlot.Domain.Common;
+using YourCarSlot.Domain.ValueObjects;
 
 namespace YourCarSlot.Domain.Entities
 {
@@ -9,11 +10,11 @@ namespace YourCarSlot.Domain.Entities
         public DateTime BookingRequestTime { get; protected set; }
         public User UserRequesting { get; protected set; }
         public ParkingList ParkingListRequesting { get; protected set; }
-        public int ParkingSlotRequesting { get; protected set; }
+        public ParkingSlots ParkingSlotRequesting { get; protected set; }
         public bool Reserved { get; protected set; } = false;
         public ReservationRequest(DateTime bookingrequesttime,
                                   User userrequesting, ParkingList parkinglistrequesting,
-                                  PartOfTheDay partoftheday, int parkingSlotRequesting)
+                                  PartOfTheDay partoftheday, ParkingSlots parkingSlotRequesting)
         {
             Id = Guid.NewGuid();
             BookingRequestTime = bookingrequesttime;
