@@ -23,10 +23,11 @@ namespace YourCarSlot.Domain.Entities
         public Car? CarOwned { get; protected set; }
         // public DateTime CreatedAt { get; protected set; }
 
+        public User()
+        {}
 
-        protected User()
-        {
-        }
+        // protected User()
+        // {}
 
         public User(string email, string username, 
             string password, string salt)
