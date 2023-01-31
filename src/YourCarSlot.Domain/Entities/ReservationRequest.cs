@@ -24,5 +24,9 @@ namespace YourCarSlot.Domain.Entities
             Reserved = true;
             ParkingSlotRequesting = parkingSlotRequesting;
         }
+
+        public ReservationRequest()
+        {
+        }
     }
 }

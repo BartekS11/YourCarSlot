@@ -17,10 +17,15 @@ namespace YourCarSlot.Infrastructure
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));           
 
             services.AddScoped<IParkingListRepository, ParkingListRepository>();            
+            // services.AddTransient<IParkingListRepository, ParkingListRepository>();            
             
             services.AddScoped<IUserRepository, UserRepository>();            
+            // services.AddTransient<IUserRepository, UserRepository>();            
 
             services.AddScoped<IReservationRequestRepository, ReservationRequestRepository>();            
+            // services.AddTransient<IReservationRequestRepository, ReservationRequestRepository>();            
+
+            services.AddSingleton<IMongoContext, MongoContext>();
 
             return services;
         }   

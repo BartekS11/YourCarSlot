@@ -9,10 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
+// builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
 
-builder.Services.AddSingleton<IMongoClient>(s => 
-    new MongoClient(builder.Configuration.GetValue<string>("mongo:connectionString")));
+// builder.Services.AddSingleton<IMongoClient>(s => 
+//     new MongoClient(builder.Configuration.GetValue<string>("mongo:connectionString")));
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 

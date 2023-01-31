@@ -15,7 +15,7 @@ namespace YourCarSlot.Domain.Entities
         private readonly LinkedList<Car> _cars = new();
         private static ParkingSlots _parkingSlots = new(10);
         
-        public ParkingList(Guid id, ParkingListName name, Localization localization, LinkedList<Car> cars)
+        public ParkingList(Guid id, ParkingListName name, Localization localization)
         {
             Id = id;
             _name = name;

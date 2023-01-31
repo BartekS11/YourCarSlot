@@ -8,7 +8,7 @@ namespace YourCarSlot.Infrastructure.DatabaseContext
     {
         public YCSDatabaseContext(DbContextOptions<YCSDatabaseContext> options) : base(options)
         {
-
+            
         }
 
         public DbSet<User> Users { get; set; }

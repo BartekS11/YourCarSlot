@@ -6,9 +6,10 @@ namespace YourCarSlot.Infrastructure.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        protected readonly YCSDatabaseContext _context;
+        // protected readonly YCSDatabaseContext _context;
+        protected readonly MongoContext _context;
 
-        public GenericRepository(YCSDatabaseContext context)
+        public GenericRepository(MongoContext context)
         {
             this._context = context;
         }
