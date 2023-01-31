@@ -12,7 +12,11 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservati
         private readonly IReservationRequestRepository _reservationRequestRepository;
 
         public UpdateReservationCommandValidator(IReservationRequestRepository reservationRequestRepository)
-        {   
+        {  
+            RuleFor(p => p.Id)
+                .NotNull()
+                .MustAsync(ReservationMustExist);
+
             RuleFor(p => p.ParkingSlotRequesting)
                 .NotNull();
 

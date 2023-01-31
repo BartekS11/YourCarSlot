@@ -10,11 +10,11 @@ namespace YourCarSlot.Domain.Entities
 {
     public class ParkingList : BaseEntity
     {
-        // public Guid Id { get; private set; }
         private ParkingListName _name;
         private Localization _localization;
         private readonly LinkedList<Car> _cars = new();
         private static ParkingSlots _parkingSlots = new(10);
+        
         public ParkingList(Guid id, ParkingListName name, Localization localization, LinkedList<Car> cars)
         {
             Id = id;

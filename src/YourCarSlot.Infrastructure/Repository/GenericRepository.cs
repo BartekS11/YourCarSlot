@@ -1,32 +1,43 @@
+using Microsoft.EntityFrameworkCore;
 using YourCarSlot.Application.Contracts.Persistance;
+using YourCarSlot.Infrastructure.DatabaseContext;
 
 namespace YourCarSlot.Infrastructure.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        public Task<T> CreateAsync(T entity)
+        protected readonly YCSDatabaseContext _context;
+
+        public GenericRepository(YCSDatabaseContext context)
         {
-            throw new NotImplementedException();
+            this._context = context;
         }
 
-        public Task<T> DeleteAsync(T entity)
+        public async Task CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _context.AddAsync(entity);
+            await _context.SaveChangesAsync();
+
+        }
+        public async Task DeleteAsync(T entity)
+        {
+            _context.Remove(entity);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<IReadOnlyList<T>> GetAsync()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+        public async Task<T> GetByIdAsync(Guid id)
+        {
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public Task<List<T>> GetAsync()
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> UpdateAsync(T entity)
-        {
-            throw new NotImplementedException();
+            _context.Update(entity);
+            
+            await _context.SaveChangesAsync();
         }
     }
 }
