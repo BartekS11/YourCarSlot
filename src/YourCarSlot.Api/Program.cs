@@ -16,8 +16,15 @@ builder.Services.AddSingleton<IMongoClient>(s =>
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+// Add services from diffrent layers
 builder.Services.AddApplicationServices();
-builder.Services.ConfigureInfrastructureServices(builder.Configuration);
+builder.Services.AddInfrastructureServices(builder.Configuration);
+
+builder.Services.AddCors(options => {
+    options.AddPolicy("all", builder => builder.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
