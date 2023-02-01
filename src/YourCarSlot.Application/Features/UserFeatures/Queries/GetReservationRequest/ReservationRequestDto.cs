@@ -8,7 +8,6 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRe
     public class ReservationRequestDto
     {
         public Guid Id { get; set; }
-        public bool Reserved { get; set; }
         public DateTime? CreatedAt { get; protected set; }
         public DateTime? DateModified { get; protected set; }
     }

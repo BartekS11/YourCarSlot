@@ -14,17 +14,13 @@ namespace YourCarSlot.Domain.Entities
         private static readonly Regex NameRegex = new Regex("^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._.-]+(?<![_.-])$");
         private static readonly Regex EmailRegex = new Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
 
-        // public Guid Id { get; protected set; }
         public string Email { get; protected set; }  = string.Empty;
         public string Password { get; protected set; }  = string.Empty;
         public string Salt { get; protected set; }  = string.Empty;
         public string Username { get; protected set; }  = string.Empty;
         public string FullName { get; protected set; }  = string.Empty;
-        public Car? CarOwned { get; protected set; }
-        // public DateTime CreatedAt { get; protected set; }
 
-
-        protected User()
+        private User()
         {
         }
 
