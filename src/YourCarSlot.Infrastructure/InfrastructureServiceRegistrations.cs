@@ -13,7 +13,7 @@ namespace YourCarSlot.Infrastructure
             IConfiguration configuration)
         {
             services.AddDbContext<YCSDatabaseContext>(options => {
-                options.UseSqlServer(configuration.GetConnectionString("ConnectionStrings:DefaultConnections"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
             });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -22,6 +22,7 @@ namespace YourCarSlot.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
 
+           
             return services;
         }
     }

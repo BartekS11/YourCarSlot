@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using YourCarSlot.Application.Logging;
 
 namespace YourCarSlot.Application
 {
@@ -15,7 +11,7 @@ namespace YourCarSlot.Application
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             // services.AddMediatR(Assembly.GetExecutingAssembly());
-
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             return services;
         }
     }
