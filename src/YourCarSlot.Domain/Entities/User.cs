@@ -19,7 +19,7 @@ namespace YourCarSlot.Domain.Entities
         public string Salt { get; protected set; }  = string.Empty;
         public string Username { get; protected set; }  = string.Empty;
         public string FullName { get; protected set; }  = string.Empty;
-
+        public string PlateNumber { get; }  = string.Empty;
         private User()
         {
         }

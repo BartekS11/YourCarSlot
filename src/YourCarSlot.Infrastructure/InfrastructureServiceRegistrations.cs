@@ -18,6 +18,10 @@ namespace YourCarSlot.Infrastructure
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IParkingSlotRepository, ParkingSlotRepository>();
+            services.AddScoped<IReservationRequestRepository, ReservationRequestRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+
             return services;
         }
     }
