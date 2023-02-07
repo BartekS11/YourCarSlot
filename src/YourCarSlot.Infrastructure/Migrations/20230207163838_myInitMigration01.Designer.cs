@@ -12,8 +12,8 @@ using YourCarSlot.Infrastructure.EF.DatabaseContext;
 namespace YourCarSlot.Infrastructure.Migrations
 {
     [DbContext(typeof(YCSDatabaseContext))]
-    [Migration("20230206170856_myMigration01")]
-    partial class myMigration01
+    [Migration("20230207163838_myInitMigration01")]
+    partial class myInitMigration01
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,6 +63,10 @@ namespace YourCarSlot.Infrastructure.Migrations
                     b.Property<int>("PartOfTheDayReservation")
                         .HasColumnType("int");
 
+                    b.Property<string>("PlateNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("Reserved")
                         .HasColumnType("bit");
 
@@ -71,9 +75,21 @@ namespace YourCarSlot.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserRequestingId");
-
                     b.ToTable("ReservationRequests");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("81a130d2-502f-4cf1-a376-63edeb000e9f"),
+                            BookingRequestTime = new DateTime(2023, 2, 7, 16, 38, 37, 765, DateTimeKind.Utc).AddTicks(8521),
+                            CreatedAt = new DateTime(2023, 2, 7, 16, 38, 37, 765, DateTimeKind.Local).AddTicks(8526),
+                            DateModified = new DateTime(2023, 2, 7, 16, 38, 37, 765, DateTimeKind.Local).AddTicks(8541),
+                            ParkingSlotRequesting = 4,
+                            PartOfTheDayReservation = 0,
+                            PlateNumber = "4324-1345-53",
+                            Reserved = false,
+                            UserRequestingId = new Guid("25a130d2-502f-4cf1-a376-63edeb027212")
+                        });
                 });
 
             modelBuilder.Entity("YourCarSlot.Domain.Entities.User", b =>
@@ -128,17 +144,6 @@ namespace YourCarSlot.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vehicles");
-                });
-
-            modelBuilder.Entity("YourCarSlot.Domain.Entities.ReservationRequest", b =>
-                {
-                    b.HasOne("YourCarSlot.Domain.Entities.User", "UserRequesting")
-                        .WithMany()
-                        .HasForeignKey("UserRequestingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserRequesting");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace YourCarSlot.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class myMigration01 : Migration
+    public partial class myInitMigration01 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,6 +22,25 @@ namespace YourCarSlot.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ParkingSlots", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReservationRequests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PartOfTheDayReservation = table.Column<int>(type: "int", nullable: false),
+                    BookingRequestTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserRequestingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParkingSlotRequesting = table.Column<int>(type: "int", nullable: false),
+                    Reserved = table.Column<bool>(type: "bit", nullable: false),
+                    PlateNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReservationRequests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,34 +74,10 @@ namespace YourCarSlot.Infrastructure.Migrations
                     table.PrimaryKey("PK_Vehicles", x => x.Id);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ReservationRequests",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PartOfTheDayReservation = table.Column<int>(type: "int", nullable: false),
-                    BookingRequestTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserRequestingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ParkingSlotRequesting = table.Column<int>(type: "int", nullable: false),
-                    Reserved = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReservationRequests", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ReservationRequests_Users_UserRequestingId",
-                        column: x => x.UserRequestingId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ReservationRequests_UserRequestingId",
+            migrationBuilder.InsertData(
                 table: "ReservationRequests",
-                column: "UserRequestingId");
+                columns: new[] { "Id", "BookingRequestTime", "CreatedAt", "DateModified", "ParkingSlotRequesting", "PartOfTheDayReservation", "PlateNumber", "Reserved", "UserRequestingId" },
+                values: new object[] { new Guid("81a130d2-502f-4cf1-a376-63edeb000e9f"), new DateTime(2023, 2, 7, 16, 38, 37, 765, DateTimeKind.Utc).AddTicks(8521), new DateTime(2023, 2, 7, 16, 38, 37, 765, DateTimeKind.Local).AddTicks(8526), new DateTime(2023, 2, 7, 16, 38, 37, 765, DateTimeKind.Local).AddTicks(8541), 4, 0, "4324-1345-53", false, new Guid("25a130d2-502f-4cf1-a376-63edeb027212") });
         }
 
         /// <inheritdoc />
@@ -95,10 +90,10 @@ namespace YourCarSlot.Infrastructure.Migrations
                 name: "ReservationRequests");
 
             migrationBuilder.DropTable(
-                name: "Vehicles");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Vehicles");
         }
     }
 }

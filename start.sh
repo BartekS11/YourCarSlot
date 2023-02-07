@@ -1,2 +1,2 @@
 #!/bin/bash
-dotnet run -p YourCarSlot.Api/YourCarSlot.Api.csproj
+dotnet run --project src/YourCarSlot.Api/YourCarSlot.Api.csproj
