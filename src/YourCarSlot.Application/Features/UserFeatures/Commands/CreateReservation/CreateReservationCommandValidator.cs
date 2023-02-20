@@ -10,8 +10,8 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservati
     {
         public CreateReservationCommandValidator()
         {
-            RuleFor(p => p.UserRequesting)
-                .NotEmpty().WithMessage("")
+            RuleFor(p => p.UserRequestingId)
+                .NotEmpty()
                 .NotNull()
                 .WithMessage("{PropertyName} must be fewer than 70 characters");
 

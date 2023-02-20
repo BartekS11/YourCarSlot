@@ -7,10 +7,11 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservati
 {
     public class UpdateReservationCommand : IRequest<Unit>
     {
-        public Guid Id { get; protected set; }
-        public int ParkingSlotRequesting { get; protected set; }
-        public User UserRequesting { get; protected set; }
-        public PartOfTheDay PartOfTheDayReservation { get; protected set; }
-        public DateTime BookingRequestTime { get; protected set; }
+        public Guid Id { get; set; }
+        public int ParkingSlotRequesting { get; set; }
+        public Guid UserRequestingId { get; set; }
+        public PartOfTheDay PartOfTheDayReservation { get; set; }
+        public DateTime BookingRequestTime { get; set; }
+        public string PlateNumber { get; set; }
     }
 }

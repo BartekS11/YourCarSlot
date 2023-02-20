@@ -8,6 +8,6 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservati
 {
     public class DeleteReservationCommand : IRequest<Unit>
     {
-        public Guid Id { get; protected set; }
+        public Guid Id { get; set; }
     }
 }

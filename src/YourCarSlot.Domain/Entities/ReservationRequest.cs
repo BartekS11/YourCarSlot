@@ -27,6 +27,7 @@ namespace YourCarSlot.Domain.Entities
 
         public ReservationRequest()
         {
+            Reserved = true;
         }
     }
 }

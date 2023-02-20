@@ -17,7 +17,9 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservati
 
         public async Task<Unit> Handle(UpdateReservationCommand request, CancellationToken cancellationToken)
         {
+            // var reservationRequestType = await _reservationRequestRepository.GetByIdAsync(request.Id);
             var reservationToUpdate = _mapper.Map<Domain.Entities.ReservationRequest>(request);
+            // var reservationToUpdate = _mapper.Map<Domain.Entities.ReservationRequest>(reservationRequestType);
 
             await _reservationRequestRepository.UpdateAsync(reservationToUpdate);
 
