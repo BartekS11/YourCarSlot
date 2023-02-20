@@ -4,7 +4,7 @@ using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
 using YourCarSlot.Application.Logging;
 
-namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllUsers
+namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers
 {
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserDto>>
     {
@@ -29,6 +29,7 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllUsers
                 _logger.LogWarning("Cannot find any user", nameof(userTypes));
             }
             var data = _mapper.Map<List<UserDto>>(userTypes);
+            _logger.LogInformation("All users request were retrieved successfuly");
 
             return data;
         }

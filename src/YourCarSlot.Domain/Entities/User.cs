@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using YourCarSlot.Domain.Common;
 using YourCarSlot.Domain.Exceptions;
-using YourCarSlot.Domain.ValueObjects;
 
 namespace YourCarSlot.Domain.Entities
 {
@@ -14,13 +9,13 @@ namespace YourCarSlot.Domain.Entities
         private static readonly Regex NameRegex = new Regex("^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._.-]+(?<![_.-])$");
         private static readonly Regex EmailRegex = new Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
 
-        public string Email { get; protected set; }  = string.Empty;
-        public string Password { get; protected set; }  = string.Empty;
-        public string Salt { get; protected set; }  = string.Empty;
-        public string Username { get; protected set; }  = string.Empty;
-        public string FullName { get; protected set; }  = string.Empty;
+        public string Email { get;  set; }  = string.Empty;
+        public string Password { get;  set; }  = string.Empty;
+        public string Salt { get;  set; }  = string.Empty;
+        public string Username { get;  set; }  = string.Empty;
+        public string FullName { get;  set; }  = string.Empty;
         public string PlateNumber { get; }  = string.Empty;
-        private User()
+        public User()
         {
         }
 

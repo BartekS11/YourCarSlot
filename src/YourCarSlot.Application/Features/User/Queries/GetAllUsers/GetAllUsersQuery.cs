@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllUsers
+namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers
 {
     public record GetAllUsersQuery : IRequest<List<UserDto>>;
 
