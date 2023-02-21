@@ -7,7 +7,7 @@ namespace YourCarSlot.Domain.Entities
        private int _levelId { get; set; }
        private int _spotId { get; set; }
 
-       private ParkingSlot()
+       public ParkingSlot()
        {
         
        }

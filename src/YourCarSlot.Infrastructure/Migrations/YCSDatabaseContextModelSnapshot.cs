@@ -37,6 +37,12 @@ namespace YourCarSlot.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ParkingSlots");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("4c750373-6309-40c8-af68-973aaf8da562")
+                        });
                 });
 
             modelBuilder.Entity("YourCarSlot.Domain.Entities.ReservationRequest", b =>
@@ -78,9 +84,9 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("81a130d2-502f-4cf1-a376-63edeb000e9f"),
-                            BookingRequestTime = new DateTime(2023, 2, 20, 17, 2, 58, 336, DateTimeKind.Utc).AddTicks(9399),
-                            CreatedAt = new DateTime(2023, 2, 20, 17, 2, 58, 336, DateTimeKind.Local).AddTicks(9405),
-                            DateModified = new DateTime(2023, 2, 20, 17, 2, 58, 336, DateTimeKind.Local).AddTicks(9416),
+                            BookingRequestTime = new DateTime(2023, 2, 21, 14, 29, 45, 88, DateTimeKind.Utc).AddTicks(7310),
+                            CreatedAt = new DateTime(2023, 2, 21, 14, 29, 45, 88, DateTimeKind.Local).AddTicks(7314),
+                            DateModified = new DateTime(2023, 2, 21, 14, 29, 45, 88, DateTimeKind.Local).AddTicks(7324),
                             ParkingSlotRequesting = 4,
                             PartOfTheDayReservation = 0,
                             PlateNumber = "4324-1345-53",
@@ -90,9 +96,9 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("34a130d2-502f-4cf1-a376-63edeb092137"),
-                            BookingRequestTime = new DateTime(2023, 2, 20, 17, 2, 58, 336, DateTimeKind.Utc).AddTicks(9421),
-                            CreatedAt = new DateTime(2023, 2, 20, 17, 2, 58, 336, DateTimeKind.Local).AddTicks(9422),
-                            DateModified = new DateTime(2023, 2, 20, 17, 2, 58, 336, DateTimeKind.Local).AddTicks(9424),
+                            BookingRequestTime = new DateTime(2023, 2, 21, 14, 29, 45, 88, DateTimeKind.Utc).AddTicks(7328),
+                            CreatedAt = new DateTime(2023, 2, 21, 14, 29, 45, 88, DateTimeKind.Local).AddTicks(7330),
+                            DateModified = new DateTime(2023, 2, 21, 14, 29, 45, 88, DateTimeKind.Local).AddTicks(7331),
                             ParkingSlotRequesting = 1,
                             PartOfTheDayReservation = 0,
                             PlateNumber = "3123-466-221",
@@ -141,7 +147,7 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("36b99c90-b13d-11ed-afa1-0242ac120002"),
-                            CreatedAt = new DateTime(2023, 2, 20, 17, 2, 58, 336, DateTimeKind.Local).AddTicks(9856),
+                            CreatedAt = new DateTime(2023, 2, 21, 14, 29, 45, 88, DateTimeKind.Local).AddTicks(7581),
                             Email = "Wojciech@polo.pl",
                             FullName = "",
                             Password = "1234567",
@@ -151,7 +157,7 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("4428bf00-b13d-11ed-afa1-0242ac120002"),
-                            CreatedAt = new DateTime(2023, 2, 20, 17, 2, 58, 336, DateTimeKind.Local).AddTicks(9863),
+                            CreatedAt = new DateTime(2023, 2, 21, 14, 29, 45, 88, DateTimeKind.Local).AddTicks(7587),
                             Email = "Kubus@polo.pl",
                             FullName = "",
                             Password = "1234567",
@@ -172,9 +178,25 @@ namespace YourCarSlot.Infrastructure.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("MakeOfCar")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PlateNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Vehicles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("0a417db6-b1f3-11ed-afa1-0242ac120002"),
+                            MakeOfCar = "bmw",
+                            PlateNumber = "23233-33"
+                        });
                 });
 #pragma warning restore 612, 618
         }
