@@ -15,8 +15,8 @@ namespace YourCarSlot.Infrastructure.EF.DatabaseContext
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<ReservationRequest> ReservationRequests { get; set; }
-        public DbSet<ParkingSlot> ParkingSlots { get; set; }
+        public DbSet<ReservationRequest> ReservationRequest { get; set; }
+        public DbSet<ParkingSlot> ParkingSlot { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

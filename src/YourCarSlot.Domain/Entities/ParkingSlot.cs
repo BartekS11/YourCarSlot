@@ -1,15 +1,16 @@
+using System.ComponentModel.DataAnnotations;
 using YourCarSlot.Domain.Common;
 
 namespace YourCarSlot.Domain.Entities
 {
     public class ParkingSlot : BaseEntity
     {
-       private int _levelId { get; set; }
-       private int _spotId { get; set; }
-
-       public ParkingSlot()
-       {
+        [Key]
+        public int? ParkingspotId { get; set; }
+        public int _levelId { get; set; }
+        public ParkingSlot()
+        {
         
-       }
+        }
     }
 }

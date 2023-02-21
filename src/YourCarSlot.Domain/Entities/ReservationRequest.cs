@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using YourCarSlot.Domain.Common;
 using YourCarSlot.Domain.ValueObjects;
 
@@ -8,20 +9,31 @@ namespace YourCarSlot.Domain.Entities
         public enum PartOfTheDay { AM, PM };
         public PartOfTheDay PartOfTheDayReservation { get;  set; }
         public DateTime BookingRequestTime { get;  set; }
-        public Guid UserRequestingId { get;  set; }
-        public int ParkingSlotRequesting { get;  set; }
+        
+        [ForeignKey("User")]
+        public Guid? UserRequestingId { get;  set; }
+        public User User { get; set; }
+
+        [ForeignKey("ParkingSlot")]
+        public int? ParkingspotId { get;  set; }
+        public ParkingSlot ParkingSlot { get; set; }
+
         public bool Reserved { get;  set; } = false;
-        public string PlateNumber { get; set; }  = string.Empty;
+
+        [ForeignKey("Vehicle")]
+        public string? PlateNumber { get; set; }
+        public Vehicle Vehicle { get; set; }
+
         public ReservationRequest(DateTime bookingrequesttime,
                                   Guid userrequesting,
-                                  PartOfTheDay partoftheday, int parkingSlotRequesting)
+                                  PartOfTheDay partoftheday, int parkingspotId)
         {
             Id = Guid.NewGuid();
             BookingRequestTime = bookingrequesttime;
             UserRequestingId = userrequesting;
             PartOfTheDayReservation = partoftheday;
             Reserved = true;
-            ParkingSlotRequesting = parkingSlotRequesting;
+            ParkingspotId = parkingspotId;
         }
 
         public ReservationRequest()

@@ -13,7 +13,7 @@ namespace YourCarSlot.Infrastructure.Repository
 
         public async Task<ReservationRequest> GetReservationRequestWithDetails(Guid id)
         {
-            var ReservationRequest = await _context.ReservationRequests
+            var ReservationRequest = await _context.ReservationRequest
                 .Include(q => q.PlateNumber)
                 .FirstOrDefaultAsync(q => q.Id == id);
 

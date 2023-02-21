@@ -17,10 +17,7 @@ namespace YourCarSlot.Infrastructure.EF.Configuration
                 {
                     Id = Guid.Parse(stringGuid),
                     BookingRequestTime = DateTime.UtcNow,
-                    ParkingSlotRequesting = 4,
                     Reserved = true,
-                    UserRequestingId = Guid.Parse(userrequestingExample),
-                    PlateNumber = "4324-1345-53",
                     CreatedAt = DateTime.Now,
                     DateModified = DateTime.Now
                 },
@@ -28,10 +25,7 @@ namespace YourCarSlot.Infrastructure.EF.Configuration
                 {
                     Id = Guid.Parse(stringGuid1),
                     BookingRequestTime = DateTime.UtcNow,
-                    ParkingSlotRequesting = 1,
                     Reserved = true,
-                    UserRequestingId = Guid.Parse(userrequestingExample),
-                    PlateNumber = "3123-466-221",
                     CreatedAt = DateTime.Now,
                     DateModified = DateTime.Now
                 }

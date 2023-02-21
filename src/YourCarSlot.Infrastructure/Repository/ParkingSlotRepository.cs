@@ -17,7 +17,7 @@ namespace YourCarSlot.Infrastructure.Repository
 
         public async Task<bool> IsParkingSlotUnique(Guid slotid)
         {
-            return await _context.ParkingSlots.AnyAsync(q => q.Id == slotid);
+            return await _context.ParkingSlot.AnyAsync(q => q.Id == slotid);
         }
     }
 }

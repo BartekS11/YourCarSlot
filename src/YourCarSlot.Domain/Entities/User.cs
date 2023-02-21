@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 using YourCarSlot.Domain.Common;
 using YourCarSlot.Domain.Exceptions;
@@ -9,13 +10,15 @@ namespace YourCarSlot.Domain.Entities
         private static readonly Regex NameRegex = new Regex("^(?![_.-])(?!.*[_.-]{2})[a-zA-Z0-9._.-]+(?<![_.-])$");
         private static readonly Regex EmailRegex = new Regex("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
 
-        public string Email { get;  set; }  = string.Empty;
-        public string Password { get;  set; }  = string.Empty;
-        public string Salt { get;  set; }  = string.Empty;
-        public string Username { get;  set; }  = string.Empty;
-        public string FullName { get;  set; }  = string.Empty;
+        public string Email { get; set; }  = string.Empty;
+        public string Password { get; set; }  = string.Empty;
+        public string Salt { get; set; }  = string.Empty;
+        public string Username { get; set; }  = string.Empty;
+        public string FullName { get; set; }  = string.Empty;
 
-        public string PlateNumber { get; }  = string.Empty;
+        [ForeignKey("Vehicle")]
+        public string? PlateNumber { get; set; }
+        public Vehicle Vehicle { get; set; }
 
         public User()
         {
