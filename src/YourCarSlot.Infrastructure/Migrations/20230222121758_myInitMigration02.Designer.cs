@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YourCarSlot.Infrastructure.EF.DatabaseContext;
 
@@ -11,9 +12,11 @@ using YourCarSlot.Infrastructure.EF.DatabaseContext;
 namespace YourCarSlot.Infrastructure.Migrations
 {
     [DbContext(typeof(YCSDatabaseContext))]
-    partial class YCSDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230222121758_myInitMigration02")]
+    partial class myInitMigration02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,9 +102,9 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("81a130d2-502f-4cf1-a376-63edeb000e9f"),
-                            BookingRequestTime = new DateTime(2023, 2, 22, 12, 54, 1, 358, DateTimeKind.Utc).AddTicks(8225),
-                            CreatedAt = new DateTime(2023, 2, 22, 12, 54, 1, 358, DateTimeKind.Local).AddTicks(8235),
-                            DateModified = new DateTime(2023, 2, 22, 12, 54, 1, 358, DateTimeKind.Local).AddTicks(8243),
+                            BookingRequestTime = new DateTime(2023, 2, 22, 12, 17, 57, 668, DateTimeKind.Utc).AddTicks(3560),
+                            CreatedAt = new DateTime(2023, 2, 22, 12, 17, 57, 668, DateTimeKind.Local).AddTicks(3571),
+                            DateModified = new DateTime(2023, 2, 22, 12, 17, 57, 668, DateTimeKind.Local).AddTicks(3581),
                             PartOfTheDayReservation = 0,
                             PlateNumber = "23233-33",
                             Reserved = true,
@@ -110,9 +113,9 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("34a130d2-502f-4cf1-a376-63edeb092137"),
-                            BookingRequestTime = new DateTime(2023, 2, 22, 12, 54, 1, 358, DateTimeKind.Utc).AddTicks(8248),
-                            CreatedAt = new DateTime(2023, 2, 22, 12, 54, 1, 358, DateTimeKind.Local).AddTicks(8250),
-                            DateModified = new DateTime(2023, 2, 22, 12, 54, 1, 358, DateTimeKind.Local).AddTicks(8251),
+                            BookingRequestTime = new DateTime(2023, 2, 22, 12, 17, 57, 668, DateTimeKind.Utc).AddTicks(3585),
+                            CreatedAt = new DateTime(2023, 2, 22, 12, 17, 57, 668, DateTimeKind.Local).AddTicks(3587),
+                            DateModified = new DateTime(2023, 2, 22, 12, 17, 57, 668, DateTimeKind.Local).AddTicks(3588),
                             PartOfTheDayReservation = 0,
                             PlateNumber = "44312413433-33",
                             Reserved = true,
@@ -165,7 +168,7 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("36b99c90-b13d-11ed-afa1-0242ac120002"),
-                            CreatedAt = new DateTime(2023, 2, 22, 12, 54, 1, 358, DateTimeKind.Local).AddTicks(8505),
+                            CreatedAt = new DateTime(2023, 2, 22, 12, 17, 57, 668, DateTimeKind.Local).AddTicks(3832),
                             Email = "Wojciech@polo.pl",
                             FullName = "",
                             Password = "1234567",
@@ -175,7 +178,7 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("4428bf00-b13d-11ed-afa1-0242ac120002"),
-                            CreatedAt = new DateTime(2023, 2, 22, 12, 54, 1, 358, DateTimeKind.Local).AddTicks(8511),
+                            CreatedAt = new DateTime(2023, 2, 22, 12, 17, 57, 668, DateTimeKind.Local).AddTicks(3837),
                             Email = "Kubus@polo.pl",
                             FullName = "",
                             Password = "1234567",

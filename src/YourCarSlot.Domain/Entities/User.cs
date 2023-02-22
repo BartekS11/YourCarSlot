@@ -22,6 +22,7 @@ namespace YourCarSlot.Domain.Entities
 
         public User()
         {
+            Id = Guid.NewGuid();
         }
 
         public User(string email, string username, 

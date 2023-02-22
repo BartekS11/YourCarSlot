@@ -13,5 +13,10 @@ namespace YourCarSlot.Infrastructure.Repository
         public VehicleRepository(YCSDatabaseContext context) : base(context)
         {
         }
+
+        public async Task<Vehicle> GetByPlateNumberAsync(string plateNumber)
+        {
+            return await _context.Set<Vehicle>().FindAsync(plateNumber);
+        }
     }
 }
