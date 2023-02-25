@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Moq;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Domain.Entities;
@@ -51,6 +47,26 @@ namespace YourCarSlot.Application.UnitTests.Mocks
                 });
 
             return mockRepo;
+        }
+
+        public static Mock<IReservationRequestRepository> GetReservationRequestMockRepository()
+        {
+            var stringGuid1 = "34a130d2-502f-4cf1-a376-63edeb092137";
+            var userrequestingExample = "36b99c90-b13d-11ed-afa1-0242ac120002";
+            var reservationReuests = new ReservationRequest
+                {
+                    Id = Guid.Parse(stringGuid1),
+                    BookingRequestTime = DateTime.UtcNow,
+                    Reserved = true,
+                    PlateNumber = "23233-33",
+                    UserRequestingId = Guid.Parse(userrequestingExample),
+                    CreatedAt = DateTime.Now,
+                    DateModified = DateTime.Now
+                };
+        var mockRepo = new Mock<IReservationRequestRepository>();
+        mockRepo.Setup(r => r.GetByIdAsync(Guid.Parse(stringGuid1))).ReturnsAsync(reservationReuests);
+
+        return mockRepo;
         }
     }
 }

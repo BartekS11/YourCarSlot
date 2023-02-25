@@ -2,7 +2,6 @@ using AutoMapper;
 using Moq;
 using Shouldly;
 using YourCarSlot.Application.Contracts.Persistance;
-using YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservationRequests;
 using YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
 using YourCarSlot.Application.Logging;
 using YourCarSlot.Application.MappingProfiles;
@@ -14,11 +13,11 @@ namespace YourCarSlot.Application.UnitTests.Features.ReservationRequest.Queries
     {
         private readonly Mock<IReservationRequestRepository> _mockRepo;
         private readonly IMapper _mapper;
-        private readonly Mock<IAppLogger<GetAllReservationRequestQueryHandler>> _mockAppLogger;
+        private readonly Mock<IAppLogger<ReservationRequestQueryHandler>> _mockAppLogger;
 
         public GetReservationRequestQueryHandlerTests()
         {
-            this._mockRepo = MockReservationRequestRepository.GetAllReservationRequestMockRepository();
+            this._mockRepo = MockReservationRequestRepository.GetReservationRequestMockRepository();
 
             var mapperConfig = new MapperConfiguration(c => 
             {
@@ -26,18 +25,22 @@ namespace YourCarSlot.Application.UnitTests.Features.ReservationRequest.Queries
             });
 
             _mapper = mapperConfig.CreateMapper();
-            _mockAppLogger = new Mock<IAppLogger<GetAllReservationRequestQueryHandler>>();
+            _mockAppLogger = new Mock<IAppLogger<ReservationRequestQueryHandler>>();
         }
 
+
+
+
         [Fact]
-        public async Task GetAllReservationRequestListTest()
+        public async Task GetSingleReservationRequestTest()
         {
-            var handler = new GetAllReservationRequestQueryHandler(_mapper, _mockRepo.Object, _mockAppLogger.Object);
+            var guid1 = "4c750373-6309-40c8-af68-973aaf8da562";
+            var handler = new ReservationRequestQueryHandler(_mapper, _mockRepo.Object, _mockAppLogger.Object);
 
-            var result = await handler.Handle(new GetAllReservationRequestQuery(), CancellationToken.None);
+            var result = await handler.Handle(new ReservationRequestQuery(Guid.Parse(guid1)), CancellationToken.None);
 
-            result.ShouldBeOfType<List<ReservationRequestDto>>();
-            result.Count.ShouldBe(2);
+            result.ShouldBeOfType<ReservationRequestDto>();
+
         }
     }
 }
