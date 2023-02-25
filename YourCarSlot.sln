@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourCarSlot.Infrastructure.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourCarSlot.Api.PerformanceTests", "tests\YourCarSlot.Api.PerformanceTests\YourCarSlot.Api.PerformanceTests.csproj", "{4C1F4F8F-6257-4747-B968-DE09F6B97AC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourCarSlot.Identity", "src\YourCarSlot.Identity\YourCarSlot.Identity.csproj", "{BCB57926-9148-4C46-90A4-F18B1BC4632C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{4C1F4F8F-6257-4747-B968-DE09F6B97AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C1F4F8F-6257-4747-B968-DE09F6B97AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C1F4F8F-6257-4747-B968-DE09F6B97AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB57926-9148-4C46-90A4-F18B1BC4632C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB57926-9148-4C46-90A4-F18B1BC4632C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB57926-9148-4C46-90A4-F18B1BC4632C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB57926-9148-4C46-90A4-F18B1BC4632C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EC0E6232-9A4E-4423-B6D1-9B639101E2E0} = {8553EAF5-CFB2-4DA9-9092-FAFA676673B1}
@@ -84,5 +90,6 @@ Global
 		{B69F1BCF-02AE-4ABF-87E2-869CF3C7066C} = {4153FBD3-36FA-4C1E-81EB-89EB2D32DB43}
 		{578B0BFB-3312-4F16-AAC0-76964369EEC0} = {4153FBD3-36FA-4C1E-81EB-89EB2D32DB43}
 		{4C1F4F8F-6257-4747-B968-DE09F6B97AC3} = {4153FBD3-36FA-4C1E-81EB-89EB2D32DB43}
+		{BCB57926-9148-4C46-90A4-F18B1BC4632C} = {8553EAF5-CFB2-4DA9-9092-FAFA676673B1}
 	EndGlobalSection
 EndGlobal

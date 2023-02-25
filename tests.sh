@@ -1,5 +1,5 @@
 #!/bin/bash
-projects=(*.UnitTests *.IntegrationTests)
+projects=(*.UnitTests *.IntegrationTests, *.PerformanceTests)
 for project in ${projects[*]}
 do
         echo Running tests for: $project
