@@ -48,7 +48,7 @@ namespace YourCarSlot.Api.Middleware
                     };
                     break;
                 case NotFoundException notFound:
-                    statusCode = HttpStatusCode.BadRequest;
+                    statusCode = HttpStatusCode.NotFound;
                     problem = new CustomValidationProblemDetails
                     {
                         Title = notFound.Message,

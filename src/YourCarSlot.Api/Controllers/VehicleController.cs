@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle;
 using YourCarSlot.Application.Features.Vehicle.Commands.DeleteVehicle;
@@ -10,6 +11,7 @@ namespace YourCarSlot.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class VehicleController : ControllerBase
     {
         private readonly IMediator _mediator;

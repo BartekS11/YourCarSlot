@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YourCarSlot.Application.Features.ParkingSlot.Commands.UpdateParkingSlot;
 using YourCarSlot.Application.Features.ParkingSlot.Queries.GetAllParkingSlots;
@@ -7,6 +8,7 @@ namespace YourCarSlot.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ParkingSlotController : ControllerBase
     {
         private readonly IMediator _mediator;

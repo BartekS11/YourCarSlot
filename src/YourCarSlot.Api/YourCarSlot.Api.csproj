@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YourCarSlot.Infrastructure\YourCarSlot.Infrastructure.csproj" />
+    <ProjectReference Include="..\YourCarSlot.Identity\YourCarSlot.Identity.csproj" />
+    <ProjectReference Include="..\YourCarSlot.Application\YourCarSlot.Application.csproj" />
   </ItemGroup>
 
 </Project>

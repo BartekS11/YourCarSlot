@@ -1,5 +1,6 @@
 using YourCarSlot.Api.Middleware;
 using YourCarSlot.Application;
+using YourCarSlot.Identity;
 using YourCarSlot.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddCors( options => {
     options.AddPolicy("all", builder => builder.AllowAnyOrigin()
@@ -32,6 +34,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("all");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
