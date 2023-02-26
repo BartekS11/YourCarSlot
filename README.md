@@ -3,8 +3,6 @@
 
 YourCarSlot is an application to manage parking space in company. It is created in .NET 6 Web API created with clean architecutre, CQRS, Mediator behavioral design pattern. YCS is using mssql as database hosted in docker container. In application there are performance tests, unit tests, integration tests.
 
-In 
-
 ## Run App
     docker compose up && ./start.sh
 - Also available script to run dotnet app in release configuration (./start-release.sh)
