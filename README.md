@@ -11,14 +11,6 @@ YourCarSlot is an application to manage parking space in company. It is created 
 ## Run Tests
     ./tests.sh
 
-## Features
-
-- Import a HTML file and watch it magically convert to Markdown
-- Drag and drop images (requires your Dropbox account be linked)
-- Import and save files from GitHub, Dropbox, Google Drive and One Drive
-- Drag and drop markdown and HTML files into Dillinger
-- Export documents as Markdown, HTML and PDF
-
 # REST API
 
 Sample REST API request, at the moment only ReservationRequest endpoint is not secured by authorization (feature is commented but implemented). Basic endpoints:
@@ -47,3 +39,6 @@ User - to manage users.
         "dateModified": "2023-02-26T20:11:30.579Z"
       }
     ]
+
+# TODO:
+Create more CQRS commands and queries to add new features, split database to store auth feature and users seperately, write more tests, create frontend.
