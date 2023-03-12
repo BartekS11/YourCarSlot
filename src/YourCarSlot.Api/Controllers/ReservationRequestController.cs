@@ -11,7 +11,7 @@ namespace YourCarSlot.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    // [Authorize]
+    [Authorize]
     public class ReservationRequestController : ControllerBase
     {
         private readonly IMediator _mediator;
