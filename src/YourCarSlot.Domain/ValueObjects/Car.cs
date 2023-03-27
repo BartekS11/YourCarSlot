@@ -7,7 +7,7 @@ using YourCarSlot.Domain.Exceptions;
 
 namespace YourCarSlot.Domain.ValueObjects
 {
-    public record Car
+    public class Car
     {
         public string MakeOfCar { get; }  = string.Empty;
         public string PlateNumber { get; }  = string.Empty;

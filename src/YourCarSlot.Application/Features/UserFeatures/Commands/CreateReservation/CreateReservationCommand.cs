@@ -9,6 +9,6 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservati
         public DateTime BookingRequestTime { get; set; }
         public Guid UserRequestingId { get; set; }
         public int ParkingSlotRequesting { get; set; }
-        public string PlateNumber { get; set; }
+        public string PlateNumber { get; set; } = null!;
     }
 }

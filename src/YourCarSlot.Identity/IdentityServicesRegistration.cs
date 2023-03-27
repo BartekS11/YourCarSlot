@@ -19,9 +19,9 @@ namespace YourCarSlot.Identity
             IConfiguration configuration)
         {
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
-            services.AddDbContext<YCSIdentityDbContext>(options => {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
-            });
+            services.AddDbContext<YCSIdentityDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnections")));
+            
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<YCSIdentityDbContext>()

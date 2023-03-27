@@ -12,6 +12,6 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservati
         public Guid UserRequestingId { get; set; }
         public PartOfTheDay PartOfTheDayReservation { get; set; }
         public DateTime BookingRequestTime { get; set; }
-        public string PlateNumber { get; set; }
+        public string PlateNumber { get; set; } = null!;
     }
 }

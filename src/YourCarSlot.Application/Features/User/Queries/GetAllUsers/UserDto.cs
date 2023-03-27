@@ -8,8 +8,8 @@ namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers
     public class UserDto
     {
         public Guid Id { get; set; }
-        public string Email { get; set; }
-        public string Username { get; set; }
+        public string Email { get; set; } = null!;
+        public string Username { get; set; } = null!;
         public string? PlateNumber { get; set; }
     }
 }
