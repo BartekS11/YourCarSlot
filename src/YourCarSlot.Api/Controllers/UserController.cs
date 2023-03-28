@@ -24,7 +24,8 @@ namespace YourCarSlot.Api.Controllers
         [HttpGet("{id}")]
         public async Task<UserDto> Get(Guid id)
         {
-            var usersType = await _mediator.Send(new GetUserQuery(id));
+            var getUserQuery = new GetUserQuery(id);
+            var usersType = await _mediator.Send(getUserQuery);
 
             return usersType;
         }
@@ -32,7 +33,8 @@ namespace YourCarSlot.Api.Controllers
         [HttpGet]
         public async Task<List<UserDto>> Get()
         {
-            var allUsersType = await _mediator.Send(new GetAllUsersQuery());
+            var getAllUserQuery = new GetAllUsersQuery();
+            var allUsersType = await _mediator.Send(getAllUserQuery);
 
             return allUsersType;
         }

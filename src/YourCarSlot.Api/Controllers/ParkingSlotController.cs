@@ -21,7 +21,8 @@ namespace YourCarSlot.Api.Controllers
         [HttpGet]
         public async Task<List<ParkingSlotDto>> Get()
         {
-            var allParkingSlots = await _mediator.Send(new GetAllParkingSlotsQuery());
+            var getAllParkingSlotsQuery = new GetAllParkingSlotsQuery();
+            var allParkingSlots = await _mediator.Send(getAllParkingSlotsQuery);
             return allParkingSlots;
         }
 

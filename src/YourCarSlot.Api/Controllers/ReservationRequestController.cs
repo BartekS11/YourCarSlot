@@ -24,14 +24,16 @@ namespace YourCarSlot.Api.Controllers
         [HttpGet]
         public async Task<List<ReservationRequestDto>> Get()
         {
-            var allReservationRequest = await _mediator.Send(new GetAllReservationRequestQuery());
+            var getAllReservationsQuery = new GetAllReservationRequestQuery();
+            var allReservationRequest = await _mediator.Send(getAllReservationsQuery);
             return allReservationRequest;
         }
 
         [HttpGet("{id}")]
         public async Task<ReservationRequestDto> Get(Guid id)
         {
-            var reservationRequest = await _mediator.Send(new ReservationRequestQuery(id));
+            var getReservationQuery = new ReservationRequestQuery(id);
+            var reservationRequest = await _mediator.Send(getReservationQuery);
             return reservationRequest;
         }
 
