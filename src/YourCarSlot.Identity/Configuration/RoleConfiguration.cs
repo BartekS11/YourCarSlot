@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -17,7 +13,7 @@ namespace YourCarSlot.Identity.Configuration
                 {
                     Id = "b2e08085-cf43-484e-aebc-a2aaaf7ba87f",
                     Name = "Employee",
-                    NormalizedName = "EMPLOYEE"       
+                    NormalizedName = "EMPLOYEE"
                 },
                 new IdentityRole
                 {

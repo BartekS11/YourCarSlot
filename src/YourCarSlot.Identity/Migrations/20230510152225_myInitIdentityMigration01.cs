@@ -165,8 +165,8 @@ namespace YourCarSlot.Identity.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "546ff490-b5df-11ed-afa1-0242ac120002", "40b19e51-7edc-4a6e-b91a-64c272ec0e40", "Administrator", "ADMINISTRATOR" },
-                    { "b2e08085-cf43-484e-aebc-a2aaaf7ba87f", "f89e8da3-e952-42d2-bfb7-2cad7d593351", "Employee", "EMPLOYEE" }
+                    { "546ff490-b5df-11ed-afa1-0242ac120002", "f8b653c3-47e0-43ed-97de-1270fb5aa94b", "Administrator", "ADMINISTRATOR" },
+                    { "b2e08085-cf43-484e-aebc-a2aaaf7ba87f", "7e0df075-a898-4969-9d93-f173b4a6abbf", "Employee", "EMPLOYEE" }
                 });
 
             migrationBuilder.InsertData(
@@ -174,8 +174,8 @@ namespace YourCarSlot.Identity.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "0a9681ac-a390-4952-9d2a-dd431eae01aa", 0, "5a5243b5-1982-4155-ad91-7db3dd5ce0e9", "user@localhost.com", true, "System", "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAEAACcQAAAAEFE8vT4gQqgavV6rhuZp1ko0qOFyqZHINPkNV54nRSGquE7+U9XA5kNhkrMxyG0ZWA==", null, false, "5b68f90b-4064-4f3e-96fc-82ea3af0859a", false, "user@localhost.com" },
-                    { "532facd9-f5a8-4e7b-913b-2ffa16412c37", 0, "bc4a45c0-3092-4019-9859-c23cf2a7fefe", "admin@localhost.com", true, "System", "Admin", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAEAACcQAAAAEB/wbWoKkgzmoP6FUUMyK5VKU5JHfqQVnl5B4LowM5zPukRISu+HIHr3HIZKungJgw==", null, false, "9d072493-09de-48f4-b7b1-881625b8cabe", false, "admin@localhost.com" }
+                    { "0a9681ac-a390-4952-9d2a-dd431eae01aa", 0, "87b2b3d1-19f9-48f7-996d-39d815d15b98", "user@localhost.com", true, "System", "User", false, null, "USER@LOCALHOST.COM", "USER@LOCALHOST.COM", "AQAAAAEAACcQAAAAEEChiqWNz/XkqcbdK2BW3fzhn1GuyujGHMEx/XiPJGrclONoi/NbH+pIqJJJFFHNvA==", null, false, "c273b9d1-d29a-4ad8-b0ce-34ab546c9b44", false, "user@localhost.com" },
+                    { "532facd9-f5a8-4e7b-913b-2ffa16412c37", 0, "8b57710c-2cad-4b56-9d0d-32fbce668612", "admin@localhost.com", true, "System", "Admin", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAEAACcQAAAAEO4Mh7wptodZzwVB2Aipl6ELiDc++sccy6paf904q0jI6pTBIc86g0DZyuNpyberCA==", null, false, "ec001113-e291-40b4-baf7-87e0837dd865", false, "admin@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -183,8 +183,8 @@ namespace YourCarSlot.Identity.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "b2e08085-cf43-484e-aebc-a2aaaf7ba87f", "0a9681ac-a390-4952-9d2a-dd431eae01aa" },
-                    { "546ff490-b5df-11ed-afa1-0242ac120002", "532facd9-f5a8-4e7b-913b-2ffa16412c37" }
+                    { "546ff490-b5df-11ed-afa1-0242ac120002", "532facd9-f5a8-4e7b-913b-2ffa16412c37" },
+                    { "b2e08085-cf43-484e-aebc-a2aaaf7ba87f", "532facd9-f5a8-4e7b-913b-2ffa16412c37" }
                 });
 
             migrationBuilder.CreateIndex(

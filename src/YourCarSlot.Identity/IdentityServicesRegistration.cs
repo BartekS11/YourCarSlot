@@ -24,6 +24,7 @@ namespace YourCarSlot.Identity
             
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<YCSIdentityDbContext>()
                 .AddDefaultTokenProviders();
 

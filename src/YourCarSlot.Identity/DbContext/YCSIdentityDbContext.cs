@@ -12,8 +12,8 @@ namespace YourCarSlot.Identity.DbContext
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfigurationsFromAssembly(typeof(YCSIdentityDbContext).Assembly);
             base.OnModelCreating(builder);
+            builder.ApplyConfigurationsFromAssembly(typeof(YCSIdentityDbContext).Assembly);
         }
     }
 }

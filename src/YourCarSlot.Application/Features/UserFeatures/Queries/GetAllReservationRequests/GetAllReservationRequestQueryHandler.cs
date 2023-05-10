@@ -25,8 +25,8 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservatio
             var reservationTypes = await _reservationrequestRepository.GetAsync();
             if(reservationTypes == null)
             {
-                throw new NotFoundException(nameof(reservationTypes));   
                 _logger.LogWarning("Cannot find any reservation request", nameof(reservationTypes));
+                throw new NotFoundException(nameof(reservationTypes));   
             }
             var data = _mapper.Map<List<ReservationRequestDto>>(reservationTypes);
 

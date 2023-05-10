@@ -12,7 +12,7 @@ using YourCarSlot.Infrastructure.EF.DatabaseContext;
 namespace YourCarSlot.Infrastructure.Migrations
 {
     [DbContext(typeof(YCSDatabaseContext))]
-    [Migration("20230221182606_myInitMigration01")]
+    [Migration("20230510152007_myInitMigration01")]
     partial class myInitMigration01
     {
         /// <inheritdoc />
@@ -102,20 +102,24 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("81a130d2-502f-4cf1-a376-63edeb000e9f"),
-                            BookingRequestTime = new DateTime(2023, 2, 21, 18, 26, 6, 428, DateTimeKind.Utc).AddTicks(6826),
-                            CreatedAt = new DateTime(2023, 2, 21, 18, 26, 6, 428, DateTimeKind.Local).AddTicks(6830),
-                            DateModified = new DateTime(2023, 2, 21, 18, 26, 6, 428, DateTimeKind.Local).AddTicks(6842),
+                            BookingRequestTime = new DateTime(2023, 5, 10, 15, 20, 6, 775, DateTimeKind.Utc).AddTicks(9806),
+                            CreatedAt = new DateTime(2023, 5, 10, 15, 20, 6, 775, DateTimeKind.Local).AddTicks(9814),
+                            DateModified = new DateTime(2023, 5, 10, 15, 20, 6, 775, DateTimeKind.Local).AddTicks(9825),
                             PartOfTheDayReservation = 0,
-                            Reserved = true
+                            PlateNumber = "23233-33",
+                            Reserved = true,
+                            UserRequestingId = new Guid("36b99c90-b13d-11ed-afa1-0242ac120002")
                         },
                         new
                         {
                             Id = new Guid("34a130d2-502f-4cf1-a376-63edeb092137"),
-                            BookingRequestTime = new DateTime(2023, 2, 21, 18, 26, 6, 428, DateTimeKind.Utc).AddTicks(6846),
-                            CreatedAt = new DateTime(2023, 2, 21, 18, 26, 6, 428, DateTimeKind.Local).AddTicks(6847),
-                            DateModified = new DateTime(2023, 2, 21, 18, 26, 6, 428, DateTimeKind.Local).AddTicks(6848),
+                            BookingRequestTime = new DateTime(2023, 5, 10, 15, 20, 6, 775, DateTimeKind.Utc).AddTicks(9828),
+                            CreatedAt = new DateTime(2023, 5, 10, 15, 20, 6, 775, DateTimeKind.Local).AddTicks(9830),
+                            DateModified = new DateTime(2023, 5, 10, 15, 20, 6, 775, DateTimeKind.Local).AddTicks(9832),
                             PartOfTheDayReservation = 0,
-                            Reserved = true
+                            PlateNumber = "44312413433-33",
+                            Reserved = true,
+                            UserRequestingId = new Guid("4428bf00-b13d-11ed-afa1-0242ac120002")
                         });
                 });
 
@@ -164,7 +168,7 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("36b99c90-b13d-11ed-afa1-0242ac120002"),
-                            CreatedAt = new DateTime(2023, 2, 21, 18, 26, 6, 428, DateTimeKind.Local).AddTicks(7139),
+                            CreatedAt = new DateTime(2023, 5, 10, 15, 20, 6, 776, DateTimeKind.Local).AddTicks(167),
                             Email = "Wojciech@polo.pl",
                             FullName = "",
                             Password = "1234567",
@@ -174,7 +178,7 @@ namespace YourCarSlot.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("4428bf00-b13d-11ed-afa1-0242ac120002"),
-                            CreatedAt = new DateTime(2023, 2, 21, 18, 26, 6, 428, DateTimeKind.Local).AddTicks(7145),
+                            CreatedAt = new DateTime(2023, 5, 10, 15, 20, 6, 776, DateTimeKind.Local).AddTicks(182),
                             Email = "Kubus@polo.pl",
                             FullName = "",
                             Password = "1234567",

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using YourCarSlot.Application.Identity;
 using YourCarSlot.Application.Models.Identity;
@@ -28,7 +24,6 @@ namespace YourCarSlot.Identity.Services
                 FirstName = employee.FirstName,
                 LastName = employee.LastName
             };
-
         }
 
         public async Task<List<Employee>> GetEmployees()
