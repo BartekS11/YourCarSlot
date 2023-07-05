@@ -11,8 +11,8 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservati
                 .NotNull()
                 .WithMessage("{PropertyName} must be fewer than 70 characters");
 
-            RuleFor(p => p.BookingRequestTime)
-                .Must(BeAValidDate).WithMessage("Must be proper date");
+            // RuleFor(p => p.BookingRequestTime)
+            //     .Must(BeAValidDate).WithMessage("Must be proper date");
             
         }
 

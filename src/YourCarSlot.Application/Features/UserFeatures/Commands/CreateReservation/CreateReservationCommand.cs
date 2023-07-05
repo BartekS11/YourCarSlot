@@ -5,7 +5,7 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservati
 {
     public class CreateReservationCommand : IRequest<Guid>
     {
-        public PartOfTheDay PartOfTheDayReservation { get; set; }
+        public PartOfTheDay PartOfTheDayReservation { get; set; } = 0;
         public DateTime BookingRequestTime { get; set; }
         public Guid UserRequestingId { get; set; }
         public int ParkingSlotRequesting { get; set; }
