@@ -28,13 +28,11 @@ namespace YourCarSlot.Application.UnitTests.Features.ReservationRequest.Queries
             _mockAppLogger = new Mock<IAppLogger<ReservationRequestQueryHandler>>();
         }
 
-
-
-
         [Fact]
         public async Task GetSingleReservationRequestTest()
         {
-            var guid1 = "4c750373-6309-40c8-af68-973aaf8da562";
+            // var guid1 = "4c750373-6309-40c8-af68-973aaf8da562";
+            var guid1 = "34a130d2-502f-4cf1-a376-63edeb092137";
             var handler = new ReservationRequestQueryHandler(_mapper, _mockRepo.Object, _mockAppLogger.Object);
 
             var result = await handler.Handle(new ReservationRequestQuery(Guid.Parse(guid1)), CancellationToken.None);

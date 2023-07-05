@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YourCarSlot.Identity.DbContext;
 
@@ -11,9 +12,11 @@ using YourCarSlot.Identity.DbContext;
 namespace YourCarSlot.Identity.Migrations
 {
     [DbContext(typeof(YCSIdentityDbContext))]
-    partial class YCSIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230705093213_myInitIdentityMigration05")]
+    partial class myInitIdentityMigration05
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,21 +55,21 @@ namespace YourCarSlot.Identity.Migrations
                         new
                         {
                             Id = "b2e08085-cf43-484e-aebc-a2aaaf7ba87f",
-                            ConcurrencyStamp = "63b5df58-40d7-4828-86fd-ec7d4f00e983",
+                            ConcurrencyStamp = "49f7d0a6-d2a0-42db-a0c2-033b9763d5aa",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "546ff490-b5df-11ed-afa1-0242ac120002",
-                            ConcurrencyStamp = "a507dae7-c55d-482a-81f4-2a2fe17b2cb9",
+                            ConcurrencyStamp = "627785c7-349e-4728-bb20-b6d01ceec2b0",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "276e10de-2050-4ad3-95f9-33c417ecdbd2",
-                            ConcurrencyStamp = "c3448803-9edd-4d95-9252-3da054bd06dd",
+                            Id = "e2a0bf08-cbd9-42ad-a847-bfc2830ce604",
+                            ConcurrencyStamp = "f5c403c7-fbd5-4562-83d6-9430255f5f73",
                             Name = "Guest",
                             NormalizedName = "GUEST"
                         });
@@ -171,8 +174,8 @@ namespace YourCarSlot.Identity.Migrations
                         },
                         new
                         {
-                            UserId = "e2a0bf08-cbd9-42ad-a847-bfc2830ce604",
-                            RoleId = "276e10de-2050-4ad3-95f9-33c417ecdbd2"
+                            UserId = "0a9681ac-a390-4952-9d2a-dd431eae01aa",
+                            RoleId = "e2a0bf08-cbd9-42ad-a847-bfc2830ce604"
                         });
                 });
 
@@ -272,7 +275,7 @@ namespace YourCarSlot.Identity.Migrations
                         {
                             Id = "532facd9-f5a8-4e7b-913b-2ffa16412c37",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d68ef763-f324-4cbf-b116-728388fba3dc",
+                            ConcurrencyStamp = "e9bef49d-76f3-4c96-958c-cb6886dc7b53",
                             Email = "admin@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -280,9 +283,9 @@ namespace YourCarSlot.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKc2uFxPqVQVpx8aS4aqzrLukbG82zXdlo144SKwA8q0+bDU43vzE8OaqwUi8SACaA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN98FaRkFpl0S7McKkcOtNCm2MfGtZvJz4GN4BU9FFNnOMwSf2l+yhTlUUal37oSbA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a4c88caa-2eed-466e-8773-47c52e4c1e05",
+                            SecurityStamp = "2b18f825-27f8-4fc5-a303-f7768dc1e306",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -290,7 +293,7 @@ namespace YourCarSlot.Identity.Migrations
                         {
                             Id = "0a9681ac-a390-4952-9d2a-dd431eae01aa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8c43d307-9270-4e17-88cb-8d1d19e95e66",
+                            ConcurrencyStamp = "7acdc00d-7d58-4976-9cc8-337728e85e51",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -298,9 +301,9 @@ namespace YourCarSlot.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPvHHY85ONkXroTiIII3XZzZ+bb2WvLaLz4s2RFFH/TK9DosJEiGKfYXLeZl+i13Sg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL9NOZLVkFnypg7mHq3zCvFiNd37hqTp+hpB7euR+AkkuohTxu7vGxN8mqXSq3aUGw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4a142ba5-6bc7-4006-ba30-342696e37f6c",
+                            SecurityStamp = "c3b898b1-48f1-49b0-92d2-fc800c9bb65a",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -308,7 +311,7 @@ namespace YourCarSlot.Identity.Migrations
                         {
                             Id = "e2a0bf08-cbd9-42ad-a847-bfc2830ce604",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "05d0549b-aa87-489c-b0a4-da245f59bac1",
+                            ConcurrencyStamp = "deae64d4-3c3e-4c2b-8e16-502b546c734a",
                             Email = "guest@localhost.com",
                             EmailConfirmed = true,
                             FirstName = "System",
@@ -316,9 +319,9 @@ namespace YourCarSlot.Identity.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@LOCALHOST.COM",
                             NormalizedUserName = "GUEST@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMEIBpM50iUUO1Ql8R8KDBR/9TGrxUGTT/3SrWBo17yqQMjKtu9l56ib/2AznaoGOQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBSDJxPzeQb8zHPZeD5jZ1rYVfZ4ni+usfztoXb2je8Uioq9kDZC2jNGtnoOKHtZxw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cacb95dd-38ee-4bb6-a439-48a01fa204f7",
+                            SecurityStamp = "f6a01a74-1b86-4387-9689-3ad78a85f435",
                             TwoFactorEnabled = false,
                             UserName = "guest@localhost.com"
                         });

@@ -34,6 +34,18 @@ namespace YourCarSlot.Identity.Configuration
                     NormalizedUserName = "USER@LOCALHOST.COM",
                     PasswordHash = hasher.HashPassword(null, "P@ssword1"),
                     EmailConfirmed = true
+                },
+                new ApplicationUser
+                {
+                    Id = "e2a0bf08-cbd9-42ad-a847-bfc2830ce604",
+                    Email = "guest@localhost.com",
+                    NormalizedEmail = "GUEST@LOCALHOST.COM",
+                    FirstName = "System",
+                    LastName = "Guest",
+                    UserName = "guest@localhost.com",
+                    NormalizedUserName = "GUEST@LOCALHOST.COM",
+                    PasswordHash = hasher.HashPassword(null, "P@ssword1"),
+                    EmailConfirmed = true
                 }
             );
         }

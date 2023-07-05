@@ -20,6 +20,12 @@ namespace YourCarSlot.Identity.Configuration
                     Id = "546ff490-b5df-11ed-afa1-0242ac120002",
                     Name = "Administrator",
                     NormalizedName = "ADMINISTRATOR"
+                },
+                new IdentityRole
+                {
+                    Id = "276e10de-2050-4ad3-95f9-33c417ecdbd2",
+                    Name = "Guest",
+                    NormalizedName = "GUEST"
                 }
             );
         }

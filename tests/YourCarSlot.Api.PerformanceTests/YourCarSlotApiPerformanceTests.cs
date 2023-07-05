@@ -16,7 +16,7 @@ namespace YourCarSlot.Api.PerformanceTests
         }
 
         [Fact]
-        public void GetReservationRequestShouldHandleAtLeast100RequestsPerSecond()
+        public void GetReservationRequestShouldHandleAtLeast2000RequestsPerSecond()
         {
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
@@ -49,9 +49,9 @@ namespace YourCarSlot.Api.PerformanceTests
         }
 
         [Fact]
-        public void GetParkingSlotShouldHandleAtLeast100RequestsPerSecond()
+        public void GetParkingSlotShouldHandleAtLeast2000RequestsPerSecond()
         {
-            const int durationSeconds = 10;
+            const int durationSeconds = 5;
             const int numberOfRequest = 100;
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
