@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Domain.Entities;
 using YourCarSlot.Infrastructure.EF.DatabaseContext;
@@ -14,9 +10,7 @@ namespace YourCarSlot.Infrastructure.Repository
         {
         }
 
-        public async Task<Vehicle> GetByPlateNumberAsync(string plateNumber)
-        {
-            return await _context.Set<Vehicle>().FindAsync(plateNumber);
-        }
+        public async Task<Vehicle> GetByPlateNumberAsync(string plateNumber) 
+            => await _context.Set<Vehicle>().FindAsync(plateNumber);
     }
 }

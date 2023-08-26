@@ -22,7 +22,6 @@ namespace YourCarSlot.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
 
-           
             return services;
         }
     }

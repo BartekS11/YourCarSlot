@@ -11,8 +11,8 @@ namespace YourCarSlot.Application.Features.ParkingSlot.Commands.UpdateParkingSlo
 
         public UpdateParkingSlotCommandHandler(IMapper mapper, IParkingSlotRepository parkingSlotRepository)
         {
-            this._mapper = mapper;
-            this._parkingSlotRepository = parkingSlotRepository;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _parkingSlotRepository = parkingSlotRepository ?? throw new ArgumentNullException(nameof(parkingSlotRepository));
         }
 
         public async Task<Unit> Handle(UpdateParkingSlotCommand request, CancellationToken cancellationToken)

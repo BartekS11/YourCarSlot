@@ -21,20 +21,14 @@ namespace YourCarSlot.Identity.Services
             IOptions<JwtSettings> jwtSettings,
             SignInManager<ApplicationUser> signInManager)
         {
-            this._userManager = userManager;
-            this._jwtSettings = jwtSettings.Value;
-            this._signInManager = signInManager;
+            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _jwtSettings = jwtSettings.Value ?? throw new ArgumentNullException(nameof(jwtSettings.Value));
+            _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
         }
 
         public async Task<AuthResponse> Login(AuthRequest request)
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
-
-            if (user == null)
-            {
-                throw new NotFoundException($"User with email {request.Email} not found.");
-            }
-
+            var user = await _userManager.FindByEmailAsync(request.Email) ?? throw new NotFoundException($"User with email {request.Email} not found.");
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
             if (!result.Succeeded)

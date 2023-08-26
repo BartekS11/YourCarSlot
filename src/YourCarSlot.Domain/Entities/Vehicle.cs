@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using YourCarSlot.Domain.Common;
-using YourCarSlot.Domain.ValueObjects;
 
 namespace YourCarSlot.Domain.Entities
 {
@@ -14,6 +13,5 @@ namespace YourCarSlot.Domain.Entities
         [Key]
         public string? PlateNumber { get; set; }
         public string MakeOfCar { get; set; }  = string.Empty;
-        // public Localization CarLocalization { get; set; }
     }
 }

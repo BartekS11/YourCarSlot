@@ -14,9 +14,9 @@ namespace YourCarSlot.Application.Features.Vehicle.Queries.GetAllVehicles
 
         public GetAllVehiclesQueryHandler(IMapper mapper, IVehicleRepository vehicleRepository, IAppLogger<GetAllVehiclesQueryHandler> logger)
         {
-            this._mapper = mapper;
-            this._vehicleRepository = vehicleRepository;
-            this._logger = logger;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<List<VehicleDto>> Handle(GetAllVehiclesQuery request, CancellationToken cancellationToken)
@@ -24,7 +24,7 @@ namespace YourCarSlot.Application.Features.Vehicle.Queries.GetAllVehicles
             var allVehicles = await _vehicleRepository.GetAsync();
             
             var data = _mapper.Map<List<VehicleDto>>(allVehicles);
-
+            _logger.LogInformation("All Vehicles info retrieved successfuly");
             return data;
         }
     }

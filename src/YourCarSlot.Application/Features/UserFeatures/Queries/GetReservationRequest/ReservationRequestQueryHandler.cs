@@ -14,9 +14,9 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRe
 
         public ReservationRequestQueryHandler(IMapper mapper, IReservationRequestRepository reservationRequestRepository, IAppLogger<ReservationRequestQueryHandler> logger)
         {
-            this._mapper = mapper;
-            this._reservationRequestRepository = reservationRequestRepository;
-            this._logger = logger;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _reservationRequestRepository = reservationRequestRepository ?? throw new ArgumentNullException(nameof(reservationRequestRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<ReservationRequestDto> Handle(ReservationRequestQuery request, CancellationToken cancellationToken)

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Infrastructure.EF.DatabaseContext;
@@ -14,7 +10,7 @@ namespace YourCarSlot.Infrastructure.Repository
 
         public GenericRepository(YCSDatabaseContext context)
         {
-            this._context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task CreateAsync(T entity)
@@ -29,15 +25,11 @@ namespace YourCarSlot.Infrastructure.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<T>> GetAsync()
-        {
-            return await _context.Set<T>().AsNoTracking().ToListAsync();
-        }
+        public async Task<IReadOnlyList<T>> GetAsync() 
+            => await _context.Set<T>().AsNoTracking().ToListAsync();
 
-        public async Task<T> GetByIdAsync(Guid id)
-        {
-            return await _context.Set<T>().FindAsync(id);
-        }
+        public async Task<T> GetByIdAsync(Guid id) 
+            => await _context.Set<T>().FindAsync(id);
 
         public async Task UpdateAsync(T entity)
         {

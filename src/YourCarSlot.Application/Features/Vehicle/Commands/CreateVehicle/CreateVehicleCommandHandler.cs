@@ -13,9 +13,9 @@ namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle
 
         public CreateVehicleCommandHandler(IMapper mapper, IVehicleRepository vehicleRepository, IAppLogger<CreateVehicleCommandHandler> logger)
         {
-            this._mapper = mapper;
-            this._vehicleRepository = vehicleRepository;
-            this._logger = logger;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
@@ -24,7 +24,7 @@ namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle
 
             await _vehicleRepository.CreateAsync(vehicleToCreate);
 
-            _logger.LogInformation("Vehicle added successfuly");
+            _logger.LogInformation("Vehicle created successfuly");
 
             return vehicleToCreate.Id;
         }

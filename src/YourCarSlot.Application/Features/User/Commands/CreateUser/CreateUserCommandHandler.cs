@@ -14,9 +14,9 @@ namespace YourCarSlot.Application.Features.User.Commands.CreateUser
 
         public CreateUserCommandHandler(IMapper mapper, IUserRepository userRepository, IAppLogger<CreateUserCommandHandler> logger)
         {
-            this._mapper = mapper;
-            this._userRepository = userRepository;
-            this._logger = logger;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)

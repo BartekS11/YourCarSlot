@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
@@ -19,9 +15,9 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservatio
 
         public GetAllReservationRequestQueryHandler(IMapper mapper, IReservationRequestRepository reservationrequestRepository, IAppLogger<GetAllReservationRequestQueryHandler> logger)
         {
-            this._mapper = mapper;
-            this._reservationrequestRepository = reservationrequestRepository;
-            this._logger = logger;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _reservationrequestRepository = reservationrequestRepository ?? throw new ArgumentNullException(nameof(reservationrequestRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<List<ReservationRequestDto>> Handle(GetAllReservationRequestQuery request, CancellationToken cancellationToken)
@@ -29,8 +25,8 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservatio
             var reservationTypes = await _reservationrequestRepository.GetAsync();
             if(reservationTypes == null)
             {
-                throw new NotFoundException(nameof(reservationTypes));   
                 _logger.LogWarning("Cannot find any reservation request", nameof(reservationTypes));
+                throw new NotFoundException(nameof(reservationTypes));   
             }
             var data = _mapper.Map<List<ReservationRequestDto>>(reservationTypes);
 

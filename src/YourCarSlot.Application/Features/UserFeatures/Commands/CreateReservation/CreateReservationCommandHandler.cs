@@ -12,8 +12,8 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservati
 
         public CreateReservationCommandHandler(IMapper mapper, IReservationRequestRepository reservationRequestRepository)
         {
-            this._mapper = mapper;
-            this._reservationRequestRepository = reservationRequestRepository;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper)); ;
+            _reservationRequestRepository = reservationRequestRepository ?? throw new ArgumentNullException(nameof(reservationRequestRepository));
         }
 
         public async Task<Guid> Handle(CreateReservationCommand request, CancellationToken cancellationToken)

@@ -49,6 +49,7 @@ namespace YourCarSlot.Identity
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"]))
                 };
             });
+
             return services;
         }
     }

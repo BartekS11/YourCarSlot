@@ -9,7 +9,7 @@ namespace YourCarSlot.Application.Features.Vehicle.Commands.DeleteVehicle
 
         public DeleteVehicleCommandHandler(IVehicleRepository vehicleRepository)
         {
-            this._vehicleRepository = vehicleRepository;
+            _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
         }
 
         public async Task<Unit> Handle(DeleteVehicleCommand request, CancellationToken cancellationToken)

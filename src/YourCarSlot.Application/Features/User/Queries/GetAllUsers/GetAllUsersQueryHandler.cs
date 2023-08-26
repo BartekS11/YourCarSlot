@@ -25,8 +25,8 @@ namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers
 
             if(userTypes == null)
             {
-                throw new NotFoundException(nameof(userTypes));   
                 _logger.LogWarning("Cannot find any user", nameof(userTypes));
+                throw new NotFoundException(nameof(userTypes));   
             }
             var data = _mapper.Map<List<UserDto>>(userTypes);
             _logger.LogInformation("All users request were retrieved successfuly");

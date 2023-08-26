@@ -14,7 +14,7 @@ namespace YourCarSlot.Api.Middleware
 
         public ExceptionMiddleware(RequestDelegate next)
         {
-            this._next = next;
+            _next = next;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)

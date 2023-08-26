@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
@@ -10,7 +11,7 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservati
 
         public DeleteReservationCommandHandler(IReservationRequestRepository reservationRequestRepository)
         {
-            this._reservationRequestRepository = reservationRequestRepository;
+            _reservationRequestRepository = reservationRequestRepository ?? throw new ArgumentNullException(nameof(reservationRequestRepository));
         }
 
         public async Task<Unit> Handle(DeleteReservationCommand request, CancellationToken cancellationToken)

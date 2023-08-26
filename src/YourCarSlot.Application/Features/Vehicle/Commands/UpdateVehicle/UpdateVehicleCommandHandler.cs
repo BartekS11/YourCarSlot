@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
@@ -17,9 +13,9 @@ namespace YourCarSlot.Application.Features.Vehicle.Commands.UpdateVehicle
 
         public UpdateVehicleCommandHandler(IMapper mapper, IVehicleRepository vehicleRepository, IAppLogger<UpdateVehicleCommandHandler> logger)
         {
-            this._mapper = mapper;
-            this._vehicleRepository = vehicleRepository;
-            this._logger = logger;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _vehicleRepository = vehicleRepository ?? throw new ArgumentNullException(nameof(vehicleRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<Unit> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)

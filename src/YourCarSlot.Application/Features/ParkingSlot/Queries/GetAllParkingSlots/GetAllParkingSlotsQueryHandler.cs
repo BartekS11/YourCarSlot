@@ -13,9 +13,9 @@ namespace YourCarSlot.Application.Features.ParkingSlot.Queries.GetAllParkingSlot
 
         public GetAllParkingSlotsQueryHandler(IMapper mapper, IParkingSlotRepository parkingSlotRepository, IAppLogger<GetAllParkingSlotsQueryHandler> logger)
         {
-            this._mapper = mapper;
-            this._parkingSlotRepository = parkingSlotRepository;
-            this._logger = logger;
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _parkingSlotRepository = parkingSlotRepository ?? throw new ArgumentNullException(nameof(parkingSlotRepository));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<List<ParkingSlotDto>> Handle(GetAllParkingSlotsQuery request, CancellationToken cancellationToken)

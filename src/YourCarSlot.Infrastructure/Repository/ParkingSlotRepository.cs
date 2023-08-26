@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Domain.Entities;
@@ -15,9 +11,7 @@ namespace YourCarSlot.Infrastructure.Repository
         {
         }
 
-        public async Task<bool> IsParkingSlotUnique(Guid slotid)
-        {
-            return await _context.ParkingSlot.AnyAsync(q => q.Id == slotid);
-        }
+        public async Task<bool> IsParkingSlotUnique(Guid slotid) 
+            => await _context.ParkingSlot.AnyAsync(q => q.Id == slotid);
     }
 }

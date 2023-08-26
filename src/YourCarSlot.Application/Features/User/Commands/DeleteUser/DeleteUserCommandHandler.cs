@@ -9,7 +9,7 @@ namespace YourCarSlot.Application.Features.User.Commands.DeleteUser
 
         public DeleteUserCommandHandler(IUserRepository userRepository)
         {
-            this._userRepository = userRepository;
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
         public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)

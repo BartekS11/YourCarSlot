@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 
@@ -19,6 +15,11 @@ namespace YourCarSlot.Application.Logging
         public void LogInformation(string message, params object[] args)
         {
             _logger.LogInformation(message, args);
+        }
+
+        public void LogTraceInformation(string message, params object[] args)
+        {
+            _logger.LogTrace(message, args);
         }
 
         public void LogWarning(string message, params object[] args)

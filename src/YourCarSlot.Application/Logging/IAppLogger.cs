@@ -4,5 +4,6 @@ namespace YourCarSlot.Application.Logging
     {
         void LogInformation(string message, params object[] args);   
         void LogWarning(string message, params object[] args);   
+        void LogTraceInformation(string message, params object[] args);
     }
 }
