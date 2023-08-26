@@ -11,14 +11,14 @@ namespace YourCarSlot.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize]
     public class ReservationRequestController : ControllerBase
     {
         private readonly IMediator _mediator;
 
         public ReservationRequestController(IMediator mediator)
         {
-            this._mediator = mediator;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         [HttpGet]

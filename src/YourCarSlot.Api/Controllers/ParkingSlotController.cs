@@ -15,7 +15,7 @@ namespace YourCarSlot.Api.Controllers
 
         public ParkingSlotController(IMediator mediator)
         {
-            this._mediator = mediator;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         [HttpGet]
