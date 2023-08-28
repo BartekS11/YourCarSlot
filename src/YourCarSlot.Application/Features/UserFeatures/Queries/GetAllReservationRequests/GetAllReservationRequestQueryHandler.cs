@@ -30,6 +30,8 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservatio
             }
             var data = _mapper.Map<List<ReservationRequestDto>>(reservationTypes);
 
+            _logger.LogInformation("All reservations retrieved successfuly");
+
             return data;
         }
     }

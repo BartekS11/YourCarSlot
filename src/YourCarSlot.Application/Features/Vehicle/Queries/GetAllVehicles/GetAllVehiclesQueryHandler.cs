@@ -24,7 +24,9 @@ namespace YourCarSlot.Application.Features.Vehicle.Queries.GetAllVehicles
             var allVehicles = await _vehicleRepository.GetAsync();
             
             var data = _mapper.Map<List<VehicleDto>>(allVehicles);
+
             _logger.LogInformation("All Vehicles info retrieved successfuly");
+
             return data;
         }
     }

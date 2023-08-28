@@ -29,7 +29,9 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRe
             }
 
             var data = _mapper.Map<ReservationRequestDto>(reservationRequestType);
+
             _logger.LogInformation("Reservation request were retrieved successfully");
+
             return data;
         }
     }

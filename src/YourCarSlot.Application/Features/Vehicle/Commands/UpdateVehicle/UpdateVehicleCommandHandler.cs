@@ -24,6 +24,8 @@ namespace YourCarSlot.Application.Features.Vehicle.Commands.UpdateVehicle
 
             await _vehicleRepository.UpdateAsync(vehicleToUpdate);
 
+            _logger.LogTraceInformation("Vehicle updated successfuly");
+
             return Unit.Value;
         }
     }

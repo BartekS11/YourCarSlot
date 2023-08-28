@@ -24,7 +24,7 @@ namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle
 
             await _vehicleRepository.CreateAsync(vehicleToCreate);
 
-            _logger.LogInformation("Vehicle created successfuly");
+            _logger.LogTraceInformation("Vehicle created successfuly");
 
             return vehicleToCreate.Id;
         }

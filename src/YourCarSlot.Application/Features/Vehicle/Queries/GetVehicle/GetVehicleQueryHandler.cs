@@ -23,7 +23,9 @@ namespace YourCarSlot.Application.Features.Vehicle.Queries.GetVehicle
             var vehicle = await _vehicleRepository.GetByIdAsync(request.Id);
 
             var data = _mapper.Map<VehicleDto>(vehicle);
+
             _logger.LogInformation("Single vehicle request was retrieved successfuly");
+
             return data;
         }
     }
