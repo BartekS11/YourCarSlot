@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YourCarSlot.Application.Features.ParkingSlot.Commands.UpdateParkingSlot;
 using YourCarSlot.Application.Features.ParkingSlot.Queries.GetAllParkingSlots;
+using YourCarSlot.Application.Features.ParkingSlot.Queries.GetParkingSlot;
 
 namespace YourCarSlot.Api.Controllers
 {
@@ -23,6 +24,13 @@ namespace YourCarSlot.Api.Controllers
         {
             var allParkingSlots = await _mediator.Send(new GetAllParkingSlotsQuery());
             return allParkingSlots;
+        }
+
+        [HttpGet]
+        public async Task<ParkingSlotDto> Get(Guid id)
+        {
+            var parkingSlot = await _mediator.Send(new GetParkingSlotQuery(id));
+            return parkingSlot;
         }
 
         [HttpPut]
