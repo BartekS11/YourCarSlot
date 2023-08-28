@@ -1,9 +1,7 @@
-using Azure.Core;
 using Microsoft.AspNetCore.Identity;
 using YourCarSlot.Application.Exceptions;
 using YourCarSlot.Application.Identity;
 using YourCarSlot.Application.Models.Identity;
-using YourCarSlot.Domain.Entities;
 using YourCarSlot.Identity.Models;
 
 namespace YourCarSlot.Identity.Services
