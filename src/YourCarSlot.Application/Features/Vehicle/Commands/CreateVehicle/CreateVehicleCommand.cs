@@ -1,5 +1,4 @@
 using MediatR;
-using YourCarSlot.Domain.ValueObjects;
 
 namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle
 {
@@ -7,6 +6,5 @@ namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle
     {
         public string? PlateNumber { get; set; }
         public string MakeOfCar { get; set; }  = string.Empty;
-        // public Localization CarLocalization { get; set; }
     }
 }

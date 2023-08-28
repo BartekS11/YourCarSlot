@@ -1,6 +1,4 @@
 using MediatR;
-using YourCarSlot.Domain.Entities;
-using YourCarSlot.Domain.ValueObjects;
 using static YourCarSlot.Domain.Entities.ReservationRequest;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservation
