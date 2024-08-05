@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "dev-frontend" ]
+    branches: [ "net8-migration" ]
   pull_request:
-    branches: [ "dev-frontend" ]
+    branches: [ "net8-migration" ]
 
 jobs:
   build:
