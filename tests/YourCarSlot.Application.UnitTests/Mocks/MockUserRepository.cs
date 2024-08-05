@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace YourCarSlot.Application.UnitTests.Mocks;
 
-namespace YourCarSlot.Application.UnitTests.Mocks
+internal sealed class MockUserRepository
 {
-    public class MockUserRepository
-    {
-        
-    }
+    
 }

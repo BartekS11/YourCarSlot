@@ -21,7 +21,7 @@ namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers
 
         public async Task<List<UserDto>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            var userTypes = await _userrepository.GetAsync();
+            var userTypes = await _userrepository.GetAsync(cancellationToken);
 
             if(userTypes == null)
             {

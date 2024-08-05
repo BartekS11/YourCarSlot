@@ -21,7 +21,7 @@ namespace YourCarSlot.Application.Features.Vehicle.Queries.GetAllVehicles
 
         public async Task<List<VehicleDto>> Handle(GetAllVehiclesQuery request, CancellationToken cancellationToken)
         {
-            var allVehicles = await _vehicleRepository.GetAsync();
+            var allVehicles = await _vehicleRepository.GetAsync(cancellationToken);
             
             var data = _mapper.Map<List<VehicleDto>>(allVehicles);
 

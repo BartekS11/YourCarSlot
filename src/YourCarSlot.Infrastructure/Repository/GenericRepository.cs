@@ -31,10 +31,12 @@ namespace YourCarSlot.Infrastructure.Repository
 
         public async Task<IReadOnlyList<T>> GetAsync()
         {
-            return await _context.Set<T>().AsNoTracking().ToListAsync();
+            return await _context.Set<T>()
+                .AsNoTracking()
+                .ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(Guid id)
+        public async Task<T?> GetByIdAsync(Guid id)
         {
             return await _context.Set<T>().FindAsync(id);
         }

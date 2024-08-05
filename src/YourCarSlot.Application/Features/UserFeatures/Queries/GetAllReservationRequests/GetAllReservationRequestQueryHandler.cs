@@ -26,7 +26,7 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservatio
 
         public async Task<List<ReservationRequestDto>> Handle(GetAllReservationRequestQuery request, CancellationToken cancellationToken)
         {
-            var reservationTypes = await _reservationrequestRepository.GetAsync();
+            var reservationTypes = await _reservationrequestRepository.GetAsync(cancellationToken);
             if(reservationTypes == null)
             {
                 throw new NotFoundException(nameof(reservationTypes));   
