@@ -14,7 +14,7 @@ public sealed class GetAllReservationRequestQueryHandlerTests
 {
     private readonly Mock<IReservationRequestRepository> _mockRepo;
     private readonly IMapper _mapper;
-    private readonly Mock<IAppLogger<GetAllReservationRequestQueryHandler>> _mockAppLogger;
+    private readonly Mock<IAppLogger<GetAllReservationRequestQuery>> _mockAppLogger;
     private readonly static CancellationToken _cancellationToken = CancellationToken.None;
 
     public GetAllReservationRequestQueryHandlerTests()
@@ -27,19 +27,19 @@ public sealed class GetAllReservationRequestQueryHandlerTests
         });
 
         _mapper = mapperConfig.CreateMapper();
-        _mockAppLogger = new Mock<IAppLogger<GetAllReservationRequestQueryHandler>>();
+        _mockAppLogger = new Mock<IAppLogger<GetAllReservationRequestQuery>>();
     }
 
     [Fact]
     internal async Task GetAllReservationRequestListTest()
     {
         // ARRANGE & ACT
-        var handler = new GetAllReservationRequestQueryHandler(_mapper, _mockRepo.Object, _mockAppLogger.Object);
+        var handler = new GetAllReservationRequestQuery.Handler(_mapper, _mockRepo.Object, _mockAppLogger.Object);
 
-        var result = await handler.Handle(new GetAllReservationRequestQuery(), _cancellationToken);
+        var result = await handler.Handle(new GetAllReservationRequestQuery.Command(), _cancellationToken);
 
         // ASSERT
-        result.Should().BeOfType<List<ReservationRequestDto>>();
-        result.Count.Should().Be(2);
+        result.Should().BeOfType<ReservationRequestDto[]>();
+        result.Length.Should().Be(2);
     }
 }

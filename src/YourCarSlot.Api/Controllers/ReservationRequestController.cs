@@ -22,16 +22,18 @@ namespace YourCarSlot.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<List<ReservationRequestDto>> Get()
+        public async Task<ReservationRequestDto[]> Get(CancellationToken cancellationToken)
         {
-            var allReservationRequest = await _mediator.Send(new GetAllReservationRequestQuery());
+            var query = new GetAllReservationRequestQuery.Command();
+            var allReservationRequest = await _mediator.Send(query, cancellationToken);
             return allReservationRequest;
         }
 
         [HttpGet("{id}")]
-        public async Task<ReservationRequestDto> Get(Guid id)
+        public async Task<ReservationRequestDto> Get(Guid id, CancellationToken cancellationToken)
         {
-            var reservationRequest = await _mediator.Send(new ReservationRequestQuery(id));
+            var query = new ReservationRequestQuery.Command(id);
+            var reservationRequest = await _mediator.Send(query, cancellationToken);
             return reservationRequest;
         }
 

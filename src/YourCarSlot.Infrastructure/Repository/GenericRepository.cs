@@ -29,11 +29,11 @@ namespace YourCarSlot.Infrastructure.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<T>> GetAsync()
+        public async Task<IReadOnlyList<T>> GetAsync(CancellationToken cancellationToken)
         {
             return await _context.Set<T>()
                 .AsNoTracking()
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
 
         public async Task<T?> GetByIdAsync(Guid id)

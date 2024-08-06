@@ -7,7 +7,7 @@ namespace YourCarSlot.Application.Features.ParkingSlot.Queries.GetAllParkingSlot
 
 public sealed class GetAllParkingSlotsQueryHandler(IMapper mapper, IParkingSlotRepository parkingSlotRepository, IAppLogger<GetAllParkingSlotsQueryHandler> logger) : IRequestHandler<GetAllParkingSlotsQuery, List<ParkingSlotDto>>
 {
-    private readonly IMapper _mapper = mapper;
+    private readonly IMapper _mapper = mapper; // TODO: get rid of this ugly automapper
     private readonly IParkingSlotRepository _parkingSlotRepository = parkingSlotRepository;
     private readonly IAppLogger<GetAllParkingSlotsQueryHandler> _logger = logger;
 
