@@ -39,7 +39,7 @@ internal sealed class MockReservationRequestRepository
         mockRepo.Setup(r => r.GetAsync(_cancellationToken))
             .ReturnsAsync(reservationReuests);
 
-        mockRepo.Setup(r => r.CreateAsync(It.IsAny<ReservationRequest>()))
+        mockRepo.Setup(r => r.CreateAsync(It.IsAny<ReservationRequest>(), _cancellationToken))
             .Returns((ReservationRequest reservationRequest) => {
                 reservationReuests.Add(reservationRequest);
                 return Task.CompletedTask;
@@ -63,7 +63,7 @@ internal sealed class MockReservationRequestRepository
                 DateModified = DateTime.Now
             };
         var mockRepo = new Mock<IReservationRequestRepository>();
-        mockRepo.Setup(r => r.GetByIdAsync(sampleId))
+        mockRepo.Setup(r => r.GetByIdAsync(sampleId, _cancellationToken))
             .ReturnsAsync(reservationReuests);
 
         return mockRepo;

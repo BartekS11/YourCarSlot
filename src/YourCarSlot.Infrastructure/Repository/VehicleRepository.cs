@@ -10,8 +10,8 @@ public class VehicleRepository : GenericRepository<Vehicle>, IVehicleRepository
     {
     }
 
-    public async Task<Vehicle> GetByPlateNumberAsync(string plateNumber)
+    public async Task<Vehicle> GetByPlateNumberAsync(string plateNumber, CancellationToken cancellationToken)
     {
-        return await _context.Set<Vehicle>().FindAsync(plateNumber);
+        return await _context.Set<Vehicle>().FindAsync(plateNumber, cancellationToken)!;
     }
 }

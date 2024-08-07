@@ -4,6 +4,6 @@ namespace YourCarSlot.Application.Contracts.Persistance
 {
     public interface IVehicleRepository : IGenericRepository<Vehicle>
     {
-        public Task<Vehicle> GetByPlateNumberAsync(string plateNumber);
+        public Task<Vehicle> GetByPlateNumberAsync(string plateNumber, CancellationToken cancellationToken = default);
     }
 }
