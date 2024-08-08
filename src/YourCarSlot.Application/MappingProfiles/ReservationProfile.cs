@@ -4,15 +4,14 @@ using YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservation;
 using YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
 using YourCarSlot.Domain.Entities;
 
-namespace YourCarSlot.Application.MappingProfiles
+namespace YourCarSlot.Application.MappingProfiles;
+
+public sealed class ReservationProfile : Profile
 {
-    public class ReservationProfile : Profile
+    public ReservationProfile()
     {
-        public ReservationProfile()
-        {
-            CreateMap<ReservationRequestDto, ReservationRequest>().ReverseMap();
-            CreateMap<CreateReservationCommand, ReservationRequest>();
-            CreateMap<UpdateReservationCommand, ReservationRequest>();
-        }
+        CreateMap<ReservationRequestDto, ReservationRequest>().ReverseMap();
+        CreateMap<CreateReservationCommand, ReservationRequest>();
+        CreateMap<UpdateReservationCommand, ReservationRequest>();
     }
 }

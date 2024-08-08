@@ -9,14 +9,14 @@ namespace YourCarSlot.Application.Features.Vehicle.Commands.DeleteVehicle
 
         public DeleteVehicleCommandHandler(IVehicleRepository vehicleRepository)
         {
-            this._vehicleRepository = vehicleRepository;
+            _vehicleRepository = vehicleRepository;
         }
 
         public async Task<Unit> Handle(DeleteVehicleCommand request, CancellationToken cancellationToken)
         {
-            var vehicleToDelete = await _vehicleRepository.GetByPlateNumberAsync(request.PlateNumber);
+            var vehicleToDelete = await _vehicleRepository.GetByPlateNumberAsync(request.PlateNumber, cancellationToken);
 
-            await _vehicleRepository.DeleteAsync(vehicleToDelete);
+            await _vehicleRepository.DeleteAsync(vehicleToDelete!, cancellationToken);
 
             return Unit.Value;
         }

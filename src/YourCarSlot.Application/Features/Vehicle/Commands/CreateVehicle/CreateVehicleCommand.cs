@@ -1,5 +1,4 @@
 using MediatR;
-using YourCarSlot.Domain.ValueObjects;
 
 namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle
 {

@@ -1,4 +1,5 @@
 using System.Reflection;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using YourCarSlot.Application.Behaviors;
 using YourCarSlot.Application.Logging;
@@ -18,6 +19,14 @@ public static class ApplicationServiceRegistration
         });
 
         services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+        services.AddApplicationValidators();
+        return services;
+    }
+
+    internal static IServiceCollection AddApplicationValidators(this IServiceCollection services)
+    {
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        
         return services;
     }
 }

@@ -4,5 +4,5 @@ namespace YourCarSlot.Application.Contracts.Persistance;
 
 public interface IReservationRequestRepository : IGenericRepository<ReservationRequest>
 {
-    public Task<ReservationRequest> GetReservationRequestWithDetails(Guid id, CancellationToken cancellationToken);
+    public Task<ReservationRequest> GetReservationRequestWithDetails(Guid id, CancellationToken cancellationToken = default);
 }

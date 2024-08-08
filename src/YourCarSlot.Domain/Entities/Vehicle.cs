@@ -1,19 +1,17 @@
 using System.ComponentModel.DataAnnotations;
 using YourCarSlot.Domain.Common;
-using YourCarSlot.Domain.ValueObjects;
 
-namespace YourCarSlot.Domain.Entities
+namespace YourCarSlot.Domain.Entities;
+
+public class Vehicle : BaseEntity
 {
-    public class Vehicle : BaseEntity
+    public Vehicle()
     {
-        public Vehicle()
-        {
-            Id = Guid.NewGuid();
-        }
-
-        [Key]
-        public string? PlateNumber { get; set; }
-        public string MakeOfCar { get; set; }  = string.Empty;
-        // public Localization CarLocalization { get; set; }
+        Id = Guid.NewGuid();
     }
+
+    [Key]
+    public string? PlateNumber { get; set; }
+    public string MakeOfCar { get; set; }  = string.Empty;
+    // public Localization CarLocalization { get; set; }
 }

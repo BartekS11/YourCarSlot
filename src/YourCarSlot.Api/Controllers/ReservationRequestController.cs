@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservation;
 using YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation;
@@ -18,7 +17,7 @@ namespace YourCarSlot.Api.Controllers
 
         public ReservationRequestController(IMediator mediator)
         {
-            this._mediator = mediator;
+            _mediator = mediator;
         }
 
         [HttpGet]

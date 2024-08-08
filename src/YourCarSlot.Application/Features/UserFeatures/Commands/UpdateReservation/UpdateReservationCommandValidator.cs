@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentValidation;
 using YourCarSlot.Application.Contracts.Persistance;
 
@@ -19,7 +15,7 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservati
             RuleFor(p => p.Id)
                 .MustAsync(ReservationMustExist);
                 
-            this._reservationRequestRepository = reservationRequestRepository;
+            _reservationRequestRepository = reservationRequestRepository;
         }
 
         private async Task<bool> ReservationMustExist(Guid id, CancellationToken arg2)

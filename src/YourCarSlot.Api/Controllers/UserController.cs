@@ -18,7 +18,7 @@ namespace YourCarSlot.Api.Controllers
 
         public UserController(IMediator mediator)
         {
-            this._mediator = mediator;
+            _mediator = mediator;
         }
 
         [HttpGet("{id}")]

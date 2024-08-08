@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using YourCarSlot.Domain.Common;
-using YourCarSlot.Domain.ValueObjects;
 
 namespace YourCarSlot.Domain.Entities
 {

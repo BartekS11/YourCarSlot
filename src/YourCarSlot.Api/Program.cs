@@ -5,6 +5,11 @@ using YourCarSlot.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseDefaultServiceProvider((ctx, options) => {
+    options.ValidateOnBuild = ctx.HostingEnvironment.IsDevelopment();
+    options.ValidateScopes = ctx.HostingEnvironment.IsDevelopment();
+});
+
 // Add services to the container.
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);

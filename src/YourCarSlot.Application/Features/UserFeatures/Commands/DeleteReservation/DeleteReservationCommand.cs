@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MediatR;
 
-namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation
+namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation;
+
+public class DeleteReservationCommand : IRequest<Unit>
 {
-    public class DeleteReservationCommand : IRequest<Unit>
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; init; }
 }

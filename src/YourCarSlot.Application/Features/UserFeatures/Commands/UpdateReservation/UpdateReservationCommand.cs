@@ -1,17 +1,14 @@
 using MediatR;
-using YourCarSlot.Domain.Entities;
-using YourCarSlot.Domain.ValueObjects;
 using static YourCarSlot.Domain.Entities.ReservationRequest;
 
-namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservation
+namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservation;
+
+public sealed class UpdateReservationCommand : IRequest<Unit>
 {
-    public class UpdateReservationCommand : IRequest<Unit>
-    {
-        public Guid Id { get; set; }
-        public int ParkingSlotRequesting { get; set; }
-        public Guid UserRequestingId { get; set; }
-        public PartOfTheDay PartOfTheDayReservation { get; set; }
-        public DateTime BookingRequestTime { get; set; }
-        public string PlateNumber { get; set; }
-    }
+    public Guid Id { get; init; }
+    public int ParkingSlotRequesting { get; init; }
+    public Guid UserRequestingId { get; init; }
+    public PartOfTheDay PartOfTheDayReservation { get; init; }
+    public DateTime BookingRequestTime { get; init; }
+    public string PlateNumber { get; init; } = string.Empty;
 }
