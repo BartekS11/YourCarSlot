@@ -39,11 +39,12 @@ internal sealed class MockReservationRequestRepository
         mockRepo.Setup(r => r.GetAsync(_cancellationToken))
             .ReturnsAsync(reservationReuests);
 
-        mockRepo.Setup(r => r.CreateAsync(It.IsAny<ReservationRequest>(), _cancellationToken))
-            .Returns((ReservationRequest reservationRequest) => {
-                reservationReuests.Add(reservationRequest);
-                return Task.CompletedTask;
-            });
+        // mockRepo.Setup(r => r.CreateAsync(It.IsAny<ReservationRequest>(), _cancellationToken))
+        //     .Returns((ReservationRequest reservationRequest) => {
+        //         reservationReuests.Add(reservationRequest);
+                
+        //         return Task.CompletedTask;
+        //     });
 
         return mockRepo;
     }

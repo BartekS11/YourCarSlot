@@ -1,10 +1,9 @@
-namespace YourCarSlot.Shared.Abstractions.Exceptions
+namespace YourCarSlot.Shared.Abstractions.Exceptions;
+
+public abstract class YourCarSlotException : Exception
 {
-    public abstract class YourCarSlotException : Exception
+    protected YourCarSlotException(string message) : base(message)
     {
-        protected YourCarSlotException(string message) : base(message)
-        {
-            
-        }   
-    }
+        
+    }   
 }

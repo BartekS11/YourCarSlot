@@ -5,7 +5,7 @@ using YourCarSlot.Application.Logging;
 
 namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle;
 
-public class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleCommand, Guid>
+public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleCommand, Guid>
 {
     private readonly IMapper _mapper;
     private readonly IVehicleRepository _vehicleRepository;

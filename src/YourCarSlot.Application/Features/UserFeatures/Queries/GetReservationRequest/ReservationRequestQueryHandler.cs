@@ -1,12 +1,14 @@
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
+using YourCarSlot.Shared.Abstractions.Mediator.CommandHandling;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
 
 public sealed class ReservationRequestQuery 
 {
     public sealed record Command(Guid Id) : IRequest<ReservationRequestDto>;
+    // public sealed record Command(Guid Id) : IYcsRequest<ReservationRequestDto>;
 
     public sealed class Handler : IRequestHandler<Command, ReservationRequestDto>
     {

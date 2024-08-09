@@ -1,9 +1,8 @@
 using MediatR;
 
-namespace YourCarSlot.Application.Features.Vehicle.Commands.DeleteVehicle
+namespace YourCarSlot.Application.Features.Vehicle.Commands.DeleteVehicle;
+
+public sealed class DeleteVehicleCommand : IRequest<Unit>
 {
-    public class DeleteVehicleCommand : IRequest<Unit>
-    {
-        public string PlateNumber { get; set; }
-    }
+    public string PlateNumber { get; init; } = default!;
 }

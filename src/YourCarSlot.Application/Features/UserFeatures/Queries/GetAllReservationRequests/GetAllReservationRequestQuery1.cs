@@ -3,7 +3,6 @@ using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
 using YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
-using YourCarSlot.Application.Logging;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservationRequests;
 
@@ -15,13 +14,11 @@ public sealed class GetAllReservationRequestQuery
     {
         private readonly IMapper _mapper;
         private readonly IReservationRequestRepository _reservationrequestRepository;
-        private readonly IAppLogger<GetAllReservationRequestQuery> _logger;
 
-        public Handler(IMapper mapper, IReservationRequestRepository reservationrequestRepository, IAppLogger<GetAllReservationRequestQuery> logger)
+        public Handler(IMapper mapper, IReservationRequestRepository reservationrequestRepository)
         {
             _mapper = mapper;
             _reservationrequestRepository = reservationrequestRepository;
-            _logger = logger;
         }
 
         public async Task<ReservationRequestDto[]> Handle(Command request, CancellationToken cancellationToken)

@@ -6,35 +6,35 @@ using YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservation;
 using YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservationRequests;
 using YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
 
-namespace YourCarSlot.Api.Controllers
+namespace YourCarSlot.Api.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+// [Authorize]
+public sealed class ReservationRequestController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    // [Authorize]
-    public class ReservationRequestController : ControllerBase
+    private readonly IMediator _mediator;
+
+    public ReservationRequestController(IMediator mediator)
     {
-        private readonly IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public ReservationRequestController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    [HttpGet]
+    public async Task<ReservationRequestDto[]> Get(CancellationToken cancellationToken)
+    {
+        var query = new GetAllReservationRequestQuery.Command();
+        var allReservationRequest = await _mediator.Send(query, cancellationToken);
+        return allReservationRequest;
+    }
 
-        [HttpGet]
-        public async Task<ReservationRequestDto[]> Get(CancellationToken cancellationToken)
-        {
-            var query = new GetAllReservationRequestQuery.Command();
-            var allReservationRequest = await _mediator.Send(query, cancellationToken);
-            return allReservationRequest;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ReservationRequestDto> Get(Guid id, CancellationToken cancellationToken)
-        {
-            var query = new ReservationRequestQuery.Command(id);
-            var reservationRequest = await _mediator.Send(query, cancellationToken);
-            return reservationRequest;
-        }
+    [HttpGet("{id}")]
+    public async Task<ReservationRequestDto> Get(Guid id, CancellationToken cancellationToken)
+    {
+        var query = new ReservationRequestQuery.Command(id);
+        var reservationRequest = await _mediator.Send(query, cancellationToken);
+        return reservationRequest;
+    }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -65,5 +65,4 @@ namespace YourCarSlot.Api.Controllers
             await _mediator.Send(command);
             return NoContent();
         }
-    }
 }

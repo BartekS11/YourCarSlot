@@ -3,7 +3,7 @@ using YourCarSlot.Shared.Abstractions.Exceptions;
 
 namespace YourCarSlot.Application.Exceptions;
 
-public class BadRequestException : YourCarSlotException
+public sealed class BadRequestException : YourCarSlotException
 {
     public BadRequestException(string message) : base(message)
     {
@@ -12,7 +12,9 @@ public class BadRequestException : YourCarSlotException
     public BadRequestException(string message, ValidationResult validationResult) : base(message)
     {
         ValidationErrors = validationResult.ToDictionary();
+        // ValidationError(validationResult.ToDictionary());
     }
 
-    public IDictionary<string, string[]> ValidationErrors { get; set; }
+    public IDictionary<string, string[]> ValidationErrors { get; set; } = default!;
+    public IReadOnlyDictionary<string, string[]> ValidationError { get; set; } = default!;
 }
