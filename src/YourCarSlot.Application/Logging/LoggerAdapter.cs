@@ -1,29 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 
-namespace YourCarSlot.Application.Logging
+namespace YourCarSlot.Application.Logging;
+
+public sealed class LoggerAdapter<T> : IAppLogger<T>
 {
-    public class LoggerAdapter<T> : IAppLogger<T>
+    private readonly ILogger<T> _logger;
+
+    public LoggerAdapter(ILoggerFactory loggerFactory)
     {
-        private readonly ILogger<T> _logger;
+        _logger = loggerFactory.CreateLogger<T>();
+    }
 
-        public LoggerAdapter(ILoggerFactory loggerFactory)
-        {
-            _logger = loggerFactory.CreateLogger<T>();
-        }
+    public void LogInformation(string? message, params object[] args)
+    {
+        _logger.LogInformation(message, args);
+    }
 
-        public void LogInformation(string message, params object[] args)
-        {
-            _logger.LogInformation(message, args);
-        }
-
-        public void LogWarning(string message, params object[] args)
-        {
-            _logger.LogWarning(message, args);
-        }
+    public void LogWarning(string message, params object[] args)
+    {
+        _logger.LogWarning(message, args);
     }
 }

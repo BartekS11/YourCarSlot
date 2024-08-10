@@ -3,14 +3,13 @@ using YourCarSlot.Application.Features.ParkingSlot.Commands.UpdateParkingSlot;
 using YourCarSlot.Application.Features.ParkingSlot.Queries.GetAllParkingSlots;
 using YourCarSlot.Domain.Entities;
 
-namespace YourCarSlot.Application.MappingProfiles
+namespace YourCarSlot.Application.MappingProfiles;
+
+public sealed class ParkingSlotProfile : Profile
 {
-    public class ParkingSlotProfile : Profile
+    public ParkingSlotProfile()
     {
-        public ParkingSlotProfile()
-        {
-            CreateMap<ParkingSlotDto, ParkingSlot>().ReverseMap();
-            CreateMap<UpdateParkingSlotCommand, ParkingSlot>();
-        }
+        CreateMap<ParkingSlotDto, ParkingSlot>().ReverseMap();
+        CreateMap<UpdateParkingSlotCommand, ParkingSlot>();
     }
 }

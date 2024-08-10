@@ -13,9 +13,9 @@ namespace YourCarSlot.Application.Features.Vehicle.Queries.GetVehicle
 
         public GetVehicleQueryHandler(IMapper mapper, IVehicleRepository vehicleRepository, IAppLogger<GetVehicleQueryHandler> logger)
         {
-            this._mapper = mapper;
-            this._vehicleRepository = vehicleRepository;
-            this._logger = logger;
+            _mapper = mapper;
+            _vehicleRepository = vehicleRepository;
+            _logger = logger;
         }
 
         public async Task<VehicleDto> Handle(GetVehicleQuery request, CancellationToken cancellationToken)

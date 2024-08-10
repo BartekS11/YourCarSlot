@@ -5,25 +5,27 @@ using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Infrastructure.EF.DatabaseContext;
 using YourCarSlot.Infrastructure.Repository;
 
-namespace YourCarSlot.Infrastructure
+namespace YourCarSlot.Infrastructure;
+
+public static class InfrastructureServiceRegistrations
 {
-    public static class InfrastructureServiceRegistrations
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
+        IConfiguration configuration)
     {
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
-            IConfiguration configuration)
-        {
-            services.AddDbContext<YCSDatabaseContext>(options => {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
-            });
+        services.AddDbContext<YCSDatabaseContext>(options => {
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
+        });
 
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped<IParkingSlotRepository, ParkingSlotRepository>();
-            services.AddScoped<IReservationRequestRepository, ReservationRequestRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IVehicleRepository, VehicleRepository>();
+        // services.AddDbContextPool<YCSDatabaseContext>(options => {
+        //     options.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
+        // });
 
-           
-            return services;
-        }
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        services.AddScoped<IParkingSlotRepository, ParkingSlotRepository>();
+        services.AddScoped<IReservationRequestRepository, ReservationRequestRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IVehicleRepository, VehicleRepository>();
+
+        return services;
     }
 }

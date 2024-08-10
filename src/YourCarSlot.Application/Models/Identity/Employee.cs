@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+namespace YourCarSlot.Application.Models.Identity;
 
-namespace YourCarSlot.Application.Models.Identity
+public sealed class Employee
 {
-    public class Employee
-    {
-        public string Id { get; set;}
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    }
+    public string Id { get; init; } = default!;
+    public string Email { get; init; } = default!;
+    public string FirstName { get; init; } = default!;
+    public string LastName { get; init; } = default!;
 }

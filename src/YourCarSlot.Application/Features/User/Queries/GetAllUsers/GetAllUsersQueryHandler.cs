@@ -14,19 +14,20 @@ namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers
 
         public GetAllUsersQueryHandler(IMapper mapper, IUserRepository userrepository, IAppLogger<GetAllUsersQueryHandler> logger)
         {
-            this._mapper = mapper;
-            this._userrepository = userrepository;
-            this._logger = logger;
+            _mapper = mapper;
+            _userrepository = userrepository;
+            _logger = logger;
         }
 
         public async Task<List<UserDto>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            var userTypes = await _userrepository.GetAsync();
+            var userTypes = await _userrepository.GetAsync(cancellationToken);
 
             if(userTypes == null)
             {
-                throw new NotFoundException(nameof(userTypes));   
                 _logger.LogWarning("Cannot find any user", nameof(userTypes));
+
+                throw new NotFoundException(nameof(userTypes));   
             }
             var data = _mapper.Map<List<UserDto>>(userTypes);
             _logger.LogInformation("All users request were retrieved successfuly");

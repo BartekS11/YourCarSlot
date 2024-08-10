@@ -1,8 +1,7 @@
-namespace YourCarSlot.Application.Models.Identity
+namespace YourCarSlot.Application.Models.Identity;
+
+public sealed class AuthRequest
 {
-    public class AuthRequest
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }        
-    }
+    public string Email { get; init; } = default!;
+    public string Password { get; init; } = default!;
 }

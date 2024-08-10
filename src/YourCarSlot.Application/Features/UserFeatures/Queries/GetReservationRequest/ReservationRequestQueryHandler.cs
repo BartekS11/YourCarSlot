@@ -1,36 +1,32 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
-using YourCarSlot.Application.Logging;
+using YourCarSlot.Shared.Abstractions.Mediator.CommandHandling;
 
-namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest
+namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
+
+public sealed class ReservationRequestQuery 
 {
-    public class ReservationRequestQueryHandler : IRequestHandler<ReservationRequestQuery, ReservationRequestDto>
+    public sealed record Command(Guid Id) : IRequest<ReservationRequestDto>;
+    // public sealed record Command(Guid Id) : IYcsRequest<ReservationRequestDto>;
+
+    public sealed class Handler : IRequestHandler<Command, ReservationRequestDto>
     {
-        private readonly IMapper _mapper;
         private readonly IReservationRequestRepository _reservationRequestRepository;
-        private readonly IAppLogger<ReservationRequestQueryHandler> _logger;
 
-        public ReservationRequestQueryHandler(IMapper mapper, IReservationRequestRepository reservationRequestRepository, IAppLogger<ReservationRequestQueryHandler> logger)
+        public Handler(IReservationRequestRepository reservationRequestRepository)
         {
-            this._mapper = mapper;
-            this._reservationRequestRepository = reservationRequestRepository;
-            this._logger = logger;
+            _reservationRequestRepository = reservationRequestRepository;
         }
-
-        public async Task<ReservationRequestDto> Handle(ReservationRequestQuery request, CancellationToken cancellationToken)
+        public async Task<ReservationRequestDto> Handle(Command request, CancellationToken cancellationToken)
         {
-            var reservationRequestType = await _reservationRequestRepository.GetByIdAsync(request.Id);
+            var reservationRequestType = await _reservationRequestRepository.GetByIdAsync(request.Id) 
+                ?? throw new NotFoundException($"Request with id: {request.Id} is not found");
 
-            if(reservationRequestType == null)
-            {
-                throw new NotFoundException(nameof(reservationRequestType), request.Id);   
-            }
+            var data = ReservationRequestMapper.Map(reservationRequestType);
 
-            var data = _mapper.Map<ReservationRequestDto>(reservationRequestType);
-            _logger.LogInformation("Reservation request were retrieved successfully");
             return data;
         }
     }
 }
+

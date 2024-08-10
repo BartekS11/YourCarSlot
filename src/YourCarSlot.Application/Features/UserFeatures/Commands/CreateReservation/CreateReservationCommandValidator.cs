@@ -1,24 +1,23 @@
 using FluentValidation;
 
-namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservation
+namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservation;
+
+public sealed class CreateReservationCommandValidator : AbstractValidator<CreateReservationCommand>
 {
-    public class CreateReservationCommandValidator : AbstractValidator<CreateReservationCommand>
+    public CreateReservationCommandValidator()
     {
-        public CreateReservationCommandValidator()
-        {
-            RuleFor(p => p.UserRequestingId)
-                .NotEmpty()
-                .NotNull()
-                .WithMessage("{PropertyName} must be fewer than 70 characters");
+        RuleFor(p => p.UserRequestingId)
+            .NotEmpty()
+            .NotNull()
+            .WithMessage("{PropertyName} must be fewer than 70 characters");
 
-            RuleFor(p => p.BookingRequestTime)
-                .Must(BeAValidDate).WithMessage("Must be proper date");
-            
-        }
+        RuleFor(p => p.BookingRequestTime)
+            .Must(BeAValidDate).WithMessage("Must be proper date");
+        
+    }
 
-        private bool BeAValidDate(DateTime date)
-        {
-            return !date.Equals(default(DateTime));
-        }
+    private bool BeAValidDate(DateTime date)
+    {
+        return !date.Equals(default);
     }
 }

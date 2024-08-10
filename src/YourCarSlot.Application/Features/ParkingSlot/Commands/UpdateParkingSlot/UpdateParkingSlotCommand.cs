@@ -1,10 +1,9 @@
 using MediatR;
 
-namespace YourCarSlot.Application.Features.ParkingSlot.Commands.UpdateParkingSlot
+namespace YourCarSlot.Application.Features.ParkingSlot.Commands.UpdateParkingSlot;
+
+public sealed class UpdateParkingSlotCommand : IRequest<Unit>
 {
-    public class UpdateParkingSlotCommand : IRequest<Unit>
-    {
-        public Guid Id { get; set; }
-        public int? ParkingspotId { get; set; }   
-    }
+    public Guid Id { get; init; }
+    public int? ParkingspotId { get; init; }   
 }

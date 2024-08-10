@@ -1,7 +1,6 @@
-namespace YourCarSlot.Application.Models.Identity
+namespace YourCarSlot.Application.Models.Identity;
+
+public sealed class RegistrationResponse
 {
-    public class RegistrationResponse
-    {
-        public string UserId { get; set; }
-    }
+    public string UserId { get; init; } = default!;
 }

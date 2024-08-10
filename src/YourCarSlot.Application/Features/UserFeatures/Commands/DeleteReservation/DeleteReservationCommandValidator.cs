@@ -1,13 +1,12 @@
 using FluentValidation;
 
-namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation
+namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation;
+
+public class DeleteReservationCommandValidator : AbstractValidator<DeleteReservationCommand>
 {
-    public class DeleteReservationCommandValidator : AbstractValidator<DeleteReservationCommand>
+    public DeleteReservationCommandValidator()
     {
-        public DeleteReservationCommandValidator()
-        {
-            RuleFor(p => p.Id)
-                .NotNull();
-        }
+        RuleFor(p => p.Id)
+            .NotNull();
     }
 }

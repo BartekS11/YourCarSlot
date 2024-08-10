@@ -1,9 +1,8 @@
 using YourCarSlot.Domain.Entities;
 
-namespace YourCarSlot.Application.Contracts.Persistance
+namespace YourCarSlot.Application.Contracts.Persistance;
+
+public interface IReservationRequestRepository : IGenericRepository<ReservationRequest>
 {
-    public interface IReservationRequestRepository : IGenericRepository<ReservationRequest>
-    {
-        public Task<ReservationRequest> GetReservationRequestWithDetails(Guid id);
-    }
+    public Task<ReservationRequest> GetReservationRequestWithDetails(Guid id, CancellationToken cancellationToken = default);
 }

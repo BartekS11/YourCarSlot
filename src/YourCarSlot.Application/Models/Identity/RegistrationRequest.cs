@@ -1,29 +1,24 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace YourCarSlot.Application.Models.Identity
+namespace YourCarSlot.Application.Models.Identity;
+
+public sealed class RegistrationRequest
 {
-    public class RegistrationRequest
-    {
-        [Required]
-        public string FirstName { get; set; }
+    [Required]
+    public string FirstName { get; init; } = default!;
 
-        [Required]
-        public string LastName { get; set; }
+    [Required]
+    public string LastName { get; init; } = default!;
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+    [Required]
+    [EmailAddress]
+    public string Email { get; init; } = default!;
 
-        [Required]
-        [MinLength(6)]
-        public string UserName { get; set; }
+    [Required]
+    [MinLength(6)]
+    public string UserName { get; init; } = default!;
 
-        [Required]
-        [MinLength(6)]
-        public string Password { get; set; }
-    }
+    [Required]
+    [MinLength(6)]
+    public string Password { get; init; } = default!;
 }

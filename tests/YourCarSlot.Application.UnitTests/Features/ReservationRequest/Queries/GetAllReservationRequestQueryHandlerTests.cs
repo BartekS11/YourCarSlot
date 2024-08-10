@@ -1,44 +1,42 @@
 using AutoMapper;
+using FluentAssertions;
 using Moq;
-using Shouldly;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Features.UserFeatures.Queries.GetAllReservationRequests;
 using YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
-using YourCarSlot.Application.Logging;
 using YourCarSlot.Application.MappingProfiles;
 using YourCarSlot.Application.UnitTests.Mocks;
 
-namespace YourCarSlot.Application.UnitTests.Features.ReservationRequest.Queries
+namespace YourCarSlot.Application.UnitTests.Features.ReservationRequest.Queries;
+
+public sealed class GetAllReservationRequestQueryHandlerTests
 {
-    public class GetAllReservationRequestQueryHandlerTests
+    private readonly Mock<IReservationRequestRepository> _mockRepo;
+    private readonly IMapper _mapper;
+    private readonly static CancellationToken _cancellationToken = CancellationToken.None;
+
+    public GetAllReservationRequestQueryHandlerTests()
     {
-        private readonly Mock<IReservationRequestRepository> _mockRepo;
-        private readonly IMapper _mapper;
-        private readonly Mock<IAppLogger<GetAllReservationRequestQueryHandler>> _mockAppLogger;
+        _mockRepo = MockReservationRequestRepository.GetAllReservationRequestMockRepository();
 
-        public GetAllReservationRequestQueryHandlerTests()
+        var mapperConfig = new MapperConfiguration(c => 
         {
-            this._mockRepo = MockReservationRequestRepository.GetAllReservationRequestMockRepository();
+            c.AddProfile<ReservationProfile>();
+        });
 
-            var mapperConfig = new MapperConfiguration(c => 
-            {
-                c.AddProfile<ReservationProfile>();
-            });
+        _mapper = mapperConfig.CreateMapper();
+    }
 
-            _mapper = mapperConfig.CreateMapper();
-            _mockAppLogger = new Mock<IAppLogger<GetAllReservationRequestQueryHandler>>();
-        }
+    [Fact]
+    internal async Task GetAllReservationRequestListTest()
+    {
+        // ARRANGE & ACT
+        var handler = new GetAllReservationRequestQuery.Handler(_mapper, _mockRepo.Object);
 
-        [Fact]
-        public async Task GetAllReservationRequestListTest()
-        {
-            var handler = new GetAllReservationRequestQueryHandler(_mapper, _mockRepo.Object, _mockAppLogger.Object);
+        var result = await handler.Handle(new GetAllReservationRequestQuery.Command(), _cancellationToken);
 
-            var result = await handler.Handle(new GetAllReservationRequestQuery(), CancellationToken.None);
-
-            result.ShouldBeOfType<List<ReservationRequestDto>>();
-            result.Count.ShouldBe(2);
-        }
-
+        // ASSERT
+        result.Should().BeOfType<ReservationRequestDto[]>();
+        result.Length.Should().Be(2);
     }
 }

@@ -11,8 +11,8 @@ namespace YourCarSlot.Application.Features.User.Commands.UpdateUser
 
         public UpdateUserCommandHandler(IMapper mapper, IUserRepository userRepository)
         {
-            this._mapper = mapper;
-            this._userRepository = userRepository;
+            _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)

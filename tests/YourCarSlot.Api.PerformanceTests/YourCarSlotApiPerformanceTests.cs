@@ -1,83 +1,80 @@
-using NBomber.Contracts;
+using FluentAssertions;
 using NBomber.CSharp;
 using NBomber.Plugins.Http.CSharp;
-using Shouldly;
 using Xunit.Abstractions;
 
-namespace YourCarSlot.Api.PerformanceTests
+namespace YourCarSlot.Api.PerformanceTests;
+
+public sealed class YourCarSlotApiPerformanceTests(ITestOutputHelper outputHelper)
 {
-    public class YourCarSlotApiPerformanceTests
+    private readonly ITestOutputHelper _outputHelper = outputHelper;
+
+    [Fact]
+    internal void GetReservationRequestShouldHandleAtLeast100RequestsPerSecond()
     {
-        private ITestOutputHelper _outputHelper;
-
-        public YourCarSlotApiPerformanceTests(ITestOutputHelper outputHelper)
+        var clientHandler = new HttpClientHandler
         {
-            this._outputHelper = outputHelper;
-        }
+            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
+        };
 
-        [Fact]
-        public void GetReservationRequestShouldHandleAtLeast100RequestsPerSecond()
+        var client = new HttpClient(clientHandler);
+        const string url = "http://localhost:5204/api/ReservationRequest/34a130d2-502f-4cf1-a376-63edeb092137";
+
+        const int durationSeconds = 5;
+        const int numberOfRequest = 100;
+
+        var getReservationRequestStep = Step.Create("Get all reservation requests", clientFactory: HttpClientFactory.Create(httpClient:client), execute: async context =>
         {
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                var request = Http.CreateRequest("GET", url);
+                var response = await Http.Send(request, context);
+                return response;
 
-            HttpClient client = new HttpClient(clientHandler);
-            const string url = "http://localhost:5204/api/ReservationRequest/34a130d2-502f-4cf1-a376-63edeb092137";
+        });
 
-            const int durationSeconds = 5;
-            const int numberOfRequest = 100;
+        var scenario = ScenarioBuilder.CreateScenario("Reservation Request API fetch", getReservationRequestStep)
+            .WithWarmUpDuration(TimeSpan.FromSeconds(durationSeconds))
+            .WithLoadSimulations(Simulation.KeepConstant(numberOfRequest, TimeSpan.FromSeconds(durationSeconds)));
 
-            var getReservationRequestStep = Step.Create("Get all reservation requests", clientFactory: HttpClientFactory.Create(httpClient:client), execute: async context =>
-            {
-                    var request = Http.CreateRequest("GET", url);
-                    var response = await Http.Send(request, context);
-                    return response;
+        var stats = NBomberRunner
+            .RegisterScenarios(scenario)
+            .Run();
 
-            });
+        _outputHelper.WriteLine($"OK: {stats.OkCount}, FAILED: {stats.FailCount}");
 
-            var scenario = ScenarioBuilder.CreateScenario("Reservation Request API fetch", getReservationRequestStep)
-                .WithWarmUpDuration(TimeSpan.FromSeconds(durationSeconds))
-                .WithLoadSimulations(Simulation.KeepConstant(numberOfRequest, TimeSpan.FromSeconds(durationSeconds)));
+        stats.OkCount.Should().BeGreaterThanOrEqualTo(durationSeconds * numberOfRequest);
+    }
 
-            var stats = NBomberRunner
-                .RegisterScenarios(scenario)
-                .Run();
-
-            _outputHelper.WriteLine($"OK: {stats.OkCount}, FAILED: {stats.FailCount}");
-            
-            stats.OkCount.ShouldBeGreaterThanOrEqualTo(durationSeconds * numberOfRequest);
-        }
-
-        [Fact]
-        public void GetParkingSlotShouldHandleAtLeast100RequestsPerSecond()
+    [Fact]
+    internal void GetParkingSlotShouldHandleAtLeast100RequestsPerSecond()
+    {
+        const int durationSeconds = 10;
+        const int numberOfRequest = 100;
+        var clientHandler = new HttpClientHandler
         {
-            const int durationSeconds = 10;
-            const int numberOfRequest = 100;
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
+        };
 
-            HttpClient client = new HttpClient(clientHandler);
-            const string url = "https://localhost:7276/api/ParkingSlot";
+        var client = new HttpClient(clientHandler);
+        const string url = "https://localhost:7276/api/ParkingSlot";
 
-            var getReservationRequestStep = Step.Create("Get all parking slots", clientFactory: HttpClientFactory.Create(httpClient:client), execute: async context =>
-            {
-                    var request = Http.CreateRequest("GET", url);
-                    var response = await Http.Send(request, context);
-                    return response;
+        var getReservationRequestStep = Step.Create("Get all parking slots", clientFactory: HttpClientFactory.Create(httpClient:client), execute: async context =>
+        {
+                var request = Http.CreateRequest("GET", url);
+                var response = await Http.Send(request, context);
+                return response;
 
-            });
+        });
 
-            var scenario = ScenarioBuilder.CreateScenario("All Parking slot API fetch", getReservationRequestStep)
-                .WithWarmUpDuration(TimeSpan.FromSeconds(durationSeconds))
-                .WithLoadSimulations(Simulation.KeepConstant(numberOfRequest, TimeSpan.FromSeconds(durationSeconds)));
+        var scenario = ScenarioBuilder.CreateScenario("All Parking slot API fetch", getReservationRequestStep)
+            .WithWarmUpDuration(TimeSpan.FromSeconds(durationSeconds))
+            .WithLoadSimulations(Simulation.KeepConstant(numberOfRequest, TimeSpan.FromSeconds(durationSeconds)));
 
-            var stats = NBomberRunner
-                .RegisterScenarios(scenario)
-                .Run();
+        var stats = NBomberRunner
+            .RegisterScenarios(scenario)
+            .Run();
 
-            _outputHelper.WriteLine($"OK: {stats.OkCount}, FAILED: {stats.FailCount}");
+        _outputHelper.WriteLine($"OK: {stats.OkCount}, FAILED: {stats.FailCount}");
 
-            stats.OkCount.ShouldBeGreaterThanOrEqualTo(durationSeconds * numberOfRequest);
-        }
+        stats.OkCount.Should().BeGreaterThanOrEqualTo(durationSeconds * numberOfRequest);
     }
 }

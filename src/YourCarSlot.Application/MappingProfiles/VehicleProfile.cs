@@ -4,15 +4,14 @@ using YourCarSlot.Application.Features.Vehicle.Commands.UpdateVehicle;
 using YourCarSlot.Application.Features.Vehicle.Queries.GetVehicle;
 using YourCarSlot.Domain.Entities;
 
-namespace YourCarSlot.Application.MappingProfiles
+namespace YourCarSlot.Application.MappingProfiles;
+
+public sealed class VehicleProfile : Profile
 {
-    public class VehicleProfile : Profile
+    public VehicleProfile()
     {
-        public VehicleProfile()
-        {
-            CreateMap<VehicleDto, Vehicle>().ReverseMap();
-            CreateMap<CreateVehicleCommand, Vehicle>();
-            CreateMap<UpdateVehicleCommand, Vehicle>();
-        }
+        CreateMap<VehicleDto, Vehicle>().ReverseMap();
+        CreateMap<CreateVehicleCommand, Vehicle>();
+        CreateMap<UpdateVehicleCommand, Vehicle>();
     }
 }

@@ -1,34 +1,30 @@
+using FluentValidation;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
-using YourCarSlot.Application.Exceptions;
 
-namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation
+namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation;
+
+public sealed class DeleteReservationCommandHandler : IRequestHandler<DeleteReservationCommand, Unit>
 {
-    public class DeleteReservationCommandHandler : IRequestHandler<DeleteReservationCommand, Unit>
+    private readonly IReservationRequestRepository _reservationRequestRepository;
+    private readonly IValidator<DeleteReservationCommand> _validator;
+
+    public DeleteReservationCommandHandler(
+        IReservationRequestRepository reservationRequestRepository,
+        IValidator<DeleteReservationCommand> validator)
     {
-        private readonly IReservationRequestRepository _reservationRequestRepository;
+        _reservationRequestRepository = reservationRequestRepository;
+        _validator = validator;
+    }
 
-        public DeleteReservationCommandHandler(IReservationRequestRepository reservationRequestRepository)
-        {
-            this._reservationRequestRepository = reservationRequestRepository;
-        }
+    public async Task<Unit> Handle(DeleteReservationCommand request, CancellationToken cancellationToken)
+    {
+        await _validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        public async Task<Unit> Handle(DeleteReservationCommand request, CancellationToken cancellationToken)
-        {
-            var validator = new DeleteReservationCommandValidator();
+        var reservationToDelete = await _reservationRequestRepository.GetByIdAsync(request.Id, cancellationToken);
 
-            var validatorResult = await validator.ValidateAsync(request);
+        await _reservationRequestRepository.DeleteAsync(reservationToDelete!, cancellationToken);            
 
-            if(!validatorResult.IsValid)
-            {
-                throw new BadRequestException("Invalid DeleteReservation type", validatorResult);   
-            }
-
-            var reservationToDelete = await _reservationRequestRepository.GetByIdAsync(request.Id);
-
-            await _reservationRequestRepository.DeleteAsync(reservationToDelete);            
-
-            return Unit.Value;
-        }
+        return Unit.Value;
     }
 }

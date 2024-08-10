@@ -14,14 +14,14 @@ namespace YourCarSlot.Application.Features.Vehicle.Queries.GetAllVehicles
 
         public GetAllVehiclesQueryHandler(IMapper mapper, IVehicleRepository vehicleRepository, IAppLogger<GetAllVehiclesQueryHandler> logger)
         {
-            this._mapper = mapper;
-            this._vehicleRepository = vehicleRepository;
-            this._logger = logger;
+            _mapper = mapper;
+            _vehicleRepository = vehicleRepository;
+            _logger = logger;
         }
 
         public async Task<List<VehicleDto>> Handle(GetAllVehiclesQuery request, CancellationToken cancellationToken)
         {
-            var allVehicles = await _vehicleRepository.GetAsync();
+            var allVehicles = await _vehicleRepository.GetAsync(cancellationToken);
             
             var data = _mapper.Map<List<VehicleDto>>(allVehicles);
 

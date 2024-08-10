@@ -1,10 +1,9 @@
-namespace YourCarSlot.Application.Models.Identity
+namespace YourCarSlot.Application.Models.Identity;
+
+public sealed class JwtSettings
 {
-    public class JwtSettings
-    {
-        public string Key { get; set; }
-        public string Issuer { get; set; }
-        public string Audience { get; set; }
-        public double DurationInMinutes { get; set; }
-    }
+    public string Key { get; init; } = default!;
+    public string Issuer { get; init; } = default!;
+    public string Audience { get; init; } = default!;
+    public double DurationInMinutes { get; init; } = default!;
 }

@@ -9,14 +9,14 @@ namespace YourCarSlot.Application.Features.User.Commands.DeleteUser
 
         public DeleteUserCommandHandler(IUserRepository userRepository)
         {
-            this._userRepository = userRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            var userToDelete = await _userRepository.GetByIdAsync(request.Id);
+            var userToDelete = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
 
-            await _userRepository.DeleteAsync(userToDelete);            
+            await _userRepository.DeleteAsync(userToDelete!, cancellationToken);            
 
             return Unit.Value;
         }

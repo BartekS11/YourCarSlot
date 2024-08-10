@@ -4,15 +4,14 @@ using YourCarSlot.Application.Features.User.Commands.UpdateUser;
 using YourCarSlot.Application.Features.User.Queries.GetAllUsers;
 using YourCarSlot.Domain.Entities;
 
-namespace YourCarSlot.Application.MappingProfiles
+namespace YourCarSlot.Application.MappingProfiles;
+
+public sealed class UserProfile : Profile
 {
-    public class UserProfile : Profile
+    public UserProfile()
     {
-        public UserProfile()
-        {
-            CreateMap<UserDto, User>().ReverseMap();
-            CreateMap<CreateUserCommand, User>();
-            CreateMap<UpdateUserCommand, User>();
-        }
+        CreateMap<UserDto, User>().ReverseMap();
+        CreateMap<CreateUserCommand, User>();
+        CreateMap<UpdateUserCommand, User>();
     }
 }

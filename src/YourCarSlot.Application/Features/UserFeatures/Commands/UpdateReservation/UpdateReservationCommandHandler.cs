@@ -11,8 +11,8 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservati
 
         public UpdateReservationCommandHandler(IMapper mapper, IReservationRequestRepository reservationRequestRepository)
         {
-            this._mapper = mapper;
-            this._reservationRequestRepository = reservationRequestRepository;
+            _mapper = mapper;
+            _reservationRequestRepository = reservationRequestRepository;
         }
 
         public async Task<Unit> Handle(UpdateReservationCommand request, CancellationToken cancellationToken)
