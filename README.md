@@ -1,5 +1,5 @@
 # YourCarSlot
-## _Web API .NET 6 C# application_
+## _Web API .NET 8 C# application_
 
 YourCarSlot is an application to manage parking space in company. It is created in .NET 6 Web API created with clean architecutre, CQRS, Mediator behavioral design pattern. YCS is using mssql as database hosted in docker container. In application there are performance tests, unit tests, integration tests.
 
