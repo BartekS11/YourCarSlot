@@ -41,7 +41,7 @@ public sealed class UserController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> Post(CreateUserCommand userType, CancellationToken cancellationToken)
+    public async Task<ActionResult> Post(CreateUser.Command userType, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(userType, cancellationToken);
         return CreatedAtAction(nameof(Get), new { id = response} );
@@ -53,7 +53,7 @@ public sealed class UserController : ControllerBase
     [ProducesDefaultResponseType]
     public async Task<ActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        var command = new DeleteUserCommand.Command(id);
+        var command = new DeleteUser.Command(id);
 
         await _mediator.Send(command, cancellationToken);
         return NoContent();
@@ -63,7 +63,7 @@ public sealed class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Put(UpdateUserCommand command, CancellationToken cancellationToken)
+    public async Task<ActionResult> Put(UpdateUser.Command command, CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
         return NoContent();

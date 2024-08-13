@@ -39,7 +39,7 @@ public sealed class ReservationRequestController : ControllerBase
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> Post(CreateReservationCommand reservationType, CancellationToken cancellationToken)
+        public async Task<ActionResult> Post(CreateReservationHandler.Command reservationType, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(reservationType, cancellationToken);
             return CreatedAtAction(nameof(Get), new { id = response});
@@ -49,7 +49,7 @@ public sealed class ReservationRequestController : ControllerBase
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult> Put(UpdateReservationCommand reservationType, CancellationToken cancellationToken)
+        public async Task<ActionResult> Put(UpdateReservationHandler.Command reservationType, CancellationToken cancellationToken)
         {
             await _mediator.Send(reservationType, cancellationToken);
             return NoContent();
@@ -61,7 +61,8 @@ public sealed class ReservationRequestController : ControllerBase
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete(Guid id, CancellationToken cancellationToken)
         {
-            var command = new DeleteReservationCommand { Id = id };
+            var command = new DeleteReservationHandler.Command(id);
+            
             await _mediator.Send(command, cancellationToken);
             return NoContent();
         }

@@ -3,7 +3,7 @@ using YourCarSlot.Application.Contracts.Persistance;
 
 namespace YourCarSlot.Application.Features.Vehicle.Commands.DeleteVehicle;
 
-public sealed class DeleteVehicleCommandHandler : IRequestHandler<DeleteVehicleCommand, Unit>
+internal sealed class DeleteVehicleCommandHandler : IRequestHandler<DeleteVehicleCommand, Unit>
 {
     private readonly IVehicleRepository _vehicleRepository;
 

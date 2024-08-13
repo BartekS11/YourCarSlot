@@ -21,7 +21,7 @@ public sealed class ParkingSlotController : ControllerBase
     [HttpGet]
     public async Task<List<ParkingSlotDto>> Get(CancellationToken cancellationToken)
     {
-        var query = new GetAllParkingSlotsQuery();
+        var query = new GetAllParkingSlotsQuery.Command();
         var allParkingSlots = await _mediator.Send(query, cancellationToken);
         
         return allParkingSlots;
@@ -31,7 +31,7 @@ public sealed class ParkingSlotController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Put(UpdateParkingSlotCommand updateParkingSlotCommand, CancellationToken cancellationToken)
+    public async Task<ActionResult> Put(UpdateParkingSlotCommand.Command updateParkingSlotCommand, CancellationToken cancellationToken)
     {
         await _mediator.Send(updateParkingSlotCommand, cancellationToken);
 

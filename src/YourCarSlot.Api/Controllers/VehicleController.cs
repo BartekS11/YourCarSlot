@@ -42,7 +42,7 @@ public sealed class VehicleController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> Post(CreateVehicleCommand createVehicleCommand, CancellationToken cancellationToken)
+    public async Task<ActionResult> Post(CreateVehicleHandler.Command createVehicleCommand, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(createVehicleCommand, cancellationToken);
         return CreatedAtAction(nameof(Get), new { id = response});
@@ -52,7 +52,7 @@ public sealed class VehicleController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Put(UpdateVehicleCommand updateVehicleCommand, CancellationToken cancellationToken)
+    public async Task<ActionResult> Put(UpdateVehicleHandler.Command updateVehicleCommand, CancellationToken cancellationToken)
     {
         await _mediator.Send(updateVehicleCommand, cancellationToken);
 

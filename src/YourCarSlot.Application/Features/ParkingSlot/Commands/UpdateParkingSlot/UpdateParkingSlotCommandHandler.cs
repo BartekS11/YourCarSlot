@@ -1,27 +1,34 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 
 namespace YourCarSlot.Application.Features.ParkingSlot.Commands.UpdateParkingSlot;
 
-
-public sealed class UpdateParkingSlotCommandHandler : IRequestHandler<UpdateParkingSlotCommand, Unit>
+public sealed class UpdateParkingSlotCommand
 {
-    private readonly IMapper _mapper;
-    private readonly IParkingSlotRepository _parkingSlotRepository;
+    public sealed record Command(Guid Id, int? ParkingspotId) : IRequest<Unit>;
 
-    public UpdateParkingSlotCommandHandler(IMapper mapper, IParkingSlotRepository parkingSlotRepository)
+    internal sealed class Handler : IRequestHandler<Command, Unit>
     {
-        _mapper = mapper;
-        _parkingSlotRepository = parkingSlotRepository;
-    }
+        private readonly IParkingSlotRepository _parkingSlotRepository;
 
-    public async Task<Unit> Handle(UpdateParkingSlotCommand request, CancellationToken cancellationToken)
-    {
-        var parkingSlotToUpdate = _mapper.Map<Domain.Entities.ParkingSlot>(request);
+        public Handler(IParkingSlotRepository parkingSlotRepository)
+        {
+            _parkingSlotRepository = parkingSlotRepository;
+        }
 
-        await _parkingSlotRepository.UpdateAsync(parkingSlotToUpdate);
+        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var parkingSlot = new Domain.Entities.ParkingSlot
+            {
+                Id = request.Id,
+                ParkingspotId = request.ParkingspotId
+            };
 
-        return Unit.Value;
+            await _parkingSlotRepository.UpdateAsync(parkingSlot, cancellationToken);
+
+            return Unit.Value;
+        }
     }
 }
+
+

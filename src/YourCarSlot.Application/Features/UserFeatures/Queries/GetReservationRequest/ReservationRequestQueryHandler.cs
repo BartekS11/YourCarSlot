@@ -7,10 +7,9 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRe
 
 public sealed class ReservationRequestQuery 
 {
-    // public sealed record Command(Guid Id) : IRequest<ReservationRequestDto>;
     public sealed record Command(Guid Id) : IYcsRequest<ReservationRequestDto>;
 
-    public sealed class Handler : IRequestHandler<Command, ReservationRequestDto>
+    internal sealed class Handler : IRequestHandler<Command, ReservationRequestDto>
     {
         private readonly IReservationRequestRepository _reservationRequestRepository;
 

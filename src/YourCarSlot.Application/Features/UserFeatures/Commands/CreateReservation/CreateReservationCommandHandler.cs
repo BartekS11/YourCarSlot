@@ -1,34 +1,34 @@
-using AutoMapper;
-using FluentValidation;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
+using static YourCarSlot.Domain.Entities.ReservationRequest;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservation;
 
-public sealed class CreateReservationCommandHandler : IRequestHandler<CreateReservationCommand, Guid>
+public sealed class CreateReservationHandler
 {
-    private readonly IMapper _mapper;
-    private readonly IReservationRequestRepository _reservationRequestRepository;
-    private readonly IValidator<CreateReservationCommand> _validator;
+    public sealed record Command(
+        PartOfTheDay PartOfTheDayReservation, 
+        DateTime BookingRequestTime, 
+        Guid UserRequestingId, 
+        int ParkingSlotRequesting, 
+        string PlateNumber) : IRequest<Guid>;
 
-    public CreateReservationCommandHandler(
-        IMapper mapper, 
-        IReservationRequestRepository reservationRequestRepository,
-        IValidator<CreateReservationCommand> validator)
+    internal sealed class Handler : IRequestHandler<Command, Guid>
     {
-        _mapper = mapper;
-        _reservationRequestRepository = reservationRequestRepository;
-        _validator = validator;
-    }
+        private readonly IReservationRequestRepository _reservationRequestRepository;
 
-    public async Task<Guid> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
-    {
-        await _validator.ValidateAsync(request, cancellationToken);
+        public Handler(
+            IReservationRequestRepository reservationRequestRepository)
+        {
+            _reservationRequestRepository = reservationRequestRepository;
+        }
 
-        var reservationRequestToCreate = _mapper.Map<Domain.Entities.ReservationRequest>(request);
+        public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var reservationRequestToCreate = ReservationRequestMapper.Map(request);
+            await _reservationRequestRepository.CreateAsync(reservationRequestToCreate, cancellationToken);
 
-        await _reservationRequestRepository.CreateAsync(reservationRequestToCreate, cancellationToken);
-
-        return reservationRequestToCreate.Id;
+            return reservationRequestToCreate.Id;
+        }
     }
 }

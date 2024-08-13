@@ -1,30 +1,30 @@
-using FluentValidation;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
+using YourCarSlot.Application.Exceptions;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation;
 
-public sealed class DeleteReservationCommandHandler : IRequestHandler<DeleteReservationCommand, Unit>
+public sealed class DeleteReservationHandler
 {
-    private readonly IReservationRequestRepository _reservationRequestRepository;
-    private readonly IValidator<DeleteReservationCommand> _validator;
+    public sealed record Command(Guid Id) : IRequest<Unit>;
 
-    public DeleteReservationCommandHandler(
-        IReservationRequestRepository reservationRequestRepository,
-        IValidator<DeleteReservationCommand> validator)
+    internal sealed class Handler : IRequestHandler<Command, Unit>
     {
-        _reservationRequestRepository = reservationRequestRepository;
-        _validator = validator;
-    }
+        private readonly IReservationRequestRepository _reservationRequestRepository;
 
-    public async Task<Unit> Handle(DeleteReservationCommand request, CancellationToken cancellationToken)
-    {
-        await _validator.ValidateAndThrowAsync(request, cancellationToken);
+        public Handler(IReservationRequestRepository reservationRequestRepository)
+        {
+            _reservationRequestRepository = reservationRequestRepository;
+        }
 
-        var reservationToDelete = await _reservationRequestRepository.GetByIdAsync(request.Id, cancellationToken);
+        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var reservationToDelete = await _reservationRequestRepository.GetByIdAsync(request.Id, cancellationToken)
+                ?? throw new NotFoundException($"User to delete with {request.Id} is already deleted or not exists");
 
-        await _reservationRequestRepository.DeleteAsync(reservationToDelete!, cancellationToken);            
+            await _reservationRequestRepository.DeleteAsync(reservationToDelete!, cancellationToken);            
 
-        return Unit.Value;
+            return Unit.Value;
+        }
     }
 }

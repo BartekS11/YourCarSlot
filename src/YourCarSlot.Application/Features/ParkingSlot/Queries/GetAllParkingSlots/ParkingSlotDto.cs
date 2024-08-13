@@ -2,6 +2,6 @@ namespace YourCarSlot.Application.Features.ParkingSlot.Queries.GetAllParkingSlot
 
 public sealed class ParkingSlotDto
 {
-    public Guid Id { get; init; }
-    public int? ParkingspotId { get; init; }
+    public Guid Id { get; init; } = default!;
+    public int? ParkingspotId { get; init; } = default!;
 }

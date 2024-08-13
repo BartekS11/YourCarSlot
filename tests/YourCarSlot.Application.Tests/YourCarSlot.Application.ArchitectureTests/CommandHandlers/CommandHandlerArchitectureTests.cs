@@ -6,13 +6,15 @@ namespace YourCarSlot.Application.ArchitectureTests.CommandHandlers;
 
 public sealed class CommandHandlerArchitectureTests
 {
-    // private static readonly Assembly _applictaionAssembly = Assembly.GetAssembly().Where();
-
     [Fact]
-    public void ApplicationCommandsShouldBeSealed()
+    public void ApplicationLayer_CommandHandlers_ShouldBeSealed()
     {
-        var allAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName!.Equals("YourCarSlot.Application")).FirstOrDefault();
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            .Where(x => x.FullName!
+            .Contains("YourCarSlot.Application"))
+            .Where(x => !x.FullName!.Contains("Tests"))
+            .FirstOrDefault();
+
         var result = Types.InAssembly(assemblies)
             .That()
             .ImplementInterface(typeof(IRequestHandler<, >))
@@ -21,6 +23,5 @@ public sealed class CommandHandlerArchitectureTests
             .GetResult();
 
         result.IsSuccessful.Should().BeTrue(); 
-
     }
 }

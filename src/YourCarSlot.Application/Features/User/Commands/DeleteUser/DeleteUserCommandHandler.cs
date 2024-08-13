@@ -3,11 +3,11 @@ using YourCarSlot.Application.Contracts.Persistance;
 
 namespace YourCarSlot.Application.Features.User.Commands.DeleteUser;
 
-public sealed class DeleteUserCommand
+public sealed class DeleteUser
 {
-    public sealed record Command(Guid ID) : IRequest<Unit>;
+    public sealed record Command(Guid Id) : IRequest<Unit>;
 
-    public sealed class Handler : IRequestHandler<Command, Unit>
+    internal sealed class Handler : IRequestHandler<Command, Unit>
     {
         private readonly IUserRepository _userRepository;
 
@@ -18,7 +18,7 @@ public sealed class DeleteUserCommand
 
         public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            var userToDelete = await _userRepository.GetByIdAsync(request.ID, cancellationToken);
+            var userToDelete = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
 
             await _userRepository.DeleteAsync(userToDelete!, cancellationToken);            
 

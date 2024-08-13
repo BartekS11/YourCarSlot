@@ -10,7 +10,7 @@ public sealed class GetAllReservationRequestQuery
 {
     public sealed record Command : IRequest<ReservationRequestDto[]>;
 
-    public sealed class Handler : IRequestHandler<Command, ReservationRequestDto[]>
+    internal sealed class Handler : IRequestHandler<Command, ReservationRequestDto[]>
     {
         private readonly IMapper _mapper;
         private readonly IReservationRequestRepository _reservationrequestRepository;

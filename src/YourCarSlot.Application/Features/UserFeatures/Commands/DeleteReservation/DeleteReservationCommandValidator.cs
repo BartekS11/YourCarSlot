@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Commands.DeleteReservation;
 
-public class DeleteReservationCommandValidator : AbstractValidator<DeleteReservationCommand>
+internal sealed class DeleteReservationCommandValidator : AbstractValidator<DeleteReservationHandler.Command>
 {
     public DeleteReservationCommandValidator()
     {
