@@ -21,7 +21,9 @@ public sealed class ParkingSlotController : ControllerBase
     [HttpGet]
     public async Task<List<ParkingSlotDto>> Get(CancellationToken cancellationToken)
     {
-        var allParkingSlots = await _mediator.Send(new GetAllParkingSlotsQuery(), cancellationToken);
+        var query = new GetAllParkingSlotsQuery();
+        var allParkingSlots = await _mediator.Send(query, cancellationToken);
+        
         return allParkingSlots;
     }
 

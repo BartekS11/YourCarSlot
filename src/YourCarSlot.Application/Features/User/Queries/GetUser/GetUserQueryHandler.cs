@@ -22,7 +22,7 @@ public sealed class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
 
     public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        var userType = await _userRepository.GetByIdAsync(request.Id);
+        var userType = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
 
         if(userType == null)
         {

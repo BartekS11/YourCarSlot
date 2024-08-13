@@ -22,17 +22,18 @@ public sealed class UserController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<UserDto> Get(Guid id)
+    public async Task<UserDto> Get(Guid id, CancellationToken cancellationToken)
     {
-        var usersType = await _mediator.Send(new GetUserQuery(id));
+        var query = new GetUserQuery(id);
+        var usersType = await _mediator.Send(query, cancellationToken);
 
         return usersType;
     }
 
     [HttpGet]
-    public async Task<List<UserDto>> Get()
+    public async Task<List<UserDto>> Get(CancellationToken cancellationToken)
     {
-        var allUsersType = await _mediator.Send(new GetAllUsersQuery());
+        var allUsersType = await _mediator.Send(new GetAllUsersQuery(), cancellationToken);
 
         return allUsersType;
     }
@@ -40,9 +41,9 @@ public sealed class UserController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> Post(CreateUserCommand userType)
+    public async Task<ActionResult> Post(CreateUserCommand userType, CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(userType);
+        var response = await _mediator.Send(userType, cancellationToken);
         return CreatedAtAction(nameof(Get), new { id = response} );
     }
 
@@ -50,11 +51,11 @@ public sealed class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Delete(Guid id)
+    public async Task<ActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        var command = new DeleteUserCommand { Id = id };
+        var command = new DeleteUserCommand.Command(id);
 
-        await _mediator.Send(command);
+        await _mediator.Send(command, cancellationToken);
         return NoContent();
     }
 
@@ -62,9 +63,9 @@ public sealed class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Put(UpdateUserCommand command)
+    public async Task<ActionResult> Put(UpdateUserCommand command, CancellationToken cancellationToken)
     {
-        await _mediator.Send(command);
+        await _mediator.Send(command, cancellationToken);
         return NoContent();
     }
 }

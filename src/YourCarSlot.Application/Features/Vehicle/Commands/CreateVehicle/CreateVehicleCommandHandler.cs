@@ -1,7 +1,6 @@
 using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
-using YourCarSlot.Application.Logging;
 
 namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle;
 
@@ -9,22 +8,18 @@ public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleC
 {
     private readonly IMapper _mapper;
     private readonly IVehicleRepository _vehicleRepository;
-    private readonly IAppLogger<CreateVehicleCommandHandler> _logger;
 
-    public CreateVehicleCommandHandler(IMapper mapper, IVehicleRepository vehicleRepository, IAppLogger<CreateVehicleCommandHandler> logger)
+    public CreateVehicleCommandHandler(IMapper mapper, IVehicleRepository vehicleRepository)
     {
         _mapper = mapper;
         _vehicleRepository = vehicleRepository;
-        _logger = logger;
     }
 
     public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
     {
         var vehicleToCreate = _mapper.Map<Domain.Entities.Vehicle>(request);
 
-        await _vehicleRepository.CreateAsync(vehicleToCreate);
-
-        _logger.LogInformation("Vehicle added successfuly");
+        await _vehicleRepository.CreateAsync(vehicleToCreate, cancellationToken);
 
         return vehicleToCreate.Id;
     }

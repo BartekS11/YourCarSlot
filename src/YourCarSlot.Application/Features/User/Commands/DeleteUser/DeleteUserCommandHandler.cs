@@ -1,20 +1,24 @@
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 
-namespace YourCarSlot.Application.Features.User.Commands.DeleteUser
+namespace YourCarSlot.Application.Features.User.Commands.DeleteUser;
+
+public sealed class DeleteUserCommand
 {
-    public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, Unit>
+    public sealed record Command(Guid ID) : IRequest<Unit>;
+
+    public sealed class Handler : IRequestHandler<Command, Unit>
     {
         private readonly IUserRepository _userRepository;
 
-        public DeleteUserCommandHandler(IUserRepository userRepository)
+        public Handler(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            var userToDelete = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
+            var userToDelete = await _userRepository.GetByIdAsync(request.ID, cancellationToken);
 
             await _userRepository.DeleteAsync(userToDelete!, cancellationToken);            
 

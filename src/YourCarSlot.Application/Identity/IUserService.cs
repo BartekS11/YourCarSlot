@@ -4,6 +4,6 @@ namespace YourCarSlot.Application.Identity;
 
 public interface IUserService
 {
-    Task<List<Employee>> GetEmployees();
-    Task<Employee> GetEmployee(string userId);
+    Task<List<Employee>> GetEmployees(CancellationToken cancellationToken = default);
+    Task<Employee> GetEmployee(string userId, CancellationToken cancellationToken = default);
 }

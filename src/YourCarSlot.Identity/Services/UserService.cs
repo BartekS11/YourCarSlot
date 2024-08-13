@@ -14,7 +14,7 @@ public sealed class UserService : IUserService
         _userManager = userManager;
     }
 
-    public async Task<Employee> GetEmployee(string userId)
+    public async Task<Employee> GetEmployee(string userId, CancellationToken cancellationToken)
     {
         var employee = await _userManager.FindByIdAsync(userId);
         return new Employee
@@ -27,7 +27,7 @@ public sealed class UserService : IUserService
 
     }
 
-    public async Task<List<Employee>> GetEmployees()
+    public async Task<List<Employee>> GetEmployees(CancellationToken cancellationToken)
     {
         var employees = await _userManager.GetUsersInRoleAsync("Employee");
         return employees.Select(q => new Employee
