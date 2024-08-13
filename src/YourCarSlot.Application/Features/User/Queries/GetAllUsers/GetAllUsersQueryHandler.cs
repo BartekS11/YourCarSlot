@@ -1,36 +1,34 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
-using YourCarSlot.Application.Logging;
 
-namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers
+namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers;
+
+public sealed class GetAllUsersHandler
 {
-    public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, List<UserDto>>
-    {
-        private readonly IMapper _mapper;
-        private readonly IUserRepository _userrepository;
-        private readonly IAppLogger<GetAllUsersQueryHandler> _logger;
+    public sealed record Command : IRequest<List<UserDto>>;
 
-        public GetAllUsersQueryHandler(IMapper mapper, IUserRepository userrepository, IAppLogger<GetAllUsersQueryHandler> logger)
+    internal sealed class Handler : IRequestHandler<Command, List<UserDto>>
+    {
+        private readonly IUserRepository _userrepository;
+
+        public Handler(IUserRepository userrepository)
         {
-            _mapper = mapper;
             _userrepository = userrepository;
-            _logger = logger;
         }
 
-        public async Task<List<UserDto>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserDto>> Handle(Command request, CancellationToken cancellationToken)
         {
-            var userTypes = await _userrepository.GetAsync(cancellationToken);
+            var userTypes = await _userrepository.GetAsync(cancellationToken) 
+                ?? throw new NotFoundException("Cannot get all users");
 
-            if(userTypes == null)
+            var data = new List<UserDto>();
+            
+            foreach(var user in userTypes)
             {
-                _logger.LogWarning("Cannot find any user", nameof(userTypes));
-
-                throw new NotFoundException(nameof(userTypes));   
+                var item = UserMapper.Map(user);
+                data.Add(item);
             }
-            var data = _mapper.Map<List<UserDto>>(userTypes);
-            _logger.LogInformation("All users request were retrieved successfuly");
 
             return data;
         }

@@ -1,26 +1,29 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 
 namespace YourCarSlot.Application.Features.Vehicle.Commands.UpdateVehicle;
 
-public sealed class UpdateVehicleCommandHandler : IRequestHandler<UpdateVehicleCommand, Unit>
+public sealed class UpdateVehicleHandler
 {
-    private readonly IMapper _mapper;
-    private readonly IVehicleRepository _vehicleRepository;
+    public sealed record Command(Guid Id, string PlateNumber, string MakeOfCar) : IRequest<Unit>;
 
-    public UpdateVehicleCommandHandler(IMapper mapper, IVehicleRepository vehicleRepository)
+    internal sealed class Handler : IRequestHandler<Command, Unit>
     {
-        _mapper = mapper;
-        _vehicleRepository = vehicleRepository;
-    }
+        private readonly IVehicleRepository _vehicleRepository;
 
-    public async Task<Unit> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
-    {
-        var vehicleToUpdate = _mapper.Map<Domain.Entities.Vehicle>(request);
+        public Handler(IVehicleRepository vehicleRepository)
+        {
+            _vehicleRepository = vehicleRepository;
+        }
 
-        await _vehicleRepository.UpdateAsync(vehicleToUpdate, cancellationToken);
+        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var vehicleToUpdate = VehicleMapper.Map(request);
 
-        return Unit.Value;
+            await _vehicleRepository.UpdateAsync(vehicleToUpdate, cancellationToken);
+
+            return Unit.Value;
+        }
     }
 }
+

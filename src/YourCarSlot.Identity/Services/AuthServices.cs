@@ -27,7 +27,7 @@ public sealed class AuthServices : IAuthService
         _signInManager = signInManager;
     }
 
-    public async Task<AuthResponse> Login(AuthRequest request)
+    public async Task<AuthResponse> Login(AuthRequest request, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByEmailAsync(request.Email) 
             ?? throw new NotFoundException($"User with email {request.Email} not found.");
@@ -52,7 +52,7 @@ public sealed class AuthServices : IAuthService
         return response;
     }
 
-    public async Task<RegistrationResponse> Register(RegistrationRequest request)
+    public async Task<RegistrationResponse> Register(RegistrationRequest request, CancellationToken cancellationToken)
     {
         var user = new ApplicationUser
         {

@@ -6,15 +6,15 @@ namespace YourCarSlot.Domain.Entities;
 public sealed class ReservationRequest : BaseEntity
 {
     public enum PartOfTheDay { AM, PM };
-    public PartOfTheDay PartOfTheDayReservation { get;  set; }
+    public PartOfTheDay PartOfTheDayReservation { get; set; }
     public DateTime BookingRequestTime { get;  set; }
     
     [ForeignKey("User")]
-    public Guid? UserRequestingId { get;  set; }
+    public Guid? UserRequestingId { get; set; }
     public User User { get; set; } = default!;
 
     [ForeignKey("ParkingSlot")]
-    public int? ParkingspotId { get;  set; }
+    public int? ParkingspotId { get; set; }
     public ParkingSlot ParkingSlot { get; set; } = default!;
 
     public bool Reserved { get;  set; } = false;

@@ -1,37 +1,34 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
 using YourCarSlot.Application.Features.User.Queries.GetAllUsers;
-using YourCarSlot.Application.Logging;
 
 namespace YourCarSlot.Application.Features.User.Queries.GetUser;
 
-public sealed class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
+public sealed class GetUserHandler
 {
-    private readonly IMapper _mapper;
-    private readonly IUserRepository _userRepository;
-    private readonly IAppLogger<GetUserQueryHandler> _logger;
+    public sealed record Command(Guid Id) : IRequest<UserDto>;
 
-    public GetUserQueryHandler(IMapper mapper, IUserRepository userRepository, IAppLogger<GetUserQueryHandler> logger)
+    internal sealed class Handler : IRequestHandler<Command, UserDto>
     {
-        _mapper = mapper;
-        _userRepository = userRepository;
-        _logger = logger;
-    }
+        private readonly IUserRepository _userRepository;
 
-    public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
-    {
-        var userType = await _userRepository.GetByIdAsync(request.Id);
-
-        if(userType == null)
+        public Handler(IUserRepository userRepository) 
         {
-            throw new NotFoundException(nameof(userType), request.Id);
+            _userRepository = userRepository;
         }
 
-        var data = _mapper.Map<UserDto>(userType);
-        _logger.LogInformation("User request were retrieved successfuly");
+        public async Task<UserDto> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var userType = await _userRepository.GetByIdAsync(request.Id, cancellationToken) 
+                ?? throw new NotFoundException("User not found", request.Id);
 
-        return data;
+            var data = UserMapper.Map(userType);
+
+            return data;
+        }
     }
+
 }
+
+

@@ -1,27 +1,29 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 
-namespace YourCarSlot.Application.Features.User.Commands.UpdateUser
+namespace YourCarSlot.Application.Features.User.Commands.UpdateUser;
+
+public sealed class UpdateUser
 {
-    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Unit>
+    public sealed record Command(Guid Id, string PlateNumber, string Email, string Username) : IRequest<Unit>;
+
+    internal sealed class UpdateUserCommandHandler : IRequestHandler<Command, Unit>
     {
-        private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
 
-        public UpdateUserCommandHandler(IMapper mapper, IUserRepository userRepository)
+        public UpdateUserCommandHandler(IUserRepository userRepository)
         {
-            _mapper = mapper;
             _userRepository = userRepository;
         }
 
-        public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
-            var reservationToUpdate = _mapper.Map<Domain.Entities.User>(request);
+            var reservationToUpdate = UserMapper.Map(request);
 
-            await _userRepository.UpdateAsync(reservationToUpdate);
+            await _userRepository.UpdateAsync(reservationToUpdate, cancellationToken);
 
             return Unit.Value;    
         }
     }
-}
+
+} 

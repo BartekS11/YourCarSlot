@@ -1,40 +1,26 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
-using YourCarSlot.Application.Exceptions;
-using YourCarSlot.Application.Logging;
 
-namespace YourCarSlot.Application.Features.User.Commands.CreateUser
+namespace YourCarSlot.Application.Features.User.Commands.CreateUser;
+
+public sealed class CreateUser
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
-    {
-        private readonly IMapper _mapper;
-        private readonly IUserRepository _userRepository;
-        private readonly IAppLogger<CreateUserCommandHandler> _logger;
+    public sealed record Command(string Email, string Password, string Username, string PlateNumber) : IRequest<Guid>;
 
-        public CreateUserCommandHandler(IMapper mapper, IUserRepository userRepository, IAppLogger<CreateUserCommandHandler> logger)
+    internal sealed class Handler : IRequestHandler<Command, Guid>
+    {
+        private readonly IUserRepository _userRepository;
+
+        public Handler(IUserRepository userRepository)
         {
-            _mapper = mapper;
             _userRepository = userRepository;
-            _logger = logger;
         }
 
-        public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
         {
-            var validator = new CreateUserCommandValidator();
+            var userToCreate = UserMapper.Map(request);
+            await _userRepository.CreateAsync(userToCreate, cancellationToken);
 
-            var validatorResult = await validator.ValidateAsync(request);
-
-            if(!validatorResult.IsValid)
-            {
-                _logger.LogWarning("Invalid email while creating user");
-                throw new BadRequestException("Invalid email");
-            }
-
-            var userToCreate = _mapper.Map<Domain.Entities.User>(request);
-            await _userRepository.CreateAsync(userToCreate);
-
-            _logger.LogInformation("User added successfuly");
             return userToCreate.Id;
         }
     }

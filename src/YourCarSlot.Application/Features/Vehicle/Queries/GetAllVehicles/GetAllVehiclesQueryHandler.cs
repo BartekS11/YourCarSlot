@@ -1,31 +1,30 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Features.Vehicle.Queries.GetVehicle;
-using YourCarSlot.Application.Logging;
 
-namespace YourCarSlot.Application.Features.Vehicle.Queries.GetAllVehicles
+namespace YourCarSlot.Application.Features.Vehicle.Queries.GetAllVehicles;
+
+internal sealed class GetAllVehiclesQueryHandler : IRequestHandler<GetAllVehiclesQuery, List<VehicleDto>>
 {
-    public class GetAllVehiclesQueryHandler : IRequestHandler<GetAllVehiclesQuery, List<VehicleDto>>
+    private readonly IVehicleRepository _vehicleRepository;
+
+    public GetAllVehiclesQueryHandler(IVehicleRepository vehicleRepository)
     {
-        private readonly IMapper _mapper;
-        private readonly IVehicleRepository _vehicleRepository;
-        private readonly IAppLogger<GetAllVehiclesQueryHandler> _logger;
+        _vehicleRepository = vehicleRepository;
+    }
 
-        public GetAllVehiclesQueryHandler(IMapper mapper, IVehicleRepository vehicleRepository, IAppLogger<GetAllVehiclesQueryHandler> logger)
+    public async Task<List<VehicleDto>> Handle(GetAllVehiclesQuery request, CancellationToken cancellationToken)
+    {
+        var allVehicles = await _vehicleRepository.GetAsync(cancellationToken);
+
+        var data = new List<VehicleDto>();
+
+        foreach(var vehicle in allVehicles)
         {
-            _mapper = mapper;
-            _vehicleRepository = vehicleRepository;
-            _logger = logger;
+            var mappedVehicle = VehicleMapper.Map(vehicle);
+            data.Add(mappedVehicle);
         }
 
-        public async Task<List<VehicleDto>> Handle(GetAllVehiclesQuery request, CancellationToken cancellationToken)
-        {
-            var allVehicles = await _vehicleRepository.GetAsync(cancellationToken);
-            
-            var data = _mapper.Map<List<VehicleDto>>(allVehicles);
-
-            return data;
-        }
+        return data;
     }
 }

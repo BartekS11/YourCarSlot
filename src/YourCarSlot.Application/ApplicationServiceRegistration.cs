@@ -11,15 +11,16 @@ public static class ApplicationServiceRegistration
     //Registering application services
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddApplicationValidators();
         services.AddMediatR(cfg => 
         {
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-            cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
+            cfg.AddOpenBehavior(typeof(LoggingBehavior<, >));
+            cfg.AddOpenBehavior(typeof(ValidationBehavior<, >));
         });
 
         services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
-        services.AddApplicationValidators();
+
         return services;
     }
 

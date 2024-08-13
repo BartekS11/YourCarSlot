@@ -1,31 +1,27 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
-using YourCarSlot.Application.Logging;
 
 namespace YourCarSlot.Application.Features.Vehicle.Commands.CreateVehicle;
 
-public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleCommand, Guid>
+public sealed class CreateVehicleHandler
 {
-    private readonly IMapper _mapper;
-    private readonly IVehicleRepository _vehicleRepository;
-    private readonly IAppLogger<CreateVehicleCommandHandler> _logger;
+    public sealed record Command(string PlateNumber, string MakeOfCar) : IRequest<Guid>;
 
-    public CreateVehicleCommandHandler(IMapper mapper, IVehicleRepository vehicleRepository, IAppLogger<CreateVehicleCommandHandler> logger)
+    internal sealed class Handler : IRequestHandler<Command, Guid>
     {
-        _mapper = mapper;
-        _vehicleRepository = vehicleRepository;
-        _logger = logger;
-    }
+        private readonly IVehicleRepository _vehicleRepository;
 
-    public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
-    {
-        var vehicleToCreate = _mapper.Map<Domain.Entities.Vehicle>(request);
+        public Handler(IVehicleRepository vehicleRepository)
+        {
+            _vehicleRepository = vehicleRepository;
+        }
 
-        await _vehicleRepository.CreateAsync(vehicleToCreate);
+        public async Task<Guid> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var vehicleToCreate = VehicleMapper.Map(request);
+            await _vehicleRepository.CreateAsync(vehicleToCreate, cancellationToken);
 
-        _logger.LogInformation("Vehicle added successfuly");
-
-        return vehicleToCreate.Id;
+            return vehicleToCreate.Id;
+        }
     }
 }

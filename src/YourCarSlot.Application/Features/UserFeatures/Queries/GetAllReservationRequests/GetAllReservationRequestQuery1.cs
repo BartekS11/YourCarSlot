@@ -1,4 +1,3 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
@@ -10,14 +9,12 @@ public sealed class GetAllReservationRequestQuery
 {
     public sealed record Command : IRequest<ReservationRequestDto[]>;
 
-    public sealed class Handler : IRequestHandler<Command, ReservationRequestDto[]>
+    internal sealed class Handler : IRequestHandler<Command, ReservationRequestDto[]>
     {
-        private readonly IMapper _mapper;
         private readonly IReservationRequestRepository _reservationrequestRepository;
 
-        public Handler(IMapper mapper, IReservationRequestRepository reservationrequestRepository)
+        public Handler(IReservationRequestRepository reservationrequestRepository)
         {
-            _mapper = mapper;
             _reservationrequestRepository = reservationrequestRepository;
         }
 
@@ -25,8 +22,13 @@ public sealed class GetAllReservationRequestQuery
         {
             var reservationTypes = await _reservationrequestRepository.GetAsync(cancellationToken) 
                 ?? throw new NotFoundException("Reservation request is empty");
-
-            var data = _mapper.Map<ReservationRequestDto[]>(reservationTypes);
+            
+            var data = Array.Empty<ReservationRequestDto>();
+            foreach(var res in reservationTypes)
+            {
+                var item = ReservationRequestMapper.Map(res);
+                _ = data.Append(item);
+            }
 
             return data;
         }

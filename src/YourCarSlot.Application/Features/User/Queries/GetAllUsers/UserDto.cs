@@ -1,6 +1,6 @@
 namespace YourCarSlot.Application.Features.User.Queries.GetAllUsers;
 
-public class UserDto
+public sealed class UserDto
 {
     public Guid Id { get; init; }
     public string Email { get; init; } = default!;

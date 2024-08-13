@@ -16,14 +16,14 @@ public sealed class AuthController : ControllerBase
     }
 
     [HttpPost("Login")]
-    public async Task<ActionResult<AuthResponse>> Login(AuthRequest request)
+    public async Task<ActionResult<AuthResponse>> Login(AuthRequest request, CancellationToken cancellationToken)
     {
-        return Ok(await _authenticationService.Login(request));
+        return Ok(await _authenticationService.Login(request, cancellationToken));
     }
 
     [HttpPost("Register")]
-    public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request)
+    public async Task<ActionResult<RegistrationResponse>> Register(RegistrationRequest request, CancellationToken cancellationToken)
     {
-        return Ok(await _authenticationService.Register(request));
+        return Ok(await _authenticationService.Register(request, cancellationToken));
     }
 }

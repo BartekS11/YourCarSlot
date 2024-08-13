@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservation;
 
-public sealed class CreateReservationCommandValidator : AbstractValidator<CreateReservationCommand>
+internal sealed class CreateReservationCommandValidator : AbstractValidator<CreateReservationHandler.Command>
 {
     public CreateReservationCommandValidator()
     {

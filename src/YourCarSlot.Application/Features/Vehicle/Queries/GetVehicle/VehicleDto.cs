@@ -1,9 +1,8 @@
-namespace YourCarSlot.Application.Features.Vehicle.Queries.GetVehicle
+namespace YourCarSlot.Application.Features.Vehicle.Queries.GetVehicle;
+
+public sealed class VehicleDto
 {
-    public class VehicleDto
-    {
-        public Guid Id { get; set; }
-        public string MakeOfCar { get; set; }  = string.Empty;
-        public string PlateNumber { get; set; }  = string.Empty;
-    }
+    public Guid Id { get; init; }
+    public string MakeOfCar { get; init; }  = string.Empty;
+    public string PlateNumber { get; init; }  = string.Empty;
 }
