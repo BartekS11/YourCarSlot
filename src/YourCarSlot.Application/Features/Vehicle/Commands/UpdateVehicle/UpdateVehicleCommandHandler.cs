@@ -1,4 +1,3 @@
-using AutoMapper;
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 
@@ -10,12 +9,10 @@ public sealed class UpdateVehicleHandler
 
     internal sealed class Handler : IRequestHandler<Command, Unit>
     {
-        private readonly IMapper _mapper;
         private readonly IVehicleRepository _vehicleRepository;
 
-        public Handler(IMapper mapper, IVehicleRepository vehicleRepository)
+        public Handler(IVehicleRepository vehicleRepository)
         {
-            _mapper = mapper;
             _vehicleRepository = vehicleRepository;
         }
 

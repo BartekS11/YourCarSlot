@@ -11,7 +11,6 @@ public static class ApplicationServiceRegistration
     //Registering application services
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddApplicationValidators();
         services.AddMediatR(cfg => 
         {

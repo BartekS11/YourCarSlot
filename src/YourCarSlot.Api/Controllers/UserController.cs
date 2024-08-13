@@ -24,7 +24,7 @@ public sealed class UserController : ControllerBase
     [HttpGet("{id}")]
     public async Task<UserDto> Get(Guid id, CancellationToken cancellationToken)
     {
-        var query = new GetUserQuery(id);
+        var query = new GetUserHandler.Command(id);
         var usersType = await _mediator.Send(query, cancellationToken);
 
         return usersType;
@@ -33,7 +33,8 @@ public sealed class UserController : ControllerBase
     [HttpGet]
     public async Task<List<UserDto>> Get(CancellationToken cancellationToken)
     {
-        var allUsersType = await _mediator.Send(new GetAllUsersQuery(), cancellationToken);
+        var query = new GetAllUsersHandler.Command();
+        var allUsersType = await _mediator.Send(query, cancellationToken);
 
         return allUsersType;
     }
