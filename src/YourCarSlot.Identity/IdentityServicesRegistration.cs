@@ -15,11 +15,12 @@ namespace YourCarSlot.Identity;
 
 public static class IdentityServicesRegistration
 {
-    public static IServiceCollection AddIdentityServices(this IServiceCollection services, 
+    public static IServiceCollection AddIdentityServices(this IServiceCollection services,
         IConfiguration configuration)
     {
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
-        services.AddDbContext<YCSIdentityDbContext>(options => {
+        services.AddDbContext<YCSIdentityDbContext>(options =>
+        {
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
         });
 
@@ -30,12 +31,12 @@ public static class IdentityServicesRegistration
         services.AddTransient<IAuthService, AuthServices>();
         services.AddTransient<IUserService, UserService>();
 
-        services.AddAuthentication(options => 
+        services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         }
-        ).AddJwtBearer(o => 
+        ).AddJwtBearer(o =>
         {
             o.TokenValidationParameters = new TokenValidationParameters
             {

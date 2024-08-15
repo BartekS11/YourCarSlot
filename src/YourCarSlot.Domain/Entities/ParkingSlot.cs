@@ -10,7 +10,7 @@ namespace YourCarSlot.Domain.Entities
         public int _levelId { get; set; }
         public ParkingSlot()
         {
-        
+
         }
     }
 }

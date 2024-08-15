@@ -22,7 +22,7 @@ public sealed class DeleteReservationHandler
             var reservationToDelete = await _reservationRequestRepository.GetByIdAsync(request.Id, cancellationToken)
                 ?? throw new NotFoundException($"User to delete with {request.Id} is already deleted or not exists");
 
-            await _reservationRequestRepository.DeleteAsync(reservationToDelete!, cancellationToken);            
+            await _reservationRequestRepository.DeleteAsync(reservationToDelete!, cancellationToken);
 
             return Unit.Value;
         }

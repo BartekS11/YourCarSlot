@@ -13,14 +13,14 @@ public sealed class GetUserHandler
     {
         private readonly IUserRepository _userRepository;
 
-        public Handler(IUserRepository userRepository) 
+        public Handler(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
         public async Task<UserDto> Handle(Command request, CancellationToken cancellationToken)
         {
-            var userType = await _userRepository.GetByIdAsync(request.Id, cancellationToken) 
+            var userType = await _userRepository.GetByIdAsync(request.Id, cancellationToken)
                 ?? throw new NotFoundException("User not found", request.Id);
 
             var data = UserMapper.Map(userType);

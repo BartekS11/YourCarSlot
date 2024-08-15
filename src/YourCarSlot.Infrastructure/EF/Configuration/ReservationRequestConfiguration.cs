@@ -6,7 +6,7 @@ namespace YourCarSlot.Infrastructure.EF.Configuration;
 
 public sealed class ReservationRequestConfiguration : IEntityTypeConfiguration<ReservationRequest>
 {
-    
+
     public void Configure(EntityTypeBuilder<ReservationRequest> builder)
     {
         var stringGuid = "81a130d2-502f-4cf1-a376-63edeb000e9f";

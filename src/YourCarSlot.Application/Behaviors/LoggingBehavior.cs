@@ -13,7 +13,7 @@ public sealed class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRe
     }
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
-    {        
+    {
         _logger.LogInformation($"{GetType().Name} is beign processed");
 
         var response = await next();

@@ -7,11 +7,11 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.UpdateReservati
 public sealed class UpdateReservationHandler
 {
     public sealed record Command(
-        Guid Id, 
-        int ParkingSlotRequesting, 
-        Guid UserRequestingId, 
-        PartOfTheDay PartOfTheDayReservation, 
-        DateTime BookingRequestTime, 
+        Guid Id,
+        int ParkingSlotRequesting,
+        Guid UserRequestingId,
+        PartOfTheDay PartOfTheDayReservation,
+        DateTime BookingRequestTime,
         string PlateNumber) : IRequest<Unit>;
 
     internal sealed class Handler : IRequestHandler<Command, Unit>
@@ -29,7 +29,7 @@ public sealed class UpdateReservationHandler
 
             await _reservationRequestRepository.UpdateAsync(reservationToUpdate, cancellationToken);
 
-            return Unit.Value;    
+            return Unit.Value;
         }
     }
 }

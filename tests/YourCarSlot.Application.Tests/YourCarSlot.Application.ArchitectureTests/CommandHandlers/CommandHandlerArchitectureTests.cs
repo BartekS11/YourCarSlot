@@ -17,11 +17,11 @@ public sealed class CommandHandlerArchitectureTests
 
         var result = Types.InAssembly(assemblies)
             .That()
-            .ImplementInterface(typeof(IRequestHandler<, >))
+            .ImplementInterface(typeof(IRequestHandler<,>))
             .Should()
             .BeSealed()
             .GetResult();
 
-        result.IsSuccessful.Should().BeTrue(); 
+        result.IsSuccessful.Should().BeTrue();
     }
 }

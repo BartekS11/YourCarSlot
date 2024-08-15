@@ -5,7 +5,7 @@ using YourCarSlot.Shared.Abstractions.Mediator.CommandHandling;
 
 namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRequest;
 
-public sealed class ReservationRequestQuery 
+public sealed class ReservationRequestQuery
 {
     public sealed record Command(Guid Id) : IYcsRequest<ReservationRequestDto>;
 
@@ -19,7 +19,7 @@ public sealed class ReservationRequestQuery
         }
         public async Task<ReservationRequestDto> Handle(Command request, CancellationToken cancellationToken)
         {
-            var reservationRequestType = await _reservationRequestRepository.GetByIdAsync(request.Id, cancellationToken) 
+            var reservationRequestType = await _reservationRequestRepository.GetByIdAsync(request.Id, cancellationToken)
                 ?? throw new NotFoundException($"Request with id: {request.Id} is not found");
 
             var data = ReservationRequestMapper.Map(reservationRequestType);

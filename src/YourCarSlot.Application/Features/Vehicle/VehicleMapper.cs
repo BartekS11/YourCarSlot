@@ -7,31 +7,25 @@ namespace YourCarSlot.Application.Features.Vehicle;
 internal static class VehicleMapper
 {
     internal static VehicleDto Map(Domain.Entities.Vehicle vehicle)
-    {
-        return new()
+        => new()
         {
             Id = vehicle.Id,
             MakeOfCar = vehicle.MakeOfCar,
             PlateNumber = vehicle.PlateNumber!,
         };
-    }
 
     internal static Domain.Entities.Vehicle Map(UpdateVehicleHandler.Command command)
-    {
-        return new()
+        => new()
         {
             Id = command.Id,
             MakeOfCar = command.MakeOfCar,
             PlateNumber = command.PlateNumber
         };
-    }
 
-        internal static Domain.Entities.Vehicle Map(CreateVehicleHandler.Command command)
-    {
-        return new()
+    internal static Domain.Entities.Vehicle Map(CreateVehicleHandler.Command command)
+        => new()
         {
             MakeOfCar = command.MakeOfCar,
             PlateNumber = command.PlateNumber
         };
-    }
 }

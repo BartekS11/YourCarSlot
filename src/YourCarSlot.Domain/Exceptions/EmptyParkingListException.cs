@@ -6,7 +6,7 @@ namespace YourCarSlot.Domain.Exceptions
     {
         public EmptyParkingListException() : base("parking list name cannot be empty")
         {
-            
+
         }
     }
 }

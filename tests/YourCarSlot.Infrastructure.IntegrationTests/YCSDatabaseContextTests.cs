@@ -24,15 +24,15 @@ public sealed class YCSDatabaseContextTests
         var stringGuid = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
         var userrequestingExample = Guid.Parse("36b99c90-b13d-11ed-afa1-0242ac120002");
         var reservationRequest = new ReservationRequest
-            {
-                Id = stringGuid,
-                BookingRequestTime = DateTime.UtcNow,
-                Reserved = true,
-                PlateNumber = "23233-33",
-                UserRequestingId = userrequestingExample,
-                CreatedAt = DateTime.Now,
-                DateModified = DateTime.Now
-            };
+        {
+            Id = stringGuid,
+            BookingRequestTime = DateTime.UtcNow,
+            Reserved = true,
+            PlateNumber = "23233-33",
+            UserRequestingId = userrequestingExample,
+            CreatedAt = DateTime.Now,
+            DateModified = DateTime.Now
+        };
 
         await _ycsDatabaseContext.ReservationRequest.AddAsync(reservationRequest);
         await _ycsDatabaseContext.SaveChangesAsync(_cancellationToken);
@@ -46,15 +46,15 @@ public sealed class YCSDatabaseContextTests
         var stringGuid = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f");
         var userrequestingExample = Guid.Parse("36b99c90-b13d-11ed-afa1-0242ac120002");
         var reservationRequest = new ReservationRequest
-            {
-                Id = stringGuid,
-                BookingRequestTime = DateTime.UtcNow,
-                Reserved = true,
-                PlateNumber = "23233-33",
-                UserRequestingId = userrequestingExample,
-                CreatedAt = DateTime.Now,
-                DateModified = DateTime.Now
-            };
+        {
+            Id = stringGuid,
+            BookingRequestTime = DateTime.UtcNow,
+            Reserved = true,
+            PlateNumber = "23233-33",
+            UserRequestingId = userrequestingExample,
+            CreatedAt = DateTime.Now,
+            DateModified = DateTime.Now
+        };
 
         await _ycsDatabaseContext.ReservationRequest.AddAsync(reservationRequest);
         await _ycsDatabaseContext.SaveChangesAsync();

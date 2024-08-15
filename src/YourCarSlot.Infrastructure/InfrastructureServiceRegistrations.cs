@@ -12,7 +12,8 @@ public static class InfrastructureServiceRegistrations
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddDbContext<YCSDatabaseContext>(options => {
+        services.AddDbContext<YCSDatabaseContext>(options =>
+        {
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnections"));
         });
 

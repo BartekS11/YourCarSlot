@@ -7,10 +7,10 @@ namespace YourCarSlot.Application.Features.UserFeatures.Commands.CreateReservati
 public sealed class CreateReservationHandler
 {
     public sealed record Command(
-        PartOfTheDay PartOfTheDayReservation, 
-        DateTime BookingRequestTime, 
-        Guid UserRequestingId, 
-        int ParkingSlotRequesting, 
+        PartOfTheDay PartOfTheDayReservation,
+        DateTime BookingRequestTime,
+        Guid UserRequestingId,
+        int ParkingSlotRequesting,
         string PlateNumber) : IRequest<Guid>;
 
     internal sealed class Handler : IRequestHandler<Command, Guid>

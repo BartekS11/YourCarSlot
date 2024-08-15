@@ -12,11 +12,11 @@ public static class ApplicationServiceRegistration
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddApplicationValidators();
-        services.AddMediatR(cfg => 
+        services.AddMediatR(cfg =>
         {
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-            cfg.AddOpenBehavior(typeof(LoggingBehavior<, >));
-            cfg.AddOpenBehavior(typeof(ValidationBehavior<, >));
+            cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
+            cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
 
         services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
@@ -27,7 +27,7 @@ public static class ApplicationServiceRegistration
     internal static IServiceCollection AddApplicationValidators(this IServiceCollection services)
     {
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        
+
         return services;
     }
 }

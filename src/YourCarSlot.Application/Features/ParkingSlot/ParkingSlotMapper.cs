@@ -6,7 +6,7 @@ internal static class ParkingSlotMapper
 {
     internal static ParkingSlotDto Map(Domain.Entities.ParkingSlot parkingSlots)
     {
-        return new() 
+        return new()
         {
             Id = parkingSlots.Id,
             ParkingspotId = parkingSlots.ParkingspotId,

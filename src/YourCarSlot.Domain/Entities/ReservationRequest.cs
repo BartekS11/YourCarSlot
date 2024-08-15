@@ -7,8 +7,8 @@ public sealed class ReservationRequest : BaseEntity
 {
     public enum PartOfTheDay { AM, PM };
     public PartOfTheDay PartOfTheDayReservation { get; set; }
-    public DateTime BookingRequestTime { get;  set; }
-    
+    public DateTime BookingRequestTime { get; set; }
+
     [ForeignKey("User")]
     public Guid? UserRequestingId { get; set; }
     public User User { get; set; } = default!;
@@ -17,7 +17,7 @@ public sealed class ReservationRequest : BaseEntity
     public int? ParkingspotId { get; set; }
     public ParkingSlot ParkingSlot { get; set; } = default!;
 
-    public bool Reserved { get;  set; } = false;
+    public bool Reserved { get; set; } = false;
 
     [ForeignKey("Vehicle")]
     public string? PlateNumber { get; set; }

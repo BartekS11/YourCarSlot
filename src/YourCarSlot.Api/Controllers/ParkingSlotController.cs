@@ -23,7 +23,7 @@ public sealed class ParkingSlotController : ControllerBase
     {
         var query = new GetAllParkingSlotsQuery.Command();
         var allParkingSlots = await _mediator.Send(query, cancellationToken);
-        
+
         return allParkingSlots;
     }
 

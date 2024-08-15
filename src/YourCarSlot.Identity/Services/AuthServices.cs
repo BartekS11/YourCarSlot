@@ -18,7 +18,7 @@ public sealed class AuthServices : IAuthService
     private readonly SignInManager<ApplicationUser> _signInManager;
 
     public AuthServices(
-        UserManager<ApplicationUser> userManager, 
+        UserManager<ApplicationUser> userManager,
         IOptions<JwtSettings> jwtSettings,
         SignInManager<ApplicationUser> signInManager)
     {
@@ -29,9 +29,9 @@ public sealed class AuthServices : IAuthService
 
     public async Task<AuthResponse> Login(AuthRequest request, CancellationToken cancellationToken)
     {
-        var user = await _userManager.FindByEmailAsync(request.Email) 
+        var user = await _userManager.FindByEmailAsync(request.Email)
             ?? throw new NotFoundException($"User with email {request.Email} not found.");
-        
+
         var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
         if (!result.Succeeded)
@@ -73,7 +73,7 @@ public sealed class AuthServices : IAuthService
         else
         {
             var str = new StringBuilder();
-            foreach(var err in result.Errors)
+            foreach (var err in result.Errors)
             {
                 str.AppendFormat("{0}\n", err.Description);
             }

@@ -22,8 +22,8 @@ public sealed class UpdateUser
 
             await _userRepository.UpdateAsync(reservationToUpdate, cancellationToken);
 
-            return Unit.Value;    
+            return Unit.Value;
         }
     }
 
-} 
+}
