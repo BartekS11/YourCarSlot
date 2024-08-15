@@ -14,7 +14,7 @@ public sealed class ReservationRequestRepository : GenericRepository<Reservation
     public async Task<ReservationRequest> GetReservationRequestWithDetails(Guid id, CancellationToken cancellationToken)
     {
         var reservationRequest = await _context.ReservationRequest
-            .Select(q => new ReservationRequest 
+            .Select(q => new ReservationRequest
             {
                 Id = q.Id,
                 BookingRequestTime = q.BookingRequestTime,

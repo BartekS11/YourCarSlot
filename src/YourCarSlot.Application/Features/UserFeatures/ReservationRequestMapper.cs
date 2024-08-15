@@ -19,7 +19,7 @@ internal static class ReservationRequestMapper
             UserRequestingId = request.UserRequestingId
         };
 
-    internal static ReservationRequest Map(CreateReservationHandler.Command command) 
+    internal static ReservationRequest Map(CreateReservationHandler.Command command)
         => new()
         {
             PartOfTheDayReservation = command.PartOfTheDayReservation,
@@ -29,7 +29,7 @@ internal static class ReservationRequestMapper
             PlateNumber = command.PlateNumber
         };
 
-    internal static ReservationRequest Map(UpdateReservationHandler.Command command) 
+    internal static ReservationRequest Map(UpdateReservationHandler.Command command)
         => new()
         {
             Id = command.Id,

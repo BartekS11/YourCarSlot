@@ -20,7 +20,7 @@ public sealed class DeleteUser
         {
             var userToDelete = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
 
-            await _userRepository.DeleteAsync(userToDelete!, cancellationToken);            
+            await _userRepository.DeleteAsync(userToDelete!, cancellationToken);
 
             return Unit.Value;
         }

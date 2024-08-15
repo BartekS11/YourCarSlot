@@ -42,7 +42,7 @@ internal sealed class MockReservationRequestRepository
         // mockRepo.Setup(r => r.CreateAsync(It.IsAny<ReservationRequest>(), _cancellationToken))
         //     .Returns((ReservationRequest reservationRequest) => {
         //         reservationReuests.Add(reservationRequest);
-                
+
         //         return Task.CompletedTask;
         //     });
 
@@ -54,15 +54,15 @@ internal sealed class MockReservationRequestRepository
         var sampleId = Guid.Parse("4c750373-6309-40c8-af68-973aaf8da562");
         var userrequestingExample = Guid.Parse("36b99c90-b13d-11ed-afa1-0242ac120002");
         var reservationReuests = new ReservationRequest
-            {
-                Id = sampleId,
-                BookingRequestTime = DateTime.UtcNow,
-                Reserved = true,
-                PlateNumber = "23233-33",
-                UserRequestingId = userrequestingExample,
-                CreatedAt = DateTime.Now,
-                DateModified = DateTime.Now
-            };
+        {
+            Id = sampleId,
+            BookingRequestTime = DateTime.UtcNow,
+            Reserved = true,
+            PlateNumber = "23233-33",
+            UserRequestingId = userrequestingExample,
+            CreatedAt = DateTime.Now,
+            DateModified = DateTime.Now
+        };
         var mockRepo = new Mock<IReservationRequestRepository>();
         mockRepo.Setup(r => r.GetByIdAsync(sampleId, _cancellationToken))
             .ReturnsAsync(reservationReuests);

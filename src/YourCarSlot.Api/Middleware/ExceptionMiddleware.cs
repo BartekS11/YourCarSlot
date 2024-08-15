@@ -4,7 +4,7 @@ using YourCarSlot.Application.Exceptions;
 
 namespace YourCarSlot.Api.Middleware;
 
-public sealed class ExceptionMiddleware(RequestDelegate next)
+internal sealed class ExceptionMiddleware(RequestDelegate next)
 {
     private readonly RequestDelegate _next = next;
 
@@ -14,7 +14,7 @@ public sealed class ExceptionMiddleware(RequestDelegate next)
         {
             await _next(httpContext);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             await HandleExceptionAsync(httpContext, ex);
         }
@@ -25,7 +25,7 @@ public sealed class ExceptionMiddleware(RequestDelegate next)
         HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
         CustomValidationProblemDetails problem = new();
 
-        switch(ex)
+        switch (ex)
         {
             case BadRequestException badRequestException:
                 statusCode = HttpStatusCode.BadRequest;

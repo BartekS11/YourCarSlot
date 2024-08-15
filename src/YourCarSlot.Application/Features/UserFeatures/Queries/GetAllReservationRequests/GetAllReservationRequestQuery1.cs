@@ -20,11 +20,11 @@ public sealed class GetAllReservationRequestQuery
 
         public async Task<ReservationRequestDto[]> Handle(Command request, CancellationToken cancellationToken)
         {
-            var reservationTypes = await _reservationrequestRepository.GetAsync(cancellationToken) 
+            var reservationTypes = await _reservationrequestRepository.GetAsync(cancellationToken)
                 ?? throw new NotFoundException("Reservation request is empty");
-            
+
             var data = Array.Empty<ReservationRequestDto>();
-            foreach(var res in reservationTypes)
+            foreach (var res in reservationTypes)
             {
                 var item = ReservationRequestMapper.Map(res);
                 _ = data.Append(item);

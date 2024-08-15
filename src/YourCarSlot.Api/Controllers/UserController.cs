@@ -45,7 +45,7 @@ public sealed class UserController : ControllerBase
     public async Task<ActionResult> Post(CreateUser.Command userType, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(userType, cancellationToken);
-        return CreatedAtAction(nameof(Get), new { id = response} );
+        return CreatedAtAction(nameof(Get), new { id = response });
     }
 
     [HttpDelete]

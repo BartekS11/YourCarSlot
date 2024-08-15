@@ -25,7 +25,7 @@ public sealed class User : BaseEntity
         Id = Guid.NewGuid();
     }
 
-    public User(string email, string username, 
+    public User(string email, string username,
         string password, string salt)
     {
         Id = Guid.NewGuid();
@@ -38,12 +38,12 @@ public sealed class User : BaseEntity
 
     public void SetEmail(string email)
     {
-        if(!EmailRegex.IsMatch(email))
+        if (!EmailRegex.IsMatch(email))
         {
             throw new WrongEmailException();
         }
 
-        if(Email == email)
+        if (Email == email)
         {
             return;
         }
@@ -53,12 +53,12 @@ public sealed class User : BaseEntity
 
     public void SetUsername(string username)
     {
-        if(!NameRegex.IsMatch(username))
+        if (!NameRegex.IsMatch(username))
         {
             throw new WrongUsernameException();
         }
 
-        if(Username == username)
+        if (Username == username)
         {
             return;
         }
@@ -68,22 +68,22 @@ public sealed class User : BaseEntity
 
     public void SetPassword(string password)
     {
-        if(string.IsNullOrWhiteSpace(password))
+        if (string.IsNullOrWhiteSpace(password))
         {
             throw new WrongPasswordException();
         }
 
-        if(password.Length < 4)
+        if (password.Length < 4)
         {
             throw new Exception("Password must contain at least 4 characters.");
         }
 
-        if(password.Length > 50)
+        if (password.Length > 50)
         {
             throw new Exception("Password can not contain more than 50 characters.");
         }
 
-        if(Password == password)
+        if (Password == password)
         {
             return;
         }

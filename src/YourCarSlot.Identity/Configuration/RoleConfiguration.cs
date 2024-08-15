@@ -13,7 +13,7 @@ public sealed class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
             {
                 Id = "b2e08085-cf43-484e-aebc-a2aaaf7ba87f",
                 Name = "Employee",
-                NormalizedName = "EMPLOYEE"       
+                NormalizedName = "EMPLOYEE"
             },
             new IdentityRole
             {

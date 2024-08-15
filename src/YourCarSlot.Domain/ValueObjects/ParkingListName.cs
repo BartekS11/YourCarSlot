@@ -4,10 +4,10 @@ namespace YourCarSlot.Domain.ValueObjects
 {
     public record ParkingListName
     {
-        public string Name { get; }  = string.Empty;
+        public string Name { get; } = string.Empty;
         public ParkingListName(string name)
         {
-            if(string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 throw new EmptyParkingListException();
             }

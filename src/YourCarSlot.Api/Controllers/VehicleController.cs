@@ -24,7 +24,7 @@ public sealed class VehicleController : ControllerBase
     [HttpGet]
     public async Task<List<VehicleDto>> Get(CancellationToken cancellationToken)
     {
-        var query = new GetAllVehiclesQuery();
+        var query = new GetAllVehiclesHandler.Command();
         var allVehicles = await _mediator.Send(query, cancellationToken);
 
         return allVehicles;
@@ -33,7 +33,7 @@ public sealed class VehicleController : ControllerBase
     [HttpGet("{id}")]
     public async Task<VehicleDto> Get(Guid id, CancellationToken cancellationToken)
     {
-        var query = new GetVehicleQuery(id);
+        var query = new GetVehicleHandler.Command(id);
         var Vehicle = await _mediator.Send(query, cancellationToken);
 
         return Vehicle;
@@ -45,7 +45,7 @@ public sealed class VehicleController : ControllerBase
     public async Task<ActionResult> Post(CreateVehicleHandler.Command createVehicleCommand, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(createVehicleCommand, cancellationToken);
-        return CreatedAtAction(nameof(Get), new { id = response});
+        return CreatedAtAction(nameof(Get), new { id = response });
     }
 
     [HttpPut]

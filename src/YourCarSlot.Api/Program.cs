@@ -5,7 +5,8 @@ using YourCarSlot.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseDefaultServiceProvider((ctx, options) => {
+builder.WebHost.UseDefaultServiceProvider((ctx, options) =>
+{
     options.ValidateOnBuild = ctx.HostingEnvironment.IsDevelopment();
     options.ValidateScopes = ctx.HostingEnvironment.IsDevelopment();
 });
@@ -15,7 +16,8 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 
-builder.Services.AddCors( options => {
+builder.Services.AddCors(options =>
+{
     options.AddPolicy("all", builder => builder.AllowAnyOrigin()
     .AllowAnyHeader()
     .AllowAnyMethod());

@@ -23,11 +23,11 @@ public sealed class YourCarSlotApiPerformanceTests(ITestOutputHelper outputHelpe
         const int durationSeconds = 5;
         const int numberOfRequest = 100;
 
-        var getReservationRequestStep = Step.Create("Get all reservation requests", clientFactory: HttpClientFactory.Create(httpClient:client), execute: async context =>
+        var getReservationRequestStep = Step.Create("Get all reservation requests", clientFactory: HttpClientFactory.Create(httpClient: client), execute: async context =>
         {
-                var request = Http.CreateRequest("GET", url);
-                var response = await Http.Send(request, context);
-                return response;
+            var request = Http.CreateRequest("GET", url);
+            var response = await Http.Send(request, context);
+            return response;
 
         });
 
@@ -57,11 +57,11 @@ public sealed class YourCarSlotApiPerformanceTests(ITestOutputHelper outputHelpe
         var client = new HttpClient(clientHandler);
         const string url = "https://localhost:7276/api/ParkingSlot";
 
-        var getReservationRequestStep = Step.Create("Get all parking slots", clientFactory: HttpClientFactory.Create(httpClient:client), execute: async context =>
+        var getReservationRequestStep = Step.Create("Get all parking slots", clientFactory: HttpClientFactory.Create(httpClient: client), execute: async context =>
         {
-                var request = Http.CreateRequest("GET", url);
-                var response = await Http.Send(request, context);
-                return response;
+            var request = Http.CreateRequest("GET", url);
+            var response = await Http.Send(request, context);
+            return response;
 
         });
 

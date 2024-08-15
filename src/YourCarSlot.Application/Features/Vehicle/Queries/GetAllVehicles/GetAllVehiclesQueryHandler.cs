@@ -1,30 +1,36 @@
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Features.Vehicle.Queries.GetVehicle;
+using YourCarSlot.Shared.Abstractions.Mediator.CommandHandling;
 
 namespace YourCarSlot.Application.Features.Vehicle.Queries.GetAllVehicles;
 
-internal sealed class GetAllVehiclesQueryHandler : IRequestHandler<GetAllVehiclesQuery, List<VehicleDto>>
+public sealed class GetAllVehiclesHandler
 {
-    private readonly IVehicleRepository _vehicleRepository;
+    public sealed record Command : IYcsRequest<List<VehicleDto>>;
 
-    public GetAllVehiclesQueryHandler(IVehicleRepository vehicleRepository)
+    internal sealed class GetAllVehiclesQueryHandler : IRequestHandler<Command, List<VehicleDto>>
     {
-        _vehicleRepository = vehicleRepository;
-    }
+        private readonly IVehicleRepository _vehicleRepository;
 
-    public async Task<List<VehicleDto>> Handle(GetAllVehiclesQuery request, CancellationToken cancellationToken)
-    {
-        var allVehicles = await _vehicleRepository.GetAsync(cancellationToken);
-
-        var data = new List<VehicleDto>();
-
-        foreach(var vehicle in allVehicles)
+        public GetAllVehiclesQueryHandler(IVehicleRepository vehicleRepository)
         {
-            var mappedVehicle = VehicleMapper.Map(vehicle);
-            data.Add(mappedVehicle);
+            _vehicleRepository = vehicleRepository;
         }
 
-        return data;
+        public async Task<List<VehicleDto>> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var allVehicles = await _vehicleRepository.GetAsync(cancellationToken);
+
+            var data = new List<VehicleDto>();
+
+            foreach (var vehicle in allVehicles)
+            {
+                var mappedVehicle = VehicleMapper.Map(vehicle);
+                data.Add(mappedVehicle);
+            }
+
+            return data;
+        }
     }
 }

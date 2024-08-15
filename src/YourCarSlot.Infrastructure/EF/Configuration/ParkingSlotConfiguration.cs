@@ -12,8 +12,8 @@ namespace YourCarSlot.Infrastructure.EF.Configuration
             builder.HasData(
                 new ParkingSlot
                 {
-                   Id = Guid.Parse(guid1),
-                   ParkingspotId = 1
+                    Id = Guid.Parse(guid1),
+                    ParkingspotId = 1
                 }
             );
         }

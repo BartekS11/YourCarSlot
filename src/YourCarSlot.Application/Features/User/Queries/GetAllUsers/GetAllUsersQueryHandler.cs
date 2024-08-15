@@ -19,12 +19,12 @@ public sealed class GetAllUsersHandler
 
         public async Task<List<UserDto>> Handle(Command request, CancellationToken cancellationToken)
         {
-            var userTypes = await _userrepository.GetAsync(cancellationToken) 
+            var userTypes = await _userrepository.GetAsync(cancellationToken)
                 ?? throw new NotFoundException("Cannot get all users");
 
             var data = new List<UserDto>();
-            
-            foreach(var user in userTypes)
+
+            foreach (var user in userTypes)
             {
                 var item = UserMapper.Map(user);
                 data.Add(item);

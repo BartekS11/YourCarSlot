@@ -6,7 +6,7 @@ namespace YourCarSlot.Domain.Exceptions
     {
         public WrongUsernameException() : base("Username is wrong")
         {
-            
+
         }
     }
 }

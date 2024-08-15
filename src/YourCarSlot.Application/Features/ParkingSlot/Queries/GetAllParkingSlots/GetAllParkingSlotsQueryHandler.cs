@@ -16,7 +16,7 @@ public sealed class GetAllParkingSlotsQuery
             var parkingSlotsTypes = await _parkingSlotRepository.GetAsync(cancellationToken);
 
             var data = new List<ParkingSlotDto>();
-            foreach(var parkingSlot in parkingSlotsTypes)
+            foreach (var parkingSlot in parkingSlotsTypes)
             {
                 var item = ParkingSlotMapper.Map(parkingSlot);
                 data.Add(item);

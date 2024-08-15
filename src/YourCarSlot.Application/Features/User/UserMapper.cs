@@ -16,7 +16,7 @@ internal static class UserMapper
             Username = user.Username
         };
 
-    internal static Domain.Entities.User Map(CreateUser.Command createUserCommand) 
+    internal static Domain.Entities.User Map(CreateUser.Command createUserCommand)
         => new()
         {
             Email = createUserCommand.Email,
@@ -33,5 +33,5 @@ internal static class UserMapper
             Email = updateUserCommand.Email,
             Username = updateUserCommand.Username
         };
-    
+
 }

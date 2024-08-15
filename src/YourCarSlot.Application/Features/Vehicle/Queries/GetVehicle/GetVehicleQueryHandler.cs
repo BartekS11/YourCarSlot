@@ -1,25 +1,32 @@
 using MediatR;
 using YourCarSlot.Application.Contracts.Persistance;
 using YourCarSlot.Application.Exceptions;
+using YourCarSlot.Shared.Abstractions.Mediator.CommandHandling;
 
 namespace YourCarSlot.Application.Features.Vehicle.Queries.GetVehicle;
 
-internal sealed class GetVehicleQueryHandler : IRequestHandler<GetVehicleQuery, VehicleDto>
+public sealed class GetVehicleHandler
 {
-    private readonly IVehicleRepository _vehicleRepository;
+    public sealed record Command(Guid Id) : IYcsRequest<VehicleDto>;
 
-    public GetVehicleQueryHandler(IVehicleRepository vehicleRepository)
+    internal sealed class GetVehicleQueryHandler : IRequestHandler<Command, VehicleDto>
     {
-        _vehicleRepository = vehicleRepository;
-    }
+        private readonly IVehicleRepository _vehicleRepository;
 
-    public async Task<VehicleDto> Handle(GetVehicleQuery request, CancellationToken cancellationToken)
-    {
-        var vehicle = await _vehicleRepository.GetByIdAsync(request.Id, cancellationToken)
-            ?? throw new NotFoundException("Vehicle cannot be found");
+        public GetVehicleQueryHandler(IVehicleRepository vehicleRepository)
+        {
+            _vehicleRepository = vehicleRepository;
+        }
 
-        var data = VehicleMapper.Map(vehicle);
+        public async Task<VehicleDto> Handle(Command request, CancellationToken cancellationToken)
+        {
+            var vehicle = await _vehicleRepository.GetByIdAsync(request.Id, cancellationToken)
+                ?? throw new NotFoundException("Vehicle cannot be found");
 
-        return data;
+            var data = VehicleMapper.Map(vehicle);
+
+            return data;
+        }
     }
 }
+

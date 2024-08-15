@@ -8,13 +8,13 @@ internal sealed class UpdateReservationCommandValidator : AbstractValidator<Upda
     private readonly IReservationRequestRepository _reservationRequestRepository;
 
     public UpdateReservationCommandValidator(IReservationRequestRepository reservationRequestRepository)
-    {   
+    {
         RuleFor(p => p.ParkingSlotRequesting)
             .NotNull();
 
         RuleFor(p => p.Id)
             .MustAsync(ReservationMustExist);
-            
+
         _reservationRequestRepository = reservationRequestRepository;
     }
 

@@ -12,6 +12,6 @@ public class Vehicle : BaseEntity
 
     [Key]
     public string? PlateNumber { get; set; }
-    public string MakeOfCar { get; set; }  = string.Empty;
+    public string MakeOfCar { get; set; } = string.Empty;
     // public Localization CarLocalization { get; set; }
 }

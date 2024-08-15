@@ -13,7 +13,7 @@ internal sealed class CreateReservationCommandValidator : AbstractValidator<Crea
 
         RuleFor(p => p.BookingRequestTime)
             .Must(BeAValidDate).WithMessage("Must be proper date");
-        
+
     }
 
     private bool BeAValidDate(DateTime date)

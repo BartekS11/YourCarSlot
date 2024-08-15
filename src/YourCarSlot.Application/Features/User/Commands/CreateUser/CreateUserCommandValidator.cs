@@ -9,8 +9,8 @@ internal sealed class CreateUserCommandValidator : AbstractValidator<CreateUser.
         RuleFor(p => p.Email)
             .NotNull()
             .WithMessage("{PropertyName} cannot be null");
-       RuleFor(p => p.Password)
-            .NotNull()
-            .WithMessage("{PropertyName} cannot be null"); 
-    }   
+        RuleFor(p => p.Password)
+             .NotNull()
+             .WithMessage("{PropertyName} cannot be null");
+    }
 }

@@ -12,15 +12,15 @@ namespace YourCarSlot.Infrastructure.EF.Configuration
             builder.HasData(
                 new Vehicle
                 {
-                   Id = Guid.Parse(guid1),
-                   MakeOfCar = "bmw",
-                   PlateNumber = "23233-33"
+                    Id = Guid.Parse(guid1),
+                    MakeOfCar = "bmw",
+                    PlateNumber = "23233-33"
                 },
-                new Vehicle 
+                new Vehicle
                 {
                     Id = Guid.Parse(guid2),
-                   MakeOfCar = "Audi",
-                   PlateNumber = "44312413433-33"
+                    MakeOfCar = "Audi",
+                    PlateNumber = "44312413433-33"
                 }
             );
         }
