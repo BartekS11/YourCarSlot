@@ -11,7 +11,7 @@ builder.WebHost.UseDefaultServiceProvider((ctx, options) =>
     options.ValidateScopes = ctx.HostingEnvironment.IsDevelopment();
 });
 
-// Add services to the container.
+builder.Services.AddHealthChecks();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
@@ -31,6 +31,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.MapHealthChecks("/healthchecks");
 app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
