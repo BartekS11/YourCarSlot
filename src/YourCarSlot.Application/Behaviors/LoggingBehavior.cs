@@ -3,7 +3,7 @@ using YourCarSlot.Application.Logging;
 
 namespace YourCarSlot.Application.Behaviors;
 
-public sealed class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : class
+internal sealed class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : class
 {
     private readonly IAppLogger<LoggingBehavior<TRequest, TResponse>> _logger;
 

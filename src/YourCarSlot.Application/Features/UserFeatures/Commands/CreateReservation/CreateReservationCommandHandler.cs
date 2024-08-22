@@ -17,7 +17,7 @@ public sealed class CreateReservationHandler
     {
         private readonly IReservationRequestRepository _reservationRequestRepository;
 
-        public Handler(
+       public Handler(
             IReservationRequestRepository reservationRequestRepository)
         {
             _reservationRequestRepository = reservationRequestRepository;

@@ -2,11 +2,11 @@ namespace YourCarSlot.Application.Features.UserFeatures.Queries.GetReservationRe
 
 public sealed class ReservationRequestDto
 {
-    public Guid? Id { get; set; }
-    public int? ParkingSlotRequesting { get; set; }
-    public bool Reserved { get; set; }
-    public string PlateNumber { get; set; } = string.Empty;
-    public Guid? UserRequestingId { get; set; }
-    public DateTime? CreatedAt { get; set; }
-    public DateTime? DateModified { get; set; }
+    public Guid? Id { get; init; }
+    public int? ParkingSlotRequesting { get; init; }
+    public bool Reserved { get; init; }
+    public string PlateNumber { get; init; } = string.Empty;
+    public Guid? UserRequestingId { get; init; }
+    public DateTime? CreatedAt { get; init; }
+    public DateTime? DateModified { get; init; }
 }

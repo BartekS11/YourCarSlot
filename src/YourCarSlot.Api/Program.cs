@@ -12,11 +12,10 @@ builder.WebHost.UseDefaultServiceProvider((ctx, options) =>
 });
 
 builder.Services.AddHealthChecks();
-builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddIdentityServices(builder.Configuration);
-
-builder.Services.AddCors(options =>
+builder.Services.AddApplicationServices()
+    .AddInfrastructureServices(builder.Configuration)
+    .AddIdentityServices(builder.Configuration)
+    .AddCors(options =>
 {
     options.AddPolicy("all", builder => builder.AllowAnyOrigin()
     .AllowAnyHeader()
@@ -25,30 +24,31 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddEndpointsApiExplorer()
+    .AddSwaggerGen(c => 
+        { 
+            c.CustomSchemaIds(type => type.ToString());
+        });
 
 var app = builder.Build();
 
 app.MapHealthChecks("/healthchecks");
-app.UseMiddleware<ExceptionMiddleware>();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => 
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");   
+    });
 }
 
-app.UseHttpsRedirection();
-
-app.UseCors("all");
-
-app.UseAuthentication();
-
-app.UseAuthorization();
+app
+    .UseMiddleware<ExceptionMiddleware>()
+    .UseHttpsRedirection()
+    .UseCors("all")
+    .UseAuthentication()
+    .UseAuthorization();
 
 app.MapControllers();
-
 app.Run();
