@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace YourCarSlot.Application.Logging;
 
-public sealed class LoggerAdapter<T> : IAppLogger<T>
+internal sealed class LoggerAdapter<T> : IAppLogger<T>
 {
     private readonly ILogger<T> _logger;
 

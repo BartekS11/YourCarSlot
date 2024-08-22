@@ -38,11 +38,11 @@ public sealed class ReservationRequestController : ControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]  
     public async Task<ActionResult> Post(CreateReservationHandler.Command reservationType, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(reservationType, cancellationToken);
-        return CreatedAtAction(nameof(Get), new { id = response });
+        return CreatedAtAction(nameof(Post), new { id = response });
     }
 
     [HttpPut]
