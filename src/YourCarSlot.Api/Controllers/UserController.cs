@@ -12,6 +12,7 @@ namespace YourCarSlot.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
+[ResponseCache(Duration = 60)]
 public sealed class UserController : ControllerBase
 {
     private readonly IMediator _mediator;
